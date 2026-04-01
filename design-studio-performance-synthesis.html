@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Studio: 2025–2026 Performance Synthesis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ─── TOKENS ─── */
+  :root {
+    --green-heritage: #006341;
+    --green-go:       #00C853;
+    --green-mid:      #007A4D;
+    --green-light:    #E8F5EE;
+    --green-mint:     #D0EAE0;
+    --white:          #FFFFFF;
+    --text-primary:   #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted:     #767676;
+    --border:         #D9E8E0;
+    --surface:        #F7FBF9;
+    --surface-card:   #FFFFFF;
+    --shadow:         0 2px 16px rgba(0,99,65,0.08);
+    --shadow-hover:   0 8px 32px rgba(0,99,65,0.14);
+    --radius:         12px;
+    --radius-sm:      8px;
+    --radius-pill:    100px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --green-heritage: #00C853;
+      --green-go:       #69F0AE;
+      --green-mid:      #00E676;
+      --green-light:    #0D1F17;
+      --green-mint:     #132B1E;
+      --white:          #0A1A10;
+      --text-primary:   #E8F5EE;
+      --text-secondary: #A8C8B8;
+      --text-muted:     #6B9E84;
+      --border:         #1E3A28;
+      --surface:        #0A1A10;
+      --surface-card:   #0E2318;
+      --shadow:         0 2px 16px rgba(0,0,0,0.4);
+      --shadow-hover:   0 8px 32px rgba(0,0,0,0.6);
+    }
+  }
+
+  /* ─── RESET ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Libre Franklin', -apple-system, sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: #006341;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid #00C853;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    header { background: #003D28; border-bottom-color: #00C853; }
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 16px;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .n-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .header-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: #006341;
+    color: #fff;
+    padding: 72px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hero { background: #003D28; }
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,83,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,83,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00C853;
+    margin-bottom: 20px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 20px; height: 2px;
+    background: #00C853;
+    border-radius: 2px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: #00C853;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.72);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  /* ─── HEADLINE CALLOUT ─── */
+  .headline-callout {
+    background: #00C853;
+    padding: 0;
+  }
+
+  .headline-callout-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .callout-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .callout-icon svg { width: 16px; height: 16px; fill: #fff; }
+
+  .callout-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #003D28;
+    line-height: 1.5;
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: var(--green-mint);
+    color: var(--green-heritage);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .section-tag { background: rgba(0,200,83,0.15); color: #00C853; }
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* ─── STAT CARDS ─── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--green-heritage);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .stat-card::before { background: #00C853; }
+  }
+
+  .stat-card.warn::before { background: #EA614D; }
+  .stat-card.neutral::before { background: #008B5E; }
+
+  .stat-year {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--green-heritage);
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .stat-number { color: #00C853; }
+  }
+
+  .stat-number.warn { color: #EA614D; }
+
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* ─── TWO COLUMN STATS ─── */
+  .period-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 640px) {
+    .period-grid { grid-template-columns: 1fr; }
+  }
+
+  .period-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .period-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .period-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .period-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .badge-green {
+    background: var(--green-mint);
+    color: var(--green-heritage);
+  }
+
+  .badge-amber {
+    background: #FFF3E0;
+    color: #E65100;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .badge-green { background: rgba(0,200,83,0.15); color: #00C853; }
+    .badge-amber { background: rgba(230,81,0,0.15); color: #FF8A65; }
+  }
+
+  .period-stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .period-stat-row:last-child { border-bottom: none; }
+
+  .period-stat-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--green-heritage);
+    min-width: 52px;
+    letter-spacing: -0.02em;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .period-stat-num { color: #00C853; }
+  }
+
+  .period-stat-num.warn { color: #EA614D; }
+  .period-stat-num.zero { color: var(--text-muted); }
+
+  .period-stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  /* ─── ALERT BOX ─── */
+  .alert {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .alert-warn {
+    background: rgba(234,97,77,0.08);
+    border: 1px solid rgba(234,97,77,0.25);
+    border-left: 4px solid #EA614D;
+  }
+
+  .alert-info {
+    background: var(--green-light);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green-heritage);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .alert-warn {
+      background: rgba(234,97,77,0.1);
+      border-color: rgba(234,97,77,0.3);
+    }
+    .alert-info {
+      background: rgba(0,200,83,0.08);
+      border-color: rgba(0,200,83,0.2);
+      border-left-color: #00C853;
+    }
+  }
+
+  .alert-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .alert-body { flex: 1; }
+
+  .alert-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+  }
+
+  .alert-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── TABLE ─── */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--surface-card);
+  }
+
+  thead {
+    background: #006341;
+    color: #fff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    thead { background: #003D28; }
+  }
+
+  th {
+    padding: 13px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.9);
+  }
+
+  td {
+    padding: 13px 16px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: var(--green-light); }
+
+  @media (prefers-color-scheme: dark) {
+    tr:hover td { background: rgba(0,200,83,0.05); }
+  }
+
+  /* Status pills */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pill::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  .pill-progress { background: #E3F2FD; color: #1565C0; }
+  .pill-blocked  { background: #FEECEB; color: #C0392B; }
+  .pill-delivered{ background: #E8F5E9; color: #2E7D32; }
+  .pill-delayed  { background: #FFF8E1; color: #F57F17; }
+  .pill-shelved  { background: #F5F5F5; color: #616161; }
+  .pill-complete { background: #E8F5E9; color: #2E7D32; }
+
+  @media (prefers-color-scheme: dark) {
+    .pill-progress { background: rgba(21,101,192,0.2); color: #90CAF9; }
+    .pill-blocked  { background: rgba(192,57,43,0.2); color: #FF6B6B; }
+    .pill-delivered{ background: rgba(46,125,50,0.2); color: #81C784; }
+    .pill-delayed  { background: rgba(245,127,23,0.2); color: #FFD54F; }
+    .pill-shelved  { background: rgba(97,97,97,0.2); color: #BDBDBD; }
+    .pill-complete { background: rgba(46,125,50,0.2); color: #81C784; }
+  }
+
+  /* ─── LEAD ACCOUNTABILITY ─── */
+  .leads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .lead-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .lead-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .lead-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .lead-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .lead-role {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 1px;
+  }
+
+  .load-bar-wrap {
+    margin-bottom: 10px;
+  }
+
+  .load-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .load-bar-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+
+  .load-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--green-heritage);
+    transition: width 0.6s ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .load-bar-fill { background: #00C853; }
+  }
+
+  .load-bar-fill.overload { background: #EA614D; }
+
+  .lead-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  /* ─── ANTI-PATTERNS ─── */
+  .antipattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .antipattern-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid #EA614D;
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .antipattern-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #EA614D;
+    margin-bottom: 6px;
+  }
+
+  .antipattern-example {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text-muted);
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-left: 2px solid var(--border);
+  }
+
+  .antipattern-project {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* ─── GOOD EXAMPLES ─── */
+  .good-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .good-example {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .good-check {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    background: var(--green-heritage);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .good-check { background: #00C853; }
+  }
+
+  .good-check svg { width: 12px; height: 12px; fill: #fff; }
+
+  @media (prefers-color-scheme: dark) {
+    .good-check svg { fill: #003D28; }
+  }
+
+  .good-text {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* ─── BLOCKERS ─── */
+  .blocker-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .blocker-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .blocker-dot {
+    flex-shrink: 0;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #EA614D;
+    margin-top: 5px;
+  }
+
+  .blocker-project {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .blocker-detail {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ─── COMPLETION CHECKLIST ─── */
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .check-box {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border: 2px solid var(--green-heritage);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .check-box { border-color: #00C853; }
+  }
+
+  .check-box svg { width: 10px; height: 10px; fill: var(--green-heritage); }
+
+  @media (prefers-color-scheme: dark) {
+    .check-box svg { fill: #00C853; }
+  }
+
+  .checklist-text {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  /* ─── EXAMPLE PROJECTS ─── */
+  .examples-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .example-tag {
+    display: inline-flex;
+    padding: 5px 12px;
+    background: var(--green-mint);
+    color: var(--green-heritage);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .example-tag { background: rgba(0,200,83,0.12); color: #00C853; }
+  }
+
+  /* ─── RECOMMENDATIONS ─── */
+  .recs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rec-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .rec-card:hover { box-shadow: var(--shadow-hover); }
+
+  .rec-number {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: #006341;
+    color: #00C853;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .rec-number { background: rgba(0,200,83,0.15); color: #00C853; }
+  }
+
+  .rec-body { flex: 1; }
+
+  .rec-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+  }
+
+  .rec-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── TEAM TABLE ─── */
+  .team-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #006341;
+    color: #00C853;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .team-avatar { background: rgba(0,200,83,0.2); }
+  }
+
+  .name-cell {
+    display: flex;
+    align-items: center;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #006341;
+    color: rgba(255,255,255,0.65);
+    padding: 32px 24px;
+    margin-top: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    footer { background: #003D28; }
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.9);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .footer-meta {
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: right;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .header-meta { display: none; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .leads-grid { grid-template-columns: 1fr; }
+    .antipattern-grid { grid-template-columns: 1fr; }
+    .checklist { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    main { padding: 40px 16px 64px; }
+    .hero { padding: 48px 16px 56px; }
+    .header-inner { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="data:image/png;base64,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" class="n-icon" alt="Design Studio" style="border-radius:50%;">
+      <div><div class="header-title">Design Studio</div><div style="font-size:11px;color:rgba(255,255,255,0.45);font-weight:400;letter-spacing:0.03em;">Nedbank</div></div>
+    </div>
+    <span class="header-meta">Performance Synthesis · 2025–2026 · Prepared for Team Kickoff</span>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Performance Review</div>
+    <h1>Design Studio<br><em>2025–2026</em><br>Performance Synthesis</h1>
+    <p class="hero-desc">Covers project delivery and project management performance across 2025 and Q1 2026. Prepared for the Design Studio 2026 Team Kickoff.</p>
+  </div>
+</section>
+
+<!-- ─── HEADLINE FINDING ─── -->
+<div class="headline-callout">
+  <div class="headline-callout-inner">
+    <div class="callout-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+    </div>
+    <p class="callout-text">Headline finding across both years: Every project completion came from below the waterline. No above-the-waterline project has been completed in 2025 or Q1 2026.</p>
+  </div>
+</div>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+  <!-- ─── TEAM COMPOSITION ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Team</span>
+      <h2 class="section-title">Team Composition</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Person</th>
+            <th>2025</th>
+            <th>2026</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">RA</span><strong>Ramo</strong></div></td>
+            <td>Team Lead</td>
+            <td>Team Lead</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">DA</span>David</div></td>
+            <td>Senior Business Design Lead</td>
+            <td>Senior Business Design Lead</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">JE</span>Jenna</div></td>
+            <td>Design Research Lead</td>
+            <td>Design Research Lead</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">RO</span>Roxanne</div></td>
+            <td>Senior Service Design Lead</td>
+            <td>Senior Service Design Lead</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">TH</span>Thabo</div></td>
+            <td>Business Design Lead</td>
+            <td>Business Design Lead</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">KA</span>Katlego</div></td>
+            <td>Service Design Lead</td>
+            <td>Service Design Lead</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">NY</span>Nyakallo</div></td>
+            <td>Junior Design Researcher</td>
+            <td>Junior Design Researcher (intentional growth path)</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">DL</span>Dale</div></td>
+            <td>Senior Delivery Lead (resigned Sept 2025)</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">VI</span>Vikee</div></td>
+            <td>—</td>
+            <td>Design Research Lead (new joiner; on leave 9 Apr–1 May)</td>
+          </tr>
+          <tr>
+            <td><div class="name-cell"><span class="team-avatar">NA</span>Natasha</div></td>
+            <td>Design Ops Lead</td>
+            <td>Design Ops Lead</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── PORTFOLIO OVERVIEW ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Portfolio</span>
+      <h2 class="section-title">Portfolio Overview</h2>
+    </div>
+
+    <div class="period-grid">
+      <!-- 2025 -->
+      <div class="period-card">
+        <div class="period-card-header">
+          <span class="period-label">Full Year</span>
+          <span class="period-badge badge-amber">2025</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num">~28</span>
+          <span class="period-stat-label">Projects tracked across the year</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num">~9</span>
+          <span class="period-stat-label">Completed — all below the waterline</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num warn">0</span>
+          <span class="period-stat-label">Priority (above-waterline) projects completed out of 7 active</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num zero">~18</span>
+          <span class="period-stat-label">Projects carried into 2026 or shelved</span>
+        </div>
+      </div>
+
+      <!-- Q1 2026 -->
+      <div class="period-card">
+        <div class="period-card-header">
+          <span class="period-label">Jan – Mar</span>
+          <span class="period-badge badge-green">Q1 2026</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num">~20</span>
+          <span class="period-stat-label">Projects tracked</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num">4</span>
+          <span class="period-stat-label">Completed — all below the waterline</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num warn">0</span>
+          <span class="period-stat-label">Priority (above-waterline) projects completed out of 5 active</span>
+        </div>
+        <div class="period-stat-row">
+          <span class="period-stat-num zero">—</span>
+          <span class="period-stat-label">Innovation Fund deadline missed; revised to June</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── PRIORITY PROJECTS ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Status</span>
+      <h2 class="section-title">Priority Projects: Status as at 1 April 2026</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Lead</th>
+            <th>Value Driver</th>
+            <th>Status</th>
+            <th>Key Blocker / Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>HL x TikTok Pilot</strong><br><small style="color:var(--text-muted)">formerly CR4 FoF</small></td>
+            <td>Ramo</td>
+            <td>Commercial</td>
+            <td><span class="pill pill-progress">In progress</span></td>
+            <td>External dependencies: Buli (budget approval), TikTok (creator list). Creator shortlisting underway.</td>
+          </tr>
+          <tr>
+            <td><strong>Financial Abuse</strong></td>
+            <td>Ramo</td>
+            <td>Commercial</td>
+            <td><span class="pill pill-progress">In progress</span></td>
+            <td>Weekly CVP co-creation sessions running. Playback to Kensi targeted for early April.</td>
+          </tr>
+          <tr>
+            <td><strong>uMastandi</strong></td>
+            <td>Ramo</td>
+            <td>Commercial</td>
+            <td><span class="pill pill-blocked">Blocked</span></td>
+            <td>Awaiting Terry's engagement with the ME of PPB. Internal escalation required.</td>
+          </tr>
+          <tr>
+            <td><strong>Private Clients Target State</strong></td>
+            <td>David &amp; Thabo <em>(transferred)</em></td>
+            <td>Commercial</td>
+            <td><span class="pill pill-delivered">Delivered (DS side)</span></td>
+            <td>Ownership transferred to Louise's team. Design Studio deliverables complete.</td>
+          </tr>
+          <tr>
+            <td><strong>Innovation Fund</strong><br><small style="color:var(--text-muted)">UCT sub-project 1</small></td>
+            <td>Jenna / Ramo</td>
+            <td>Commercial (long-term)</td>
+            <td><span class="pill pill-delayed">Delayed</span></td>
+            <td>April deadline missed. Blocked by Social Impact Unit guidance and implementation partner onboarding. Revised target: June. Risk escalated to Terry.</td>
+          </tr>
+          <tr>
+            <td><strong>Youth X Studio</strong><br><small style="color:var(--text-muted)">UCT sub-project 2</small></td>
+            <td>Roxanne / Ramo</td>
+            <td>Brand</td>
+            <td><span class="pill pill-progress">In progress</span></td>
+            <td>Hackathon and operating model work underway. CT Immersion complete. Active momentum.</td>
+          </tr>
+          <tr>
+            <td><strong>Nedbank Connect Commercialisation</strong></td>
+            <td>Roxanne</td>
+            <td>Commercial</td>
+            <td><span class="pill pill-shelved">Shelved</span></td>
+            <td>Paused on Design team feedback in late 2025. Not in 2026 tracker. Formally retired.</td>
+          </tr>
+          <tr>
+            <td><strong>Lifestyle Commercialisation</strong></td>
+            <td>Thabo</td>
+            <td>Commercial</td>
+            <td><span class="pill pill-shelved">Shelved</span></td>
+            <td>Not in 2026 tracker. Formally retired.</td>
+          </tr>
+          <tr>
+            <td><strong>NIC Digital Adoption</strong></td>
+            <td>Roxanne, Thabo &amp; David</td>
+            <td>Commercial</td>
+            <td><span class="pill pill-complete">Completed 2025</span></td>
+            <td>Successfully completed in 2025. No further action required.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── LEAD ACCOUNTABILITY ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Accountability</span>
+      <h2 class="section-title">Lead Accountability Distribution</h2>
+    </div>
+
+    <div class="alert alert-warn" style="margin-bottom: 28px;">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-body">
+        <div class="alert-title">The concentration problem persists.</div>
+        <div class="alert-text">Ramo carries 8 projects against an intended 1-project-per-lead principle — 4–8x the intended load. Thabo, Katlego, and Vikee (from May) have meaningful available capacity. A redistribution conversation is overdue.</div>
+      </div>
+    </div>
+
+    <div class="leads-grid">
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Ramo</div>
+            <div class="lead-role">Team Lead</div>
+          </div>
+          <span class="pill pill-blocked">Overloaded</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>12 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill overload" style="width:100%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>8 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill overload" style="width:80%"></div></div>
+        </div>
+        <div class="lead-note">Improving but still 4–8× the intended load. 3 are carried-over priority projects active for 12+ months.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">David</div>
+            <div class="lead-role">Senior Business Design Lead</div>
+          </div>
+          <span class="pill pill-progress">Reducing</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>6 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:60%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>3 PL + 2 AL</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:45%"></div></div>
+        </div>
+        <div class="lead-note">Completed 2 in 2025. Load reducing. Private Clients now delivered from DS side.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Jenna</div>
+            <div class="lead-role">Design Research Lead</div>
+          </div>
+          <span class="pill pill-delayed">Watch</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>5 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:50%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>4 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:40%"></div></div>
+        </div>
+        <div class="lead-note">Inherited Affinity 2.0 after Dale's resignation. Maze projects show persistent milestone quality issues.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Roxanne</div>
+            <div class="lead-role">Senior Service Design Lead</div>
+          </div>
+          <span class="pill pill-delivered">Clean delivery</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>3–4 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:38%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>3 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:30%"></div></div>
+        </div>
+        <div class="lead-note">Completed Reg Design Masterclass in Q1 2026. Credit Mod Workshop completed. Clean delivery on time-bound projects.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Thabo</div>
+            <div class="lead-role">Business Design Lead</div>
+          </div>
+          <span class="pill pill-delivered">Has capacity</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>2 projects</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:20%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>1 project</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:10%"></div></div>
+        </div>
+        <div class="lead-note">Well-calibrated. Available for additional accountability.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Katlego</div>
+            <div class="lead-role">Service Design Lead</div>
+          </div>
+          <span class="pill pill-delivered">Has capacity</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>1 project</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:10%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>1 project</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:10%"></div></div>
+        </div>
+        <div class="lead-note">Completed Pay-as-you-Drive cleanly in 2025. Accountable lead on CIB AI Squad. Has capacity for more.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Nyakallo</div>
+            <div class="lead-role">Junior Design Researcher</div>
+          </div>
+          <span class="pill pill-progress">Growth path</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025 Load</span><span>0 (lead)</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:5%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>0 (lead)</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:5%"></div></div>
+        </div>
+        <div class="lead-note">Junior team member. Focus: structured support roles with intentional, experience-appropriate deliverables.</div>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-card-top">
+          <div>
+            <div class="lead-name">Vikee</div>
+            <div class="lead-role">Design Research Lead</div>
+          </div>
+          <span class="pill pill-delayed">Deploying May</span>
+        </div>
+        <div class="load-bar-wrap">
+          <div class="load-bar-label"><span>2025</span><span>—</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:0%"></div></div>
+          <div class="load-bar-label"><span>Q1 2026</span><span>0 (post-May)</span></div>
+          <div class="load-bar-track"><div class="load-bar-fill" style="width:0%"></div></div>
+        </div>
+        <div class="lead-note">On leave 9 Apr–1 May. Will lead AI-assisted research positioning paper from May. First lead project scoped and ready.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── MILESTONE QUALITY ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Quality</span>
+      <h2 class="section-title">Milestone Quality: Outcomes vs Activity</h2>
+    </div>
+
+    <div class="alert alert-info" style="margin-bottom: 28px;">
+      <span class="alert-icon">📐</span>
+      <div class="alert-body">
+        <div class="alert-title">The litmus test</div>
+        <div class="alert-text">Can this milestone be marked definitively done or not done? If the answer is no, it is an activity or a status update — not a milestone.</div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 32px; margin-bottom: 16px;">
+      <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary);">Anti-patterns found across 2025–2026</h3>
+    </div>
+
+    <div class="antipattern-grid">
+      <div class="antipattern-card">
+        <div class="antipattern-name">Silent carry-forward</div>
+        <div class="antipattern-example">"SAME FEEDBACK" repeated 4×</div>
+        <div class="antipattern-project">JM&O Roll-out, Digi 2.0</div>
+      </div>
+      <div class="antipattern-card">
+        <div class="antipattern-name">Waiting state as milestone</div>
+        <div class="antipattern-example">"Awaiting feedback from potential partners"</div>
+        <div class="antipattern-project">Irma Stern, Private Clients</div>
+      </div>
+      <div class="antipattern-card">
+        <div class="antipattern-name">Activity framing</div>
+        <div class="antipattern-example">"Concept testing prep", "Survey content writing", "Pack creation"</div>
+        <div class="antipattern-project">NIC Digital, CCD Masterclass</div>
+      </div>
+      <div class="antipattern-card">
+        <div class="antipattern-name">Status dump</div>
+        <div class="antipattern-example">"Campaign on hold due to performance concerns"</div>
+        <div class="antipattern-project">Financial Abuse</div>
+      </div>
+      <div class="antipattern-card">
+        <div class="antipattern-name">Perpetual milestone</div>
+        <div class="antipattern-example">"Supporting testing teams" for 8+ weeks; "CoE Miro updates" every fortnight</div>
+        <div class="antipattern-project">Maze Projects, Maze CoE</div>
+      </div>
+      <div class="antipattern-card">
+        <div class="antipattern-name">Paused project on tracker</div>
+        <div class="antipattern-example">"None — sitting with stakeholders for next steps" for 3 fortnights</div>
+        <div class="antipattern-project">Affinity 2.0</div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 32px; margin-bottom: 16px;">
+      <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary);">What good looks like</h3>
+    </div>
+
+    <div class="good-examples">
+      <div class="good-example">
+        <div class="good-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="good-text">"Tender submitted" — binary, unambiguous</span>
+      </div>
+      <div class="good-example">
+        <div class="good-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="good-text">"Testable prototypes ready for stakeholder review" — defined deliverable</span>
+      </div>
+      <div class="good-example">
+        <div class="good-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="good-text">"Draft playbook shared with core team; input received" — completed action + result</span>
+      </div>
+      <div class="good-example">
+        <div class="good-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="good-text">"Workshop facilitated; synthesis underway" — stage-gate language</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── EXTERNAL DEPENDENCIES ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Blockers</span>
+      <h2 class="section-title">External Dependency Vulnerability</h2>
+    </div>
+
+    <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; max-width: 720px; line-height: 1.7;">
+      The single most consistent cause of project distress across 2025 and Q1 2026 is unmanaged external dependencies. The team has no visible escalation or unblocking mechanism — projects simply wait, and the tracker fills with "awaiting," "TBC," or "SAME FEEDBACK."
+    </p>
+
+    <div class="blocker-list">
+      <div class="blocker-card">
+        <div class="blocker-dot"></div>
+        <div>
+          <div class="blocker-project">HL x TikTok</div>
+          <div class="blocker-detail">Buli (budget approval), TikTok/Natalie (creator list), HL stakeholders (shortlisting)</div>
+        </div>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-dot"></div>
+        <div>
+          <div class="blocker-project">uMastandi</div>
+          <div class="blocker-detail">Terry's engagement with ME of PPB — internal senior stakeholder. Direct conversation is the unblocking action.</div>
+        </div>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-dot"></div>
+        <div>
+          <div class="blocker-project">Innovation Fund</div>
+          <div class="blocker-detail">Social Impact Unit guidance; implementation partner identification and onboarding</div>
+        </div>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-dot"></div>
+        <div>
+          <div class="blocker-project">JM&O Roll-out</div>
+          <div class="blocker-detail">Unclear reporting ownership; incomplete data access mapping</div>
+        </div>
+      </div>
+      <div class="blocker-card" style="border-left: 3px solid var(--green-heritage); opacity:0.7;">
+        <div class="blocker-dot" style="background: var(--green-heritage);"></div>
+        <div>
+          <div class="blocker-project">Private Clients <span style="font-weight:400; color: var(--text-muted)">— Resolved</span></div>
+          <div class="blocker-detail">Resolved via ownership transfer to Louise's team.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top: 24px;">
+      <span class="alert-icon">📋</span>
+      <div class="alert-body">
+        <div class="alert-title">Proposed dependency escalation rule</div>
+        <div class="alert-text">If a project is blocked by an external or senior internal party for two consecutive fortnights, it triggers one of two actions: a formal escalation, or an explicit decision to pause and reallocate the team's capacity.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── COMPLETION PATTERN ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Patterns</span>
+      <h2 class="section-title">Completion Pattern: What the Team Does Well</h2>
+    </div>
+
+    <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; max-width: 720px; line-height: 1.7;">
+      Every completion in 2025 and Q1 2026 shared the same characteristics. The priority projects need to be structured to behave more like these.
+    </p>
+
+    <div class="checklist">
+      <div class="checklist-item">
+        <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="checklist-text">Time-bound with a clear end date</span>
+      </div>
+      <div class="checklist-item">
+        <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="checklist-text">Single, named internal lead with accountability</span>
+      </div>
+      <div class="checklist-item">
+        <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="checklist-text">Defined deliverable with obvious completion criteria</span>
+      </div>
+      <div class="checklist-item">
+        <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="checklist-text">Minimal external dependencies, or dependencies resolved early</span>
+      </div>
+      <div class="checklist-item">
+        <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <span class="checklist-text">Scope contained to what the team controls</span>
+      </div>
+    </div>
+
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px; font-weight: 600;">Examples of successful completions:</p>
+    <div class="examples-strip">
+      <span class="example-tag">Pay-as-you-Drive</span>
+      <span class="example-tag">MVNO PPB</span>
+      <span class="example-tag">Arizona Phase 2</span>
+      <span class="example-tag">Repository Update</span>
+      <span class="example-tag">CCD Masterclass</span>
+      <span class="example-tag">Reg Design Thinking Masterclass</span>
+      <span class="example-tag">Credit Modernisation Workshop</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── RECOMMENDATIONS ─── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">2026 Actions</span>
+      <h2 class="section-title">Key Recommendations for 2026</h2>
+    </div>
+
+    <div class="recs-list">
+      <div class="rec-card">
+        <div class="rec-number">1</div>
+        <div class="rec-body">
+          <div class="rec-title">Shelved projects — closed</div>
+          <div class="rec-desc">Nedbank Connect Commercialisation and Lifestyle Commercialisation have been formally retired. NIC Digital Adoption was completed in 2025. These will not be picked up unless explicitly requested. No further action required.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">2</div>
+        <div class="rec-body">
+          <div class="rec-title">Redistribute project accountability</div>
+          <div class="rec-desc">Ramo currently holds 8 projects. Against the 1-project-per-lead principle, 4–5 should be redistributed. Thabo and Katlego have capacity now. Vikee comes online from May. Even partial redistribution of below-the-waterline projects would free meaningful bandwidth.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">3</div>
+        <div class="rec-body">
+          <div class="rec-title">Unblock uMastandi</div>
+          <div class="rec-desc">This project is not stalled by team effort or lack of interest — it is waiting on a specific internal commitment from Terry. A direct conversation is the unblocking action.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">4</div>
+        <div class="rec-body">
+          <div class="rec-title">Split UCT Student Lounge into two explicit projects</div>
+          <div class="rec-desc">Innovation Fund (commercial, longer-term, currently June target) and Youth X Studio (brand, active) have different owners, timelines, and success measures. They should be tracked separately.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">5</div>
+        <div class="rec-body">
+          <div class="rec-title">Ban "SAME FEEDBACK" and "As per previous"</div>
+          <div class="rec-desc">If nothing changed, the update must explain why and what is being done about it. A silent carry-forward signals a project that is not being actively managed.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">6</div>
+        <div class="rec-body">
+          <div class="rec-title">Introduce a dependency escalation rule</div>
+          <div class="rec-desc">Two consecutive fortnights blocked by an external or senior internal party triggers a mandatory decision: escalate formally, or pause and reallocate.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">7</div>
+        <div class="rec-body">
+          <div class="rec-title">Define "done" before priority projects begin</div>
+          <div class="rec-desc">Every above-the-waterline project should have a clearly stated completion criterion agreed upfront — the equivalent of "workshop facilitated" or "tender submitted" for strategic work.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">8</div>
+        <div class="rec-body">
+          <div class="rec-title">Structure Nyakallo's growth intentionally</div>
+          <div class="rec-desc">Rather than ad hoc support, define experience-appropriate deliverables per project that build her capability in a deliberate, progressive way.</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-number">9</div>
+        <div class="rec-body">
+          <div class="rec-title">Plan Vikee's onboarding into the portfolio</div>
+          <div class="rec-desc">She returns from leave 1 May. Her first lead project (AI-assisted research positioning paper) is scoped and ready. Use the period before her leave to ensure a strong brief is in place.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+        <path d="M18 0C8.059 0 0 8.059 0 18s8.059 18 18 18 18-8.059 18-18S27.941 0 18 0z" fill="rgba(255,255,255,0.1)"/>
+        <path d="M10 10h4.2l7.6 10.4V10H26v16h-4.2L14.2 15.6V26H10V10z" fill="white"/>
+      </svg>
+      Nedbank Design Studio
+    </div>
+    <div class="footer-meta">
+      2025–2026 Performance Synthesis<br>
+      Prepared for Team Kickoff · Status as at 1 April 2026
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
