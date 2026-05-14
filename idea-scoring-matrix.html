@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Idea Scoring Matrix — Incentives &amp; Rewards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --heritage:    #006341;
+  --heritage-dk: #004d32;
+  --heritage-lt: #e6f2ed;
+  --go-green:    #00C853;
+  --go-green-lt: #e6faf0;
+  --bg:          #f4f6f4;
+  --surface:     #ffffff;
+  --surface2:    #eef1ee;
+  --border:      rgba(0,0,0,0.09);
+  --border-mid:  rgba(0,0,0,0.15);
+  --text-p:      #0d1f18;
+  --text-s:      #3d5449;
+  --text-t:      #7a9287;
+  --green-bg:    #e6f2ed;
+  --green-text:  #004d32;
+  --amber-bg:    #fef3e0;
+  --amber-text:  #7a4e00;
+  --red-bg:      #fdecea;
+  --red-text:    #8b1a1a;
+  --gray-bg:     #eef1ee;
+  --gray-text:   #3d5449;
+  --bar-green:   #006341;
+  --bar-amber:   #e09000;
+  --bar-red:     #c0392b;
+  --radius:      8px;
+  --radius-lg:   12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Libre Franklin', sans-serif;
+  background: var(--bg);
+  color: var(--text-p);
+  min-height: 100vh;
+  padding: 0 0 80px;
+}
+
+/* Header */
+.page-header {
+  background: var(--heritage);
+  padding: 48px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -70px; right: -70px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.07);
+  pointer-events: none;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -90px; right: 100px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,200,83,0.12);
+  pointer-events: none;
+}
+.header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 16px;
+}
+.header-title {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.header-title span { color: var(--go-green); }
+.header-rule {
+  width: 40px; height: 3px;
+  background: var(--go-green);
+  border-radius: 2px;
+  margin: 14px 0 16px;
+}
+.header-intro {
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.58);
+  max-width: 540px;
+  font-weight: 300;
+}
+
+/* Page body */
+.page-body { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+/* Section labels */
+.section-header {
+  display: flex; align-items: baseline;
+  gap: 10px; margin: 36px 0 14px;
+}
+.section-title {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--heritage);
+}
+.section-note { font-size: 12px; color: var(--text-t); font-weight: 400; }
+
+/* Criteria grid */
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 10px;
+}
+.crit-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 14px 12px;
+  position: relative; overflow: hidden;
+}
+.crit-accent {
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  border-radius: 8px 0 0 8px;
+}
+.crit-name {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-p); margin-bottom: 3px; padding-left: 10px;
+}
+.crit-desc {
+  font-size: 11px; color: var(--text-t);
+  margin-bottom: 12px; padding-left: 10px; line-height: 1.5;
+}
+.crit-card input[type=range] {
+  width: 100%; -webkit-appearance: none;
+  height: 4px; border-radius: 2px;
+  background: var(--surface2); outline: none;
+  cursor: pointer; margin-bottom: 5px;
+}
+.crit-card input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--heritage); cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,99,65,0.25);
+}
+.crit-weight-val { font-size: 11px; color: var(--text-t); text-align: right; }
+.crit-weight-val span { font-weight: 600; color: var(--text-s); }
+
+/* Weight counter */
+.weight-counter {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 16px; margin-top: 10px;
+}
+.wc-label-text {
+  font-size: 11px; font-weight: 600;
+  color: var(--text-s); white-space: nowrap; min-width: 110px;
+}
+.wc-bar-bg {
+  flex: 1; height: 6px;
+  background: var(--surface2); border-radius: 3px; overflow: hidden;
+}
+.wc-bar-fill {
+  height: 6px; border-radius: 3px;
+  transition: width .2s, background .2s;
+}
+.wc-label {
+  font-size: 12px; font-weight: 500;
+  min-width: 80px; text-align: right; transition: color .2s;
+}
+.wc-status {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .03em; min-width: 80px;
+}
+
+/* Buttons */
+.btn {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 13px; font-weight: 500;
+  padding: 10px 18px; border-radius: var(--radius);
+  border: 1px solid var(--border-mid);
+  background: var(--surface); color: var(--text-p);
+  cursor: pointer; transition: background .15s; white-space: nowrap;
+}
+.btn:hover { background: var(--surface2); }
+.btn-primary {
+  background: var(--heritage); color: #ffffff; border-color: transparent;
+}
+.btn-primary:hover { background: var(--heritage-dk); border-color: transparent; }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Add idea row */
+.add-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.add-row input[type=text] {
+  flex: 1; font-family: 'Libre Franklin', sans-serif;
+  font-size: 13px; padding: 10px 14px;
+  border: 1px solid var(--border-mid); border-radius: var(--radius);
+  background: var(--surface); color: var(--text-p);
+  outline: none; transition: border-color .15s;
+}
+.add-row input[type=text]::placeholder { color: var(--text-t); }
+.add-row input[type=text]:focus { border-color: var(--heritage); }
+
+/* Table */
+.table-wrap {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg); overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text-t); padding: 12px 14px 10px;
+  border-bottom: 0.5px solid var(--border);
+  text-align: left; white-space: nowrap; background: #fafcfa;
+}
+thead th.center { text-align: center; }
+tbody tr:not(:last-child) td { border-bottom: 0.5px solid var(--border); }
+tbody tr:hover td { background: #fafcfa; }
+tbody td { padding: 10px 14px; vertical-align: middle; }
+.idea-name-cell {
+  font-weight: 500; font-size: 13px; color: var(--text-p);
+  min-width: 160px; max-width: 220px;
+}
+.score-cell { text-align: center; }
+.score-cell select {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 12px; padding: 5px 4px; width: 54px;
+  border: 1px solid var(--border-mid); border-radius: 6px;
+  background: var(--surface); color: var(--text-p);
+  cursor: pointer; text-align: center; outline: none;
+}
+.score-cell select:focus { border-color: var(--heritage); }
+.total-cell { text-align: center; }
+.total-pill {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  padding: 4px 12px; border-radius: 20px;
+  min-width: 50px; text-align: center;
+}
+.del-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-t); font-size: 18px; line-height: 1;
+  padding: 4px 8px; border-radius: 6px;
+  transition: color .15s, background .15s;
+}
+.del-btn:hover { color: #c0392b; background: var(--red-bg); }
+
+/* Score action row */
+.score-action-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 0; flex-wrap: wrap; gap: 10px;
+}
+.score-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.legend-item {
+  display: flex; align-items: center;
+  gap: 6px; font-size: 11px; color: var(--text-s);
+}
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* Results */
+.results-section { display: none; margin-top: 36px; }
+.rank-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px; margin-bottom: 8px;
+}
+.rank-card.top {
+  border: 1.5px solid var(--heritage);
+  background: var(--heritage-lt);
+}
+.rank-num {
+  font-size: 20px; font-weight: 700;
+  color: var(--text-t); width: 28px;
+  flex-shrink: 0; text-align: center;
+}
+.rank-card.top .rank-num { color: var(--heritage); }
+.rank-name { flex: 1; font-size: 14px; font-weight: 500; color: var(--text-p); min-width: 0; }
+.rank-badge {
+  display: inline-block;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px;
+  margin-left: 8px; vertical-align: middle;
+}
+.rank-bar-wrap { width: 140px; flex-shrink: 0; }
+.rank-bar-bg { background: var(--surface2); border-radius: 3px; height: 5px; }
+.rank-bar-fill { height: 5px; border-radius: 3px; transition: width .5s ease; }
+.rank-score {
+  font-size: 16px; font-weight: 700;
+  min-width: 36px; text-align: right;
+}
+.rank-score-label { font-size: 10px; color: var(--text-t); text-align: right; margin-top: 1px; }
+
+/* Method note */
+.method-note {
+  background: var(--heritage-lt);
+  border: 0.5px solid rgba(0,99,65,0.2);
+  border-left: 3px solid var(--heritage);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 16px 18px; margin-top: 24px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.method-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; color: var(--heritage); }
+.method-text { font-size: 12px; line-height: 1.75; color: var(--text-s); }
+.method-text strong { font-weight: 600; color: var(--heritage); }
+
+/* Footer */
+.page-footer {
+  text-align: center; font-size: 11px; color: var(--text-t);
+  margin-top: 48px; padding-top: 20px;
+  border-top: 0.5px solid var(--border);
+}
+.footer-mark {
+  display: inline-block; width: 8px; height: 8px;
+  background: var(--heritage); border-radius: 1px;
+  margin-right: 6px; vertical-align: middle;
+}
+
+@media (max-width: 620px) {
+  .page-header { padding: 36px 20px 32px; }
+  .page-body { padding: 0 14px; }
+  .criteria-grid { grid-template-columns: 1fr 1fr; }
+  .rank-bar-wrap { display: none; }
+  .rank-card { gap: 10px; padding: 12px 14px; }
+  .score-action-row { flex-direction: column; align-items: flex-start; }
+  .weight-counter { flex-wrap: wrap; }
+  .wc-label-text { min-width: unset; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Nedbank Design Studio &nbsp;·&nbsp; Stockbroking on App — Incentives &amp; Rewards</div>
+    <h1 class="header-title">Idea scoring &amp; <span>prioritisation</span> matrix</h1>
+    <div class="header-rule"></div>
+    <p class="header-intro">We used a weighted criteria matrix grounded in IDEO's DVF framework, augmented for our specific context. The weights were agreed by the team before scoring, and the output informed our prototyping selection.</p>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <div class="section-header">
+    <span class="section-title">Scoring criteria</span>
+    <span class="section-note">Adjust weights to reflect team priorities before scoring</span>
+  </div>
+  <div class="criteria-grid" id="critGrid"></div>
+
+  <div class="weight-counter">
+    <div class="wc-label-text">Weight distribution</div>
+    <div class="wc-bar-bg">
+      <div class="wc-bar-fill" id="wcBar" style="width:100%;background:var(--heritage);"></div>
+    </div>
+    <div class="wc-label" id="wcLabel" style="color:var(--heritage);">100 of 100%</div>
+    <div class="wc-status" id="wcStatus" style="color:var(--heritage);">✓ Balanced</div>
+  </div>
+
+  <div class="section-header" style="margin-top:32px;">
+    <span class="section-title">Ideas</span>
+    <span class="section-note">Score each 1 (low) to 5 (high)</span>
+  </div>
+  <div class="add-row">
+    <input type="text" id="newIdeaInput" placeholder="Type an idea name and press Add…" onkeydown="if(event.key==='Enter')addIdea()" />
+    <button class="btn" onclick="addIdea()">+ Add idea</button>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr id="tableHead"></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="score-action-row">
+    <div class="score-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-green)"></div>Prototype (70+)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-amber)"></div>Review (45–69)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-red)"></div>Park (&lt;45)</div>
+    </div>
+    <button class="btn btn-primary" id="rankBtn" onclick="calcAll()">Score &amp; rank all ideas →</button>
+  </div>
+
+  <div class="results-section" id="resultsSection">
+    <div class="section-header">
+      <span class="section-title">Ranked shortlist</span>
+      <span class="section-note">Based on weighted scores across all criteria</span>
+    </div>
+    <div id="rankList"></div>
+    <div class="method-note">
+      <div class="method-icon">ℹ</div>
+      <div class="method-text">
+        <strong>Reading the output.</strong> Scores above 70 indicate strong alignment across desirability, viability, feasibility, strategic fit and novelty — these are candidates for prototyping. Scores of 45–69 warrant a second-pass discussion before committing resources. Scores below 45 should be parked or revisited when constraints change. The ranking reflects <em>relative</em> team judgment — a one-point difference is not meaningful; a band difference is.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark"></span>
+    Nedbank Design Studio &nbsp;·&nbsp; Idea Scoring Matrix &nbsp;·&nbsp; Weighted criteria model based on IDEO DVF &nbsp;·&nbsp; Scores out of 100
+  </div>
+
+</div>
+
+<script>
+const CRITERIA = [
+  { key:'des', name:'Desirability',  desc:'How much users want this',                  weight:25, color:'#006341' },
+  { key:'via', name:'Viability',     desc:'Commercial value & ROI potential',           weight:25, color:'#00875a' },
+  { key:'fea', name:'Feasibility',   desc:'Technical ease (5 = easy, 1 = very hard)',  weight:20, color:'#0066cc' },
+  { key:'str', name:'Strategic fit', desc:'Aligns to platform & roadmap vision',        weight:20, color:'#7c4daa' },
+  { key:'nov', name:'Novelty',       desc:'Differentiation vs competitors',             weight:10, color:'#b5390e' },
+];
+
+let ideas = [
+  { id:1, name:'Points-based rewards tier',        scores:{des:4,via:4,fea:3,str:4,nov:3} },
+  { id:2, name:'Referral bonus on first trade',    scores:{des:3,via:5,fea:4,str:3,nov:2} },
+  { id:3, name:'Trading streak achievement badges',scores:{des:4,via:2,fea:4,str:3,nov:4} },
+  { id:4, name:'Cash-back on brokerage fees',      scores:{des:5,via:3,fea:3,str:4,nov:2} },
+  { id:5, name:'Leaderboard with monthly prizes',  scores:{des:3,via:3,fea:3,str:2,nov:4} },
+];
+let nextId = 6;
+let weights = {};
+CRITERIA.forEach(c => weights[c.key] = c.weight);
+
+function totalWeight() {
+  return CRITERIA.reduce((a,c) => a + (weights[c.key]||0), 0);
+}
+
+function updateWeightCounter() {
+  const total  = totalWeight();
+  const bar    = document.getElementById('wcBar');
+  const label  = document.getElementById('wcLabel');
+  const status = document.getElementById('wcStatus');
+  const pct    = Math.min(total, 100);
+  bar.style.width = pct + '%';
+  label.textContent = total + ' of 100%';
+  if (total === 100) {
+    bar.style.background = 'var(--heritage)';
+    label.style.color    = 'var(--heritage)';
+    status.textContent   = '✓ Balanced';
+    status.style.color   = 'var(--heritage)';
+    document.getElementById('rankBtn').disabled = false;
+  } else if (total < 100) {
+    bar.style.background = 'var(--bar-amber)';
+    label.style.color    = 'var(--amber-text)';
+    status.textContent   = (100 - total) + '% remaining';
+    status.style.color   = 'var(--amber-text)';
+    document.getElementById('rankBtn').disabled = true;
+  } else {
+    bar.style.background = 'var(--bar-red)';
+    label.style.color    = 'var(--red-text)';
+    status.textContent   = (total - 100) + '% over';
+    status.style.color   = 'var(--red-text)';
+    document.getElementById('rankBtn').disabled = true;
+  }
+}
+
+function buildCritGrid() {
+  const g = document.getElementById('critGrid');
+  g.innerHTML = '';
+  CRITERIA.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'crit-card';
+    card.innerHTML = `
+      <div class="crit-accent" style="background:${c.color};"></div>
+      <div class="crit-name">${c.name}</div>
+      <div class="crit-desc">${c.desc}</div>
+      <input type="range" min="5" max="50" step="5" value="${weights[c.key]}"
+        oninput="updateWeight('${c.key}',+this.value)" />
+      <div class="crit-weight-val" id="wt_${c.key}">Weight: <span>${weights[c.key]}%</span></div>`;
+    g.appendChild(card);
+  });
+}
+
+function updateWeight(key, val) {
+  weights[key] = val;
+  const el = document.getElementById('wt_' + key);
+  if (el) el.innerHTML = `Weight: <span>${val}%</span>`;
+  updateWeightCounter();
+  refreshTotals();
+}
+
+function buildTableHead() {
+  const tr = document.getElementById('tableHead');
+  tr.innerHTML = `<th>Idea</th>` +
+    CRITERIA.map(c => `<th class="center">${c.name}</th>`).join('') +
+    `<th class="center">Weighted score</th><th></th>`;
+}
+
+function scoreOptions(current) {
+  return [0,1,2,3,4,5].map(v =>
+    `<option value="${v}" ${current===v?'selected':''}>${v===0?'—':v}</option>`
+  ).join('');
+}
+
+function addIdeaRow(idea) {
+  const tbody = document.getElementById('tableBody');
+  const tr    = document.createElement('tr');
+  tr.id       = 'row_' + idea.id;
+  tr.innerHTML = `<td class="idea-name-cell">${idea.name}</td>` +
+    CRITERIA.map(c => `
+      <td class="score-cell">
+        <select onchange="updateScore(${idea.id},'${c.key}',+this.value)">
+          ${scoreOptions(idea.scores[c.key]||0)}
+        </select>
+      </td>`).join('') +
+    `<td class="total-cell">
+       <span class="total-pill" id="total_${idea.id}"
+         style="background:var(--gray-bg);color:var(--gray-text);">—</span>
+     </td>
+     <td><button class="del-btn" onclick="removeIdea(${idea.id})" title="Remove">×</button></td>`;
+  tbody.appendChild(tr);
+  refreshTotals();
+}
+
+function updateScore(id, key, val) {
+  const idea = ideas.find(i => i.id === id);
+  if (idea) { idea.scores[key] = val; refreshTotals(); }
+}
+
+function removeIdea(id) {
+  ideas = ideas.filter(i => i.id !== id);
+  const row = document.getElementById('row_' + id);
+  if (row) row.remove();
+}
+
+function addIdea() {
+  const inp  = document.getElementById('newIdeaInput');
+  const name = inp.value.trim();
+  if (!name) return;
+  const idea = { id: nextId++, name, scores: {} };
+  CRITERIA.forEach(c => idea.scores[c.key] = 0);
+  ideas.push(idea);
+  addIdeaRow(idea);
+  inp.value = '';
+}
+
+function calcWeighted(idea) {
+  const totalW = totalWeight() || 1;
+  const sum    = CRITERIA.reduce((a,c) => a + (idea.scores[c.key]||0) * (weights[c.key]||0), 0);
+  return Math.round((sum / totalW) * 20);
+}
+
+function pillStyle(score) {
+  if (score === 0) return 'background:var(--gray-bg);color:var(--gray-text);';
+  if (score >= 70) return 'background:var(--green-bg);color:var(--green-text);';
+  if (score >= 45) return 'background:var(--amber-bg);color:var(--amber-text);';
+  return 'background:var(--red-bg);color:var(--red-text);';
+}
+
+function refreshTotals() {
+  ideas.forEach(idea => {
+    const el = document.getElementById('total_' + idea.id);
+    if (!el) return;
+    const hasScore = CRITERIA.some(c => (idea.scores[c.key]||0) > 0);
+    if (!hasScore) { el.textContent = '—'; el.style.cssText = pillStyle(0); return; }
+    const w = calcWeighted(idea);
+    el.textContent   = w;
+    el.style.cssText = pillStyle(w);
+  });
+}
+
+function calcAll() {
+  if (totalWeight() !== 100) return;
+  const ranked = ideas
+    .map(idea => ({ ...idea, weighted: calcWeighted(idea) }))
+    .sort((a,b) => b.weighted - a.weighted);
+
+  const list = document.getElementById('rankList');
+  list.innerHTML = '';
+
+  ranked.forEach((idea, i) => {
+    const isProto  = idea.weighted >= 70;
+    const isReview = idea.weighted >= 45 && idea.weighted < 70;
+    const badgeStyle = isProto
+      ? 'background:var(--green-bg);color:var(--green-text);'
+      : isReview
+        ? 'background:var(--amber-bg);color:var(--amber-text);'
+        : 'background:var(--gray-bg);color:var(--gray-text);';
+    const badgeText  = isProto ? 'Prototype' : isReview ? 'Review' : 'Park';
+    const barColor   = isProto ? 'var(--bar-green)' : isReview ? 'var(--bar-amber)' : 'var(--bar-red)';
+    const scoreColor = isProto ? 'var(--green-text)' : isReview ? 'var(--amber-text)' : 'var(--red-text)';
+
+    const card = document.createElement('div');
+    card.className = 'rank-card' + (i === 0 ? ' top' : '');
+    card.innerHTML = `
+      <div class="rank-num">${i+1}</div>
+      <div class="rank-name">
+        ${idea.name}
+        <span class="rank-badge" style="${badgeStyle}">${badgeText}</span>
+      </div>
+      <div class="rank-bar-wrap">
+        <div class="rank-bar-bg">
+          <div class="rank-bar-fill" style="width:${idea.weighted}%;background:${barColor};"></div>
+        </div>
+      </div>
+      <div>
+        <div class="rank-score" style="color:${scoreColor};">${idea.weighted}</div>
+        <div class="rank-score-label">/ 100</div>
+      </div>`;
+    list.appendChild(card);
+  });
+
+  const section = document.getElementById('resultsSection');
+  section.style.display = 'block';
+  refreshTotals();
+  setTimeout(() => section.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+}
+
+buildCritGrid();
+buildTableHead();
+ideas.forEach(addIdeaRow);
+updateWeightCounter();
+</script>
+</body>
+</html>
