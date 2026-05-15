@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OST — New customer incentive flow</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f5f5f3;
+    --bg-tertiary: #efefec;
+    --text-primary: #1a1a18;
+    --text-secondary: #5f5e5a;
+    --text-tertiary: #888780;
+    --border: rgba(0,0,0,0.1);
+    --border-hover: rgba(0,0,0,0.2);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --green-bg: #EAF3DE;
+    --green-text: #27500A;
+    --green-mid: #3B6D11;
+    --green-light: #C0DD97;
+    --amber-bg: #FAEEDA;
+    --amber-text: #633806;
+    --amber-mid: #854F0B;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1e1e1c;
+      --bg-secondary: #2a2a27;
+      --bg-tertiary: #333330;
+      --text-primary: #f0ede6;
+      --text-secondary: #b4b2a9;
+      --text-tertiary: #888780;
+      --border: rgba(255,255,255,0.1);
+      --border-hover: rgba(255,255,255,0.2);
+      --green-bg: #173404;
+      --green-text: #C0DD97;
+      --green-mid: #639922;
+      --green-light: #27500A;
+      --amber-bg: #412402;
+      --amber-text: #FAC775;
+      --amber-mid: #BA7517;
+    }
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container { max-width: 860px; margin: 0 auto; }
+
+  .page-header { margin-bottom: 2rem; }
+  .page-header h1 { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+  .page-header p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .page-header .label {
+    display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.07em;
+    text-transform: uppercase; background: var(--green-bg); color: var(--green-text);
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+  }
+
+  .steps-nav {
+    display: flex; align-items: center; gap: 0; margin-bottom: 2rem;
+    overflow: hidden; border-radius: var(--radius-md);
+    border: 0.5px solid var(--border);
+  }
+  .step-btn {
+    flex: 1; padding: 10px 6px; font-size: 12px; font-weight: 500;
+    text-align: center; cursor: pointer; border: none;
+    background: var(--bg); color: var(--text-tertiary);
+    border-right: 0.5px solid var(--border);
+    transition: background 0.15s, color 0.15s; line-height: 1.3;
+  }
+  .step-btn:last-child { border-right: none; }
+  .step-btn.active { background: var(--bg-secondary); color: var(--text-primary); }
+  .step-btn.done { color: var(--green-mid); }
+  .step-num { display: block; font-size: 10px; color: var(--text-tertiary); margin-bottom: 2px; }
+  .step-btn.active .step-num { color: var(--text-secondary); }
+  .step-btn.done .step-num { color: var(--green-mid); }
+
+  .layout { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: start; }
+
+  .phone {
+    width: 280px; background: var(--bg-secondary);
+    border-radius: 28px; border: 0.5px solid var(--border);
+    padding: 12px; min-height: 500px;
+    display: flex; flex-direction: column;
+  }
+  .phone-notch {
+    width: 60px; height: 5px; background: var(--border);
+    border-radius: 4px; margin: 0 auto 14px;
+  }
+  .screen { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+  .app-bar {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 4px;
+  }
+  .app-bar-title { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+  .app-bar-back { font-size: 18px; color: var(--text-secondary); }
+
+  .hero-block {
+    background: var(--bg); border-radius: var(--radius-lg);
+    border: 0.5px solid var(--border); padding: 14px; text-align: center;
+  }
+  .hero-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px; font-size: 20px;
+    background: var(--green-bg); color: var(--green-mid);
+  }
+  .hero-title { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; line-height: 1.3; }
+  .hero-sub { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+  .reward-banner {
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--green-mid);
+    background: var(--green-bg); padding: 12px 14px;
+  }
+  .reward-banner-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--green-text); margin-bottom: 6px;
+  }
+  .reward-items { display: flex; flex-direction: column; gap: 6px; }
+  .reward-item { display: flex; align-items: flex-start; gap: 8px; font-size: 11px; color: var(--green-text); }
+  .reward-item i { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+  .reward-item span { line-height: 1.4; }
+  .value-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--bg); border: 0.5px solid var(--green-mid);
+    border-radius: 20px; padding: 3px 10px;
+    font-size: 11px; font-weight: 500; color: var(--green-text); margin-top: 8px;
+  }
+
+  .info-row { display: flex; gap: 8px; }
+  .info-card {
+    flex: 1; background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md); padding: 10px; text-align: center;
+  }
+  .info-card .val { font-size: 16px; font-weight: 500; color: var(--text-primary); }
+  .info-card .lbl { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+
+  .input-field {
+    background: var(--bg); border: 0.5px solid var(--border);
+    border-radius: var(--radius-md); padding: 10px 12px;
+  }
+  .input-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 3px; }
+  .input-val { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+  .input-hint { font-size: 10px; color: var(--text-tertiary); margin-top: 3px; }
+
+  .cta-btn {
+    border-radius: var(--radius-md); padding: 11px;
+    font-size: 13px; font-weight: 500; text-align: center;
+    cursor: pointer; border: none; width: 100%;
+  }
+  .cta-green { background: var(--green-mid); color: var(--green-bg); }
+  .cta-secondary {
+    background: var(--bg); border: 0.5px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  .nudge-card {
+    background: var(--bg-secondary); border-radius: var(--radius-md);
+    padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px;
+  }
+  .nudge-icon { font-size: 16px; color: var(--text-secondary); flex-shrink: 0; margin-top: 1px; }
+  .nudge-text { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+  .nudge-text strong { font-weight: 500; color: var(--text-primary); }
+
+  .celebration {
+    background: var(--bg); border-radius: var(--radius-lg);
+    border: 0.5px solid var(--border); padding: 16px; text-align: center;
+  }
+  .cel-icon { font-size: 32px; color: var(--green-mid); margin-bottom: 8px; }
+  .cel-title { font-size: 15px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+  .cel-sub { font-size: 11px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; }
+  .countdown-row { display: flex; gap: 6px; justify-content: center; margin: 8px 0; }
+  .countdown-chip { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 6px 10px; text-align: center; }
+  .countdown-chip .num { font-size: 16px; font-weight: 500; color: var(--text-primary); }
+  .countdown-chip .lbl { font-size: 9px; color: var(--text-secondary); }
+
+  .badge-row {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-secondary); border-radius: var(--radius-md); padding: 8px 10px;
+  }
+  .badge-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--amber-bg); color: var(--amber-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .badge-text { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+  .badge-text strong { font-weight: 500; color: var(--text-primary); }
+
+  .annotation-panel { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 0.5rem; }
+
+  .annotation {
+    background: var(--bg); border-radius: var(--radius-lg);
+    border: 0.5px solid var(--border); padding: 1rem 1.25rem;
+  }
+  .annotation-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .annotation-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--green-bg); color: var(--green-text);
+    font-size: 11px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .annotation-title { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+  .annotation p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+  .annotation p + p { margin-top: 6px; }
+  .annotation strong { font-weight: 500; color: var(--text-primary); }
+
+  .design-note {
+    background: var(--green-bg); border-radius: var(--radius-md);
+    padding: 8px 12px; margin-top: 8px;
+    font-size: 11px; color: var(--green-text); line-height: 1.5;
+  }
+  .design-note strong { color: var(--green-text); }
+
+  .open-q {
+    background: var(--amber-bg); border-radius: var(--radius-md);
+    padding: 8px 12px; margin-top: 8px;
+    font-size: 11px; color: var(--amber-text); line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .open-q i { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  .divider { height: 0.5px; background: var(--border); margin: 1.5rem 0; }
+
+  .footer-note {
+    font-size: 11px; color: var(--text-tertiary); text-align: center;
+    line-height: 1.5; margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <div class="label">New-to-OST customer</div>
+    <h1>Incentive wrapper — free pricing + fee waiver</h1>
+    <p>Stepped flow reference: how the 3-month starter offer surfaces across discovery, consideration, funding, and activation. Click the step tabs to navigate.</p>
+  </div>
+
+  <div class="steps-nav">
+    <div class="step-btn active" onclick="goStep(0)"><span class="step-num">01</span>Discovery</div>
+    <div class="step-btn" onclick="goStep(1)"><span class="step-num">02</span>Consideration</div>
+    <div class="step-btn" onclick="goStep(2)"><span class="step-num">03</span>Funding</div>
+    <div class="step-btn" onclick="goStep(3)"><span class="step-num">04</span>Activation</div>
+  </div>
+
+  <div class="layout">
+
+    <div class="phone">
+      <div class="phone-notch"></div>
+
+      <div class="screen" id="screen-0">
+        <div class="app-bar">
+          <i class="ti ti-arrow-left app-bar-back" aria-hidden="true"></i>
+          <span class="app-bar-title">Invest</span>
+          <i class="ti ti-bell" style="font-size:16px;color:var(--text-secondary)" aria-hidden="true"></i>
+        </div>
+        <div class="hero-block">
+          <div class="hero-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+          <div class="hero-title">Start investing with OST</div>
+          <div class="hero-sub">Buy shares, ETFs and more — directly from your Nedbank app.</div>
+        </div>
+        <div class="reward-banner">
+          <div class="reward-banner-label">Limited offer — new customers</div>
+          <div class="reward-items">
+            <div class="reward-item"><i class="ti ti-live-photo" aria-hidden="true"></i><span>Live market pricing, free for 3 months</span></div>
+            <div class="reward-item"><i class="ti ti-receipt-off" aria-hidden="true"></i><span>Monthly admin fee waived for 3 months</span></div>
+          </div>
+          <div class="value-pill"><i class="ti ti-coin" style="font-size:12px" aria-hidden="true"></i> Worth up to R240 in savings</div>
+        </div>
+        <div class="cta-btn cta-green">Open my OST account</div>
+        <div class="cta-btn cta-secondary" style="margin-top:6px">Learn more first</div>
+      </div>
+
+      <div class="screen" id="screen-1" style="display:none">
+        <div class="app-bar">
+          <i class="ti ti-arrow-left app-bar-back" aria-hidden="true"></i>
+          <span class="app-bar-title">Your offer</span>
+          <span style="width:18px"></span>
+        </div>
+        <div class="hero-block">
+          <div class="hero-icon"><i class="ti ti-gift" aria-hidden="true"></i></div>
+          <div class="hero-title">Here's what you get, free</div>
+          <div class="hero-sub">Fund your account today to unlock your 3-month starter benefit.</div>
+        </div>
+        <div class="info-row">
+          <div class="info-card"><div class="val">Live</div><div class="lbl">Market pricing</div></div>
+          <div class="info-card"><div class="val">R0</div><div class="lbl">Admin fee / mo</div></div>
+          <div class="info-card"><div class="val">3</div><div class="lbl">Months free</div></div>
+        </div>
+        <div class="nudge-card">
+          <i class="ti ti-info-circle nudge-icon" aria-hidden="true"></i>
+          <div class="nudge-text">Live pricing lets you see real-time share prices — not 15-min delayed. <strong>Standard value: R80/month.</strong></div>
+        </div>
+        <div class="reward-banner">
+          <div class="reward-banner-label">Offer unlocks when you</div>
+          <div class="reward-items">
+            <div class="reward-item"><i class="ti ti-check" aria-hidden="true"></i><span>Open your OST account</span></div>
+            <div class="reward-item"><i class="ti ti-check" aria-hidden="true"></i><span>Make your first deposit (any amount)</span></div>
+          </div>
+        </div>
+        <div class="cta-btn cta-green">Fund my account</div>
+      </div>
+
+      <div class="screen" id="screen-2" style="display:none">
+        <div class="app-bar">
+          <i class="ti ti-arrow-left app-bar-back" aria-hidden="true"></i>
+          <span class="app-bar-title">Fund account</span>
+          <span style="width:18px"></span>
+        </div>
+        <div class="input-field">
+          <div class="input-label">Amount to deposit</div>
+          <div class="input-val">R 1 000.00</div>
+          <div class="input-hint">Minimum R100 · From Nedbank cheque account</div>
+        </div>
+        <div class="reward-banner">
+          <div class="reward-banner-label">Your reward activates on deposit</div>
+          <div class="reward-items">
+            <div class="reward-item"><i class="ti ti-live-photo" aria-hidden="true"></i><span>Live pricing — active immediately</span></div>
+            <div class="reward-item"><i class="ti ti-receipt-off" aria-hidden="true"></i><span>Admin fee waiver starts this month</span></div>
+          </div>
+        </div>
+        <div class="nudge-card">
+          <i class="ti ti-lock-open nudge-icon" aria-hidden="true"></i>
+          <div class="nudge-text">Depositing any amount unlocks your full 3-month benefit. You can add more later.</div>
+        </div>
+        <div class="cta-btn cta-green">Confirm deposit + unlock offer</div>
+      </div>
+
+      <div class="screen" id="screen-3" style="display:none">
+        <div class="app-bar">
+          <span style="width:18px"></span>
+          <span class="app-bar-title">Offer activated</span>
+          <span style="width:18px"></span>
+        </div>
+        <div class="celebration">
+          <div class="cel-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <div class="cel-title">Your benefits are live</div>
+          <div class="cel-sub">R1 000 deposited. Your 3-month starter offer is now active.</div>
+          <div class="countdown-row">
+            <div class="countdown-chip"><div class="num">90</div><div class="lbl">Days left</div></div>
+            <div class="countdown-chip"><div class="num">R0</div><div class="lbl">Admin fee</div></div>
+            <div class="countdown-chip"><div class="num">Live</div><div class="lbl">Pricing</div></div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <div class="badge-icon"><i class="ti ti-award" aria-hidden="true"></i></div>
+          <div class="badge-text"><strong>First investor</strong> badge unlocked — you're officially in the market.</div>
+        </div>
+        <div class="nudge-card">
+          <i class="ti ti-eye nudge-icon" style="color:var(--green-mid)" aria-hidden="true"></i>
+          <div class="nudge-text">You have live pricing — <strong>put it to work.</strong> Browse shares and add your first stock to your watchlist.</div>
+        </div>
+        <div class="cta-btn cta-green">Explore shares now</div>
+      </div>
+    </div>
+
+    <div class="annotation-panel" id="annotations">
+
+      <div class="annotation" id="ann-0">
+        <div class="annotation-header">
+          <div class="annotation-num">01</div>
+          <div class="annotation-title">Discovery — lead with the incentive</div>
+        </div>
+        <p>The offer surfaces before any commitment is asked for — it's part of the entry proposition, not a post-signup reward. Quantifying the value as "up to R240 in savings" makes the offer tangible and comparable to real spend.</p>
+        <div class="design-note"><strong>Design intent:</strong> Two CTAs — primary "open account" and secondary "learn more first" — accommodate both the ready-to-go user and the one who needs more context before committing.</div>
+      </div>
+
+      <div class="annotation" id="ann-1" style="display:none">
+        <div class="annotation-header">
+          <div class="annotation-num">02</div>
+          <div class="annotation-title">Consideration — unpack what the offer actually means</div>
+        </div>
+        <p>Existing web users or newcomers may not understand what "live pricing" means in practice. This screen earns the click by making the value concrete: real-time vs 15-minute delayed data, and a standard monthly cost of R80.</p>
+        <p>The unlock conditions are explicit and deliberately low-friction — any deposit qualifies, removing the hesitation around minimum amounts.</p>
+        <div class="open-q"><i class="ti ti-alert-circle" aria-hidden="true"></i><span><strong>Open question:</strong> Should a minimum deposit threshold apply to unlock the offer (e.g. R500 or R1 000)? This changes the copy and drop-off risk at the funding step.</span></div>
+      </div>
+
+      <div class="annotation" id="ann-2" style="display:none">
+        <div class="annotation-header">
+          <div class="annotation-num">03</div>
+          <div class="annotation-title">Funding — the reward banner persists at the point of commitment</div>
+        </div>
+        <p>The reward is reinforced on the deposit screen — the moment of highest drop-off risk. The user is reminded exactly what activates on confirmation, reducing hesitation.</p>
+        <p>The CTA copy shifts from a generic "confirm" to <strong>"confirm deposit + unlock offer"</strong> — making the reward feel like the primary outcome of the action, not a side effect.</p>
+        <div class="design-note"><strong>Design intent:</strong> The "any amount unlocks" nudge is a deliberate low-friction signal — it tells the user they don't need to commit a large sum to get the full benefit, reducing the psychological barrier to first deposit.</div>
+      </div>
+
+      <div class="annotation" id="ann-3" style="display:none">
+        <div class="annotation-header">
+          <div class="annotation-num">04</div>
+          <div class="annotation-title">Activation — a celebration moment with built-in retention mechanics</div>
+        </div>
+        <p>The confirmation screen is a delight moment, not just a receipt. The 90-day countdown creates mild urgency to use live pricing before it expires — naturally driving ongoing app engagement during the trial window.</p>
+        <p>The badge and watchlist nudge anchor the next action: the user has live pricing, the nudge tells them immediately how to use it.</p>
+        <div class="design-note"><strong>Design intent:</strong> The 90-day counter is an assumption based on 3 months. Confirm the exact validity period and whether it resets on any condition (e.g. early upgrade to paid live pricing).</div>
+        <div class="open-q" style="margin-top:8px"><i class="ti ti-alert-circle" aria-hidden="true"></i><span><strong>Open question:</strong> What happens at day 91? A well-timed reminder at day 75 ("15 days of live pricing left — here's what you'd pay to keep it") could convert free users to paid before expiry.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="footer-note">OST — Moments of delight · New-to-OST incentive wrapper · Prototype reference · AI-assisted · Requires human review before use</div>
+
+</div>
+
+<script>
+function goStep(idx) {
+  const btns = document.querySelectorAll('.step-btn');
+  btns.forEach((b, i) => {
+    b.classList.remove('active', 'done');
+    if (i < idx) b.classList.add('done');
+  });
+  btns[idx].classList.add('active');
+
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('screen-' + i).style.display = i === idx ? 'flex' : 'none';
+    document.getElementById('ann-' + i).style.display = i === idx ? 'block' : 'none';
+  }
+}
+</script>
+</body>
+</html>
