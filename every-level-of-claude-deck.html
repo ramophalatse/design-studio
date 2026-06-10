@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Level of Claude : 5-Minute Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D0F12; --panel:#14171D; --panel2:#191D24; --line:#262B33;
+  --text:#ECEAE4; --muted:#8E939C; --faint:#5C6168;
+  --l1:#5E7A99; --l2:#3FA796; --l3:#E0A93E; --l4:#E2703A; --l5:#E14B5A;
+  --accent:var(--l3);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;overflow:hidden}
+button{font-family:'DM Mono',monospace}
+
+/* ---------- chrome ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--accent);z-index:50;transition:width .3s linear}
+#chrome{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 22px;z-index:40;font-family:'DM Mono',monospace;font-size:11px;color:var(--faint);
+  background:linear-gradient(transparent,rgba(13,15,18,.9) 40%)}
+#chrome .src{letter-spacing:.04em;max-width:48%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ctrl{display:flex;gap:8px;align-items:center}
+#ctrl button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:7px 13px;
+  border-radius:6px;font-size:11px;cursor:pointer;letter-spacing:.05em;transition:all .15s}
+#ctrl button:hover,#ctrl button:focus-visible{color:var(--text);border-color:var(--muted);outline:none}
+#playBtn.on{color:var(--ink);background:var(--accent);border-color:var(--accent)}
+#counter{min-width:46px;text-align:center}
+
+/* ---------- level rail (signature) ---------- */
+#rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40}
+#rail .seg{width:6px;height:42px;border-radius:3px;background:var(--line);transition:all .4s;cursor:pointer;position:relative}
+#rail .seg.lit{box-shadow:0 0 14px -2px currentColor}
+#rail .seg[data-l="1"].lit{background:var(--l1);color:var(--l1)}
+#rail .seg[data-l="2"].lit{background:var(--l2);color:var(--l2)}
+#rail .seg[data-l="3"].lit{background:var(--l3);color:var(--l3)}
+#rail .seg[data-l="4"].lit{background:var(--l4);color:var(--l4)}
+#rail .seg[data-l="5"].lit{background:var(--l5);color:var(--l5)}
+
+/* ---------- slides ---------- */
+.slide{position:fixed;inset:0;display:none;flex-direction:column;justify-content:center;
+  padding:64px 72px 84px 88px;overflow-y:auto}
+.slide.active{display:flex;animation:rise .45s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px}
+.eyebrow .lvl{display:inline-block;border:1px solid currentColor;border-radius:4px;padding:2px 8px;margin-right:10px}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,5.2vw,62px);line-height:1.04;letter-spacing:-.01em}
+h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(26px,3.6vw,42px);line-height:1.08;margin-bottom:10px}
+.sub{color:var(--muted);font-size:clamp(14px,1.4vw,17px);max-width:62ch;line-height:1.55;margin-top:10px}
+
+.grid{display:grid;gap:12px;margin-top:26px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.card b{display:block;font-weight:600;font-size:14.5px;margin-bottom:5px}
+.card p{color:var(--muted);font-size:13px;line-height:1.5}
+.card .k{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.08em;display:block;margin-bottom:7px;text-transform:uppercase}
+code{font-family:'DM Mono',monospace;font-size:.92em;background:var(--panel2);border:1px solid var(--line);
+  border-radius:4px;padding:1px 6px;color:var(--text)}
+
+.foot-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;background:var(--panel2);flex:1;min-width:220px}
+.pill .k{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.pill.ceiling .k{color:var(--l5)}
+.pill.cheat .k{color:var(--l2)}
+.pill p{color:var(--muted);line-height:1.45}
+
+/* ladder slide */
+.ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:30px}
+.rung{border-radius:10px;padding:16px 14px;border:1px solid var(--line);background:var(--panel);position:relative;overflow:hidden}
+.rung::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--rc)}
+.rung .n{font-family:'DM Mono',monospace;font-size:11px;color:var(--rc);letter-spacing:.1em}
+.rung b{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(14px,1.5vw,19px);display:block;margin:6px 0 6px}
+.rung p{font-size:12.5px;color:var(--muted);line-height:1.45}
+
+/* arc slide */
+.arc{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:30px;align-items:end}
+.arc .step{text-align:center;position:relative;padding:0 6px}
+.arc .bar{margin:0 auto 12px;width:54%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--rc),transparent 160%);opacity:.9}
+.arc b{font-family:'Syne',sans-serif;font-size:clamp(12px,1.3vw,16px);display:block;color:var(--text)}
+.arc p{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+.title-meta{display:flex;gap:18px;margin-top:34px;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.title-meta span{border:1px solid var(--line);border-radius:6px;padding:8px 14px;background:var(--panel)}
+kbd{font-family:'DM Mono',monospace;background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:11px}
+
+@media (max-width:880px){
+  .slide{padding:52px 24px 96px 48px}
+  .g3,.g2{grid-template-columns:1fr 1fr}
+  .ladder,.arc{grid-template-columns:repeat(2,1fr)}
+  .arc{align-items:start}
+  #rail{left:14px}
+  #chrome .src{display:none}
+}
+@media (max-width:560px){.g3,.g2{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav id="rail" aria-label="Level progress">
+  <div class="seg" data-l="5" title="Level 5 : Architect"></div>
+  <div class="seg" data-l="4" title="Level 4 : Advanced"></div>
+  <div class="seg" data-l="3" title="Level 3 : Intermediate"></div>
+  <div class="seg" data-l="2" title="Level 2 : Beginner"></div>
+  <div class="seg" data-l="1" title="Level 1 : Enthusiast"></div>
+</nav>
+
+<!-- 1 : TITLE -->
+<section class="slide" data-level="0" data-accent="--l3">
+  <div class="eyebrow">Video summary : 5-minute playback</div>
+  <h1>Every Level of Claude,<br>from Enthusiast to Architect</h1>
+  <p class="sub">A condensed visual walkthrough of Nate Herk's 21-minute breakdown of the five maturity levels of working with Claude : what defines each stage, where people stall, and the cheat code that unlocks the next one.</p>
+  <div class="title-meta">
+    <span>Source : Nate Herk | AI Automation</span>
+    <span>Original runtime : ~21 min</span>
+    <span>10 slides : ~30s each</span>
+    <span>Navigate : <kbd>←</kbd> <kbd>→</kbd> or tap : or press Play</span>
+  </div>
+</section>
+
+<!-- 2 : THE LADDER -->
+<section class="slide" data-level="0" data-accent="--l3">
+  <div class="eyebrow">The map</div>
+  <h2>Five levels, one ladder</h2>
+  <p class="sub">Each level has defining features, a ceiling that keeps people stuck, and a single move that unlocks the next stage.</p>
+  <div class="ladder">
+    <div class="rung" style="--rc:var(--l1)"><span class="n">LEVEL 1</span><b>Enthusiast</b><p>Chat as a smarter search bar. Ask, answer, close the tab.</p></div>
+    <div class="rung" style="--rc:var(--l2)"><span class="n">LEVEL 2</span><b>Beginner</b><p>Projects, memory, connectors : Claude with continuity.</p></div>
+    <div class="rung" style="--rc:var(--l3)"><span class="n">LEVEL 3</span><b>Intermediate</b><p>Cowork : Claude acts on your files, not just your prompts.</p></div>
+    <div class="rung" style="--rc:var(--l4)"><span class="n">LEVEL 4</span><b>Advanced</b><p>Claude Code : parallel sessions, sub-agents, real rigour.</p></div>
+    <div class="rung" style="--rc:var(--l5)"><span class="n">LEVEL 5</span><b>Architect</b><p>Always-on cloud routines. Claude as infrastructure.</p></div>
+  </div>
+</section>
+
+<!-- 3 : LEVEL 1 -->
+<section class="slide" data-level="1" data-accent="--l1">
+  <div class="eyebrow"><span class="lvl">Level 1</span>The Enthusiast</div>
+  <h2>Claude as a search bar that returns paragraphs</h2>
+  <p class="sub">Open Claude, ask a question, get an answer, close the tab. Emails, quick scripts, explanations. Useful : but it's the floor, saving maybe 30 minutes a day.</p>
+  <div class="grid g2">
+    <div class="card"><span class="k">Quick win most people miss</span><b>Paste screenshots</b><p>Claude reads images. Half the people stuck here type out what a screenshot would show in two seconds.</p></div>
+    <div class="card"><span class="k">Why people stay stuck</span><b>No continuity</b><p>They don't realise Claude can hold context across chats, organise work into projects, or plug into the tools they already use.</p></div>
+  </div>
+  <div class="foot-row">
+    <div class="pill cheat"><span class="k">Cheat code → Level 2</span><p>Create your first project : pick recurring work, drop in reference docs, write a short system prompt. Every chat now starts preloaded.</p></div>
+  </div>
+</section>
+
+<!-- 4 : LEVEL 2 -->
+<section class="slide" data-level="2" data-accent="--l2">
+  <div class="eyebrow"><span class="lvl">Level 2</span>The Beginner</div>
+  <h2>Projects are the spine : everything stacks on them</h2>
+  <div class="grid g3">
+    <div class="card"><span class="k">01</span><b>Memory + past chat search</b><p>Claude recalls your role, preferences and past decisions. Memory is free; searching past chats is paid.</p></div>
+    <div class="card"><span class="k">02</span><b>Connectors (50+)</b><p>Slack, Drive, Gmail, GitHub, Notion, Calendar : OAuth in, stop pasting, start asking.</p></div>
+    <div class="card"><span class="k">03</span><b>File creation</b><p>Real Excel files with working formulas, decks, Word docs and PDFs : deliverables, not previews.</p></div>
+    <div class="card"><span class="k">04</span><b>Artifacts 2.0</b><p>Persistent storage, can call Claude's API, publishable links : a non-coder ships a working team tool by lunch.</p></div>
+    <div class="card"><span class="k">05</span><b>Inline visuals</b><p>Ephemeral charts and diagrams that live in the chat and update as the conversation evolves.</p></div>
+    <div class="card"><span class="k">06</span><b>Office add-ins</b><p>Claude inside Excel, PowerPoint and Word : with shared context across all three since April 2026.</p></div>
+  </div>
+  <div class="foot-row">
+    <div class="pill ceiling"><span class="k">The ceiling</span><p>Claude still can't act on your machine : you're copying outputs and executing changes yourself.</p></div>
+    <div class="pill cheat"><span class="k">Cheat code → Level 3</span><p>Stop making chat do everything : open Claude Desktop and click the Cowork tab.</p></div>
+  </div>
+</section>
+
+<!-- 5 : LEVEL 3 -->
+<section class="slide" data-level="3" data-accent="--l3">
+  <div class="eyebrow"><span class="lvl">Level 3</span>The Intermediate : Cowork</div>
+  <h2>"I wish Claude could just go do this on my computer"</h2>
+  <p class="sub">Point Cowork at a chaotic downloads folder, ask it to sort, rename and summarise : then go make coffee. Paid plans only. This is where 10+ hours a week comes back.</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">01</span><b>File system access</b><p>Runs in an isolated VM with real read/write on folders you grant. It owns what you permit, nothing else.</p></div>
+    <div class="card"><span class="k">02</span><b>Skills</b><p>Reusable workflows as markdown files. 100+ published, 16+ official, plus a community marketplace. Build once, run in chat, Cowork and Code.</p></div>
+    <div class="card"><span class="k">03</span><b>Scheduled tasks</b><p><code>/schedule</code> any cadence : machine must be awake. Cloud-based routines come at Level 5.</p></div>
+    <div class="card"><span class="k">04</span><b>Mobile dispatch</b><p>Pair your phone : send tasks from the gym or a meeting, get pinged when Claude's done.</p></div>
+    <div class="card"><span class="k">05</span><b>Claude Design</b><p>Describe a prototype or deck in plain English; it reads your brand and builds a design system, then packages a handoff bundle.</p></div>
+    <div class="card"><span class="k">+</span><b>Plugins + computer use</b><p>One-click bundles of skills and connectors; visual navigation of apps with no connector, on Mac and Windows.</p></div>
+  </div>
+  <div class="foot-row">
+    <div class="pill cheat"><span class="k">Cheat code → Level 4</span><p>Give Claude a folder structure it can rely on : about-me file, templates, projects, outputs : with standing rules for each.</p></div>
+  </div>
+</section>
+
+<!-- 6 : LEVEL 4 FEATURES -->
+<section class="slide" data-level="4" data-accent="--l4">
+  <div class="eyebrow"><span class="lvl">Level 4</span>The Advanced : Claude Code</div>
+  <h2>Five parallel Claudes, zero conflicts</h2>
+  <p class="sub">Boris Cherny, who built Claude Code, runs five isolated sessions daily and returns to completed pull requests. The Code tab in Desktop runs the same engine : no terminal required.</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">01</span><b>CLAUDE.md</b><p>Read at the start of every session : keep it under ~200 lines. The key habit : every mistake, say "update your CLAUDE.md so this never happens again."</p></div>
+    <div class="card"><span class="k">02</span><b>Plan mode</b><p>Shift+Tab twice : Claude reads, plans, waits for approval. Opus Plan setting : Opus plans, Sonnet executes, roughly half the cost.</p></div>
+    <div class="card"><span class="k">03</span><b>Sub-agents</b><p>Specialised Claudes for tests, security, docs : each in its own context window, running in parallel.</p></div>
+    <div class="card"><span class="k">04</span><b>Worktrees</b><p>Isolated Git workspaces per feature : three to four parallel Claudes is the sweet spot.</p></div>
+    <div class="card"><span class="k">05</span><b>MCP, with an asterisk</b><p>The hierarchy : CLI first, API second, skills third, MCP only when nothing else fits. CLIs use 60-70% fewer tokens; tool search cuts MCP overhead ~85%.</p></div>
+    <div class="card"><span class="k">$</span><b>What it's worth</b><p>This is where freelance and agency work becomes $5-15k systems : real software, not just automations.</p></div>
+  </div>
+</section>
+
+<!-- 7 : LEVEL 4 POWER MOVES -->
+<section class="slide" data-level="4" data-accent="--l4">
+  <div class="eyebrow"><span class="lvl">Level 4</span>Power moves</div>
+  <h2>Context discipline + a verification loop</h2>
+  <div class="grid g3">
+    <div class="card"><span class="k">Context</span><b><code>/compact</code> + <code>/context</code></b><p>Sessions get sloppy past ~50% of the window : compact proactively, audit where tokens go. With prompt caching, long-session costs drop 60-90%.</p></div>
+    <div class="card"><span class="k">Flow</span><b>Auto mode + <code>/focus</code></b><p>Stop approving 30 times a session; hide intermediate steps. This is how five parallel sessions stay manageable.</p></div>
+    <div class="card"><span class="k">Quality</span><b>Verification loop</b><p>Give Claude a way to check its own work : browser testing, screenshots, no POC until self-tested. Cited as a 2-3x quality multiplier.</p></div>
+    <div class="card"><span class="k">Reuse</span><b>Custom <code>/commands</code></b><p>Typed the same prompt twice? Make it a slash command in <code>.claude/commands</code> and share it with your team.</p></div>
+    <div class="card"><span class="k">Side tools</span><b><code>/rewind</code> <code>/btw</code> <code>/branch</code></b><p>Drop failed attempts from context, ask quick questions without noise, fork the conversation : Git for your reasoning.</p></div>
+    <div class="card"><span class="k">Self-audit</span><b><code>/insights</code> + output styles</b><p>A monthly report on your own usage patterns; swap Claude Code's personality per job.</p></div>
+  </div>
+  <div class="foot-row">
+    <div class="pill ceiling"><span class="k">The stall</span><p>Managing all the parallel work manually : you become the bottleneck, babysitting sessions.</p></div>
+    <div class="pill cheat"><span class="k">Cheat code → Level 5</span><p>Find your most repetitive weekly task in Claude Code : that becomes your first automation.</p></div>
+  </div>
+</section>
+
+<!-- 8 : LEVEL 5 -->
+<section class="slide" data-level="5" data-accent="--l5">
+  <div class="eyebrow"><span class="lvl">Level 5</span>The Architect</div>
+  <h2>Work that happens while your laptop is closed</h2>
+  <p class="sub">A PR opens on your repo; Claude spins up in the cloud, reviews it and posts feedback before you've checked your phone. Claude stops being a tool and becomes infrastructure.</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">01</span><b>Routines</b><p>Saved Claude Code configs running on Anthropic's cloud : triggered by schedule, API call or GitHub event. Your machine stays off.</p></div>
+    <div class="card"><span class="k">02</span><b>Hooks</b><p>Safety rails at lifecycle events : block dangerous commands pre-run, auto-format post-edit, ping Slack on completion.</p></div>
+    <div class="card"><span class="k">03</span><b>Channels</b><p>Drive sessions from Discord, Telegram or iMessage : one-way triggers or two-way texting against a real codebase.</p></div>
+    <div class="card"><span class="k">04</span><b>Headless + Agent SDK</b><p><code>claude -p</code> with no human session; Python and TypeScript libraries to build products on the engine. User becomes builder.</p></div>
+    <div class="card"><span class="k">05</span><b>Memory + budgets</b><p>Auto dream prunes and merges memory between sessions; task budgets (API beta) let agents self-regulate token spend and wrap up gracefully.</p></div>
+    <div class="card"><span class="k">06</span><b>Agent teams</b><p>Experimental : specialised Claudes with a lead agent, a shared task list, and the ability to debate each other. Token-hungry but powerful.</p></div>
+  </div>
+</section>
+
+<!-- 9 : TRUST -->
+<section class="slide" data-level="5" data-accent="--l5">
+  <div class="eyebrow"><span class="lvl">Level 5</span>The real stall</div>
+  <h2>The barrier isn't technical : it's trust</h2>
+  <p class="sub">Almost anyone can set up a cloud routine. Most won't, because handing the wheel to a system that runs while you sleep feels reckless. The fix is the same as learning to drive : start in the parking lot, not on the highway.</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">Start low-stakes</span><b>Internal-only first</b><p>A daily stand-up summary that goes only to you. A weekly dependency audit. Nothing sent externally.</p></div>
+    <div class="card"><span class="k">Build the reps</span><b>Watch, don't touch</b><p>Let routines run for weeks. Each trusted run earns trust for the next ten.</p></div>
+    <div class="card"><span class="k">Match autonomy to risk</span><b>Deterministic first</b><p>Move-data-from-A-to-B automations are trustworthy by nature; agentic routines are more powerful but need careful, gradual rollout.</p></div>
+  </div>
+</section>
+
+<!-- 10 : TAKEAWAY -->
+<section class="slide" data-level="5" data-accent="--l3">
+  <div class="eyebrow">The takeaway</div>
+  <h2>From brilliant intern to standing infrastructure</h2>
+  <div class="arc">
+    <div class="step" style="--rc:var(--l1)"><div class="bar" style="height:36px"></div><b>Chat</b><p>An intern with no memory. ~30 min/day saved.</p></div>
+    <div class="step" style="--rc:var(--l2)"><div class="bar" style="height:70px"></div><b>Projects</b><p>The intern remembers everything and hands you finished files. 5+ hrs/week.</p></div>
+    <div class="step" style="--rc:var(--l3)"><div class="bar" style="height:108px"></div><b>Cowork</b><p>A real co-worker on your machine. 10+ hrs/week : the minimum bar for selling automation.</p></div>
+    <div class="step" style="--rc:var(--l4)"><div class="bar" style="height:148px"></div><b>Claude Code</b><p>An engineering team in parallel : $5-15k client systems.</p></div>
+    <div class="step" style="--rc:var(--l5)"><div class="bar" style="height:190px"></div><b>Architect</b><p>Always-on infrastructure that works while you sleep.</p></div>
+  </div>
+  <p class="sub" style="margin-top:26px">The discovery habit matters as much as the build habit : thousands of community skills, MCP servers and marketplaces already exist. Leverage before you build : then customise.</p>
+</section>
+
+<div id="chrome">
+  <div class="src">Summary of "Every Level of Claude Explained in 21 Minutes" : Nate Herk | AI Automation : youtu.be/ZRb7D6R64hM</div>
+  <div id="ctrl">
+    <button id="prevBtn" aria-label="Previous slide">←</button>
+    <span id="counter">1 / 10</span>
+    <button id="nextBtn" aria-label="Next slide">→</button>
+    <button id="playBtn">▶ PLAY 5:00</button>
+  </div>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const segs=[...document.querySelectorAll('#rail .seg')];
+const progress=document.getElementById('progress');
+const counter=document.getElementById('counter');
+const playBtn=document.getElementById('playBtn');
+const SLIDE_SECONDS=30;
+let i=0, playing=false, timer=null;
+
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,j)=>s.classList.toggle('active',j===i));
+  const s=slides[i];
+  const accent=getComputedStyle(document.documentElement).getPropertyValue(s.dataset.accent||'--l3');
+  document.documentElement.style.setProperty('--accent',accent.trim());
+  const lvl=parseInt(s.dataset.level||'0',10);
+  segs.forEach(seg=>seg.classList.toggle('lit',parseInt(seg.dataset.l,10)<=lvl));
+  progress.style.width=((i+1)/slides.length*100)+'%';
+  counter.textContent=(i+1)+' / '+slides.length;
+  if(playing) armTimer();
+}
+function next(){ if(i<slides.length-1){show(i+1);} else stop(); }
+function prev(){ show(i-1); }
+function armTimer(){ clearTimeout(timer); timer=setTimeout(next, SLIDE_SECONDS*1000); }
+function play(){ playing=true; playBtn.classList.add('on'); playBtn.textContent='❚❚ PAUSE'; if(i===slides.length-1) show(0); else armTimer(); }
+function stop(){ playing=false; clearTimeout(timer); playBtn.classList.remove('on'); playBtn.textContent='▶ PLAY 5:00'; }
+
+playBtn.onclick=()=> playing?stop():play();
+document.getElementById('nextBtn').onclick=()=>{stop();next();};
+document.getElementById('prevBtn').onclick=()=>{stop();prev();};
+segs.forEach(seg=>seg.onclick=()=>{stop();
+  const target=slides.findIndex(s=>s.dataset.level===seg.dataset.l);
+  if(target>-1) show(target);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();stop();next();}
+  if(e.key==='ArrowLeft'){e.preventDefault();stop();prev();}
+  if(e.key.toLowerCase()==='p'){playing?stop():play();}
+});
+let tx=null;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{
+  if(tx===null)return;
+  const dx=e.changedTouches[0].clientX-tx; tx=null;
+  if(Math.abs(dx)>50){stop(); dx<0?next():prev();}
+},{passive:true});
+document.addEventListener('click',e=>{
+  if(e.target.closest('#chrome')||e.target.closest('#rail'))return;
+  stop(); next();
+});
+show(0);
+</script>
+</body>
+</html>
