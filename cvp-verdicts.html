@@ -1,0 +1,1578 @@
+<title>Women's CVP Ideas: Executive Summary</title>
+<style>
+  :root {
+    --nedbank-green: #006341;
+    --go-green: #00a35b;
+    --heritage-green: #004d36;
+    --contrast-green: #003a29;
+    --good-green: #10a867;
+    --inspirational-green: #e7f7f1;
+    --lime: #8a9a12;
+    --speck-red: #c23f2c;
+
+    --paper: #fbfaf7;
+    --surface: #ffffff;
+    --surface-sunk: #f2f4f1;
+    --ink: #0c1c16;
+    --ink-soft: #3d4f47;
+    --ink-mute: #6b7b73;
+    --line: rgba(0, 77, 54, 0.14);
+    --line-strong: rgba(0, 77, 54, 0.28);
+
+    /* sequential ramp: Nedbank Green opacity steps, brand-sanctioned (10/30/50/70/100%) */
+    --seq-1: rgba(0, 99, 65, 0.08);
+    --seq-2: rgba(0, 99, 65, 0.22);
+    --seq-3: rgba(0, 99, 65, 0.42);
+    --seq-4: rgba(0, 99, 65, 0.68);
+    --seq-5: #006341;
+    --seq-6: #004d36;
+
+    --font-display: 'Libre Franklin', Arial, sans-serif;
+    --font-body: 'Libre Franklin', Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #071310;
+      --surface: #0d211a;
+      --surface-sunk: #0a1a15;
+      --ink: #eaf3ef;
+      --ink-soft: #b9cbc3;
+      --ink-mute: #83988e;
+      --line: rgba(16, 168, 103, 0.22);
+      --line-strong: rgba(16, 168, 103, 0.4);
+      --nedbank-green: #10a867;
+      --heritage-green: #00e677;
+      --inspirational-green: #12281f;
+
+      --seq-1: rgba(16, 168, 103, 0.1);
+      --seq-2: rgba(16, 168, 103, 0.26);
+      --seq-3: rgba(16, 168, 103, 0.46);
+      --seq-4: rgba(16, 168, 103, 0.7);
+      --seq-5: #10a867;
+      --seq-6: #00e677;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #071310;
+    --surface: #0d211a;
+    --surface-sunk: #0a1a15;
+    --ink: #eaf3ef;
+    --ink-soft: #b9cbc3;
+    --ink-mute: #83988e;
+    --line: rgba(16, 168, 103, 0.22);
+    --line-strong: rgba(16, 168, 103, 0.4);
+    --nedbank-green: #10a867;
+    --heritage-green: #00e677;
+    --inspirational-green: #12281f;
+
+    --seq-1: rgba(16, 168, 103, 0.1);
+    --seq-2: rgba(16, 168, 103, 0.26);
+    --seq-3: rgba(16, 168, 103, 0.46);
+    --seq-4: rgba(16, 168, 103, 0.7);
+    --seq-5: #10a867;
+    --seq-6: #00e677;
+  }
+  :root[data-theme="light"] {
+    --paper: #fbfaf7;
+    --surface: #ffffff;
+    --surface-sunk: #f2f4f1;
+    --ink: #0c1c16;
+    --ink-soft: #3d4f47;
+    --ink-mute: #6b7b73;
+    --line: rgba(0, 77, 54, 0.14);
+    --line-strong: rgba(0, 77, 54, 0.28);
+    --nedbank-green: #006341;
+    --heritage-green: #004d36;
+    --inspirational-green: #e7f7f1;
+
+    --seq-1: rgba(0, 99, 65, 0.08);
+    --seq-2: rgba(0, 99, 65, 0.22);
+    --seq-3: rgba(0, 99, 65, 0.42);
+    --seq-4: rgba(0, 99, 65, 0.68);
+    --seq-5: #006341;
+    --seq-6: #004d36;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px 96px; }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    background: var(--nedbank-green);
+    color: #fdfffe;
+    padding: 48px 0 28px;
+  }
+  .masthead .wrap { display: flex; flex-direction: column; gap: 16px; padding-bottom: 0; }
+  .brandline {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+  }
+  .brandline strong { color: #fff; font-weight: 700; letter-spacing: 0.14em; }
+  h1.doc-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.08;
+    margin: 0;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+  .doc-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.86);
+    max-width: 62ch;
+    margin: 0;
+  }
+  .meta-row {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    font-size: 12.5px; color: rgba(255,255,255,0.68);
+  }
+  .meta-row b { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  /* ---------- Round switcher (high-contrast, not a thin tab strip) ---------- */
+  .round-switcher-shell {
+    position: sticky; top: 0; z-index: 30;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line-strong);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .round-switcher {
+    display: flex; gap: 10px; padding: 14px 0; overflow-x: auto;
+  }
+  .round-btn {
+    appearance: none; cursor: pointer; text-align: left;
+    display: flex; align-items: center; gap: 10px;
+    border: 2px solid var(--line-strong); border-radius: 12px;
+    background: var(--surface); padding: 9px 16px 9px 12px;
+    white-space: nowrap; flex-shrink: 0;
+    font-family: var(--font-body);
+  }
+  .round-btn .r-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    background: var(--surface-sunk); color: var(--ink-soft);
+    font-weight: 800; font-size: 13px; font-variant-numeric: tabular-nums;
+  }
+  .round-btn .r-text { display: flex; flex-direction: column; gap: 1px; }
+  .round-btn .r-label { font-weight: 800; font-size: 14px; color: var(--ink); }
+  .round-btn .r-desc { font-size: 11.5px; color: var(--ink-mute); }
+  .round-btn .r-tag {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    background: var(--surface-sunk); color: var(--ink-mute);
+    padding: 2px 6px; border-radius: 100px; margin-left: 4px;
+  }
+  .round-btn:hover { border-color: var(--nedbank-green); }
+  .round-btn[aria-selected="true"] {
+    background: var(--nedbank-green); border-color: var(--nedbank-green);
+  }
+  .round-btn[aria-selected="true"] .r-num { background: rgba(255,255,255,0.22); color: #fff; }
+  .round-btn[aria-selected="true"] .r-label { color: #fff; }
+  .round-btn[aria-selected="true"] .r-desc { color: rgba(255,255,255,0.78); }
+  .round-btn[aria-selected="true"] .r-tag { background: rgba(255,255,255,0.2); color: #fff; }
+
+  /* ---------- Round panels ---------- */
+  .round-panel { display: none; }
+  .round-panel.active { display: block; }
+
+  .empty-round {
+    margin: 56px 0; padding: 48px 40px; text-align: center;
+    border: 1px dashed var(--line-strong); border-radius: 14px;
+    color: var(--ink-mute);
+  }
+  .empty-round strong { display: block; color: var(--ink-soft); font-size: 16px; margin-bottom: 6px; }
+  .empty-round p { max-width: 52ch; margin: 0 auto; font-size: 14px; }
+
+  /* ---------- Intro / throughline ---------- */
+  .intro { padding-top: 36px; }
+  .intro p { max-width: 74ch; color: var(--ink-soft); font-size: 15.5px; }
+  .intro p.lead { font-size: 17px; color: var(--ink); }
+
+  .throughline {
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--heritage-green);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+  .throughline .kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--heritage-green); margin-bottom: 8px; display: block;
+  }
+  .throughline p { margin: 0; max-width: 76ch; color: var(--ink-soft); font-size: 14.5px; }
+  .throughline p + p { margin-top: 8px; }
+
+  /* ---------- Section headers ---------- */
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    margin: 52px 0 18px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 12px;
+  }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 800; margin: 0; color: var(--nedbank-green);
+  }
+  .section-head .section-note { font-size: 13px; color: var(--ink-mute); }
+  .section-head .section-actions { display: flex; gap: 8px; align-items: center; }
+  .text-btn {
+    appearance: none; background: none; border: none; cursor: pointer;
+    font-family: var(--font-body); font-size: 12.5px; font-weight: 700;
+    color: var(--nedbank-green); padding: 4px 2px;
+  }
+  .text-btn:hover { text-decoration: underline; }
+  .text-btn + .text-btn { border-left: 1px solid var(--line-strong); padding-left: 10px; }
+
+  /* ---------- Summary matrix ---------- */
+  .matrix-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  table.matrix { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 13.5px; }
+  table.matrix caption { text-align: left; caption-side: bottom; font-size: 12px; color: var(--ink-mute); padding: 10px 14px; }
+  table.matrix th, table.matrix td { padding: 11px 14px; text-align: left; }
+  table.matrix thead th {
+    background: var(--surface-sunk);
+    color: var(--ink-soft);
+    font-weight: 600; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  table.matrix thead th.num { text-align: center; }
+  table.matrix tbody tr { background: var(--surface); }
+  table.matrix tbody tr + tr td { border-top: 1px solid var(--line); }
+  table.matrix tbody tr { cursor: pointer; }
+  table.matrix tbody tr:hover { background: var(--surface-sunk); }
+  table.matrix td.idea-cell { font-weight: 700; color: var(--ink); }
+  table.matrix td.idea-cell .idea-num { color: var(--ink-mute); font-weight: 500; margin-right: 6px; }
+  table.matrix td.num {
+    text-align: center; font-variant-numeric: tabular-nums; font-weight: 700;
+    border-left: 1px solid var(--line);
+  }
+  .score-cell { display: inline-flex; min-width: 30px; justify-content: center; padding: 3px 0; border-radius: 5px; }
+  .verdict-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--inspirational-green); color: var(--heritage-green);
+    border: 1px solid var(--line-strong);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px; white-space: nowrap;
+  }
+  .verdict-pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+  /* ---------- Idea accordions ---------- */
+  .idea-list { display: flex; flex-direction: column; gap: 12px; }
+
+  details.idea-accordion {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    scroll-margin-top: 88px;
+    overflow: hidden;
+  }
+  details.idea-accordion[open] { border-color: var(--line-strong); }
+  details.idea-accordion summary {
+    list-style: none; cursor: pointer;
+    padding: 18px 22px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  details.idea-accordion summary::-webkit-details-marker { display: none; }
+  details.idea-accordion summary:focus-visible { outline: 2px solid var(--nedbank-green); outline-offset: -2px; }
+
+  .acc-left { display: flex; align-items: flex-start; gap: 14px; min-width: 0; }
+  .acc-num {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--surface-sunk); color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 13.5px; font-variant-numeric: tabular-nums;
+  }
+  .acc-text { min-width: 0; }
+  .acc-text h3 {
+    font-family: var(--font-display); font-size: 17px; font-weight: 800;
+    margin: 0 0 3px; color: var(--ink); text-wrap: balance;
+  }
+  .acc-essence { margin: 0; font-size: 13.5px; color: var(--ink-mute); max-width: 56ch; }
+
+  .acc-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+  .acc-score { text-align: center; }
+  .acc-score .num { display: block; font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .acc-score .lbl { font-size: 9.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-mute); }
+  .acc-chevron {
+    width: 20px; height: 20px; flex-shrink: 0;
+    color: var(--ink-mute);
+    transition: transform 0.18s ease;
+  }
+  details.idea-accordion[open] .acc-chevron { transform: rotate(180deg); }
+
+  .acc-body { padding: 4px 22px 26px; border-top: 1px solid var(--line); }
+  .acc-body-inner { padding-top: 20px; }
+
+  .idea-desc { color: var(--ink-soft); font-size: 15px; max-width: 78ch; margin: 0 0 24px; }
+
+  .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+  @media (max-width: 640px) { .split-2 { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: var(--surface-sunk);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .panel.risk { border-top: 3px solid var(--speck-red); }
+  .panel.upside { border-top: 3px solid var(--good-green); }
+  .panel h4 {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 0 0 8px; color: var(--ink-soft);
+  }
+  .panel p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+  .fit-commercial { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; margin-bottom: 22px; }
+  @media (max-width: 640px) { .fit-commercial { grid-template-columns: 1fr; } }
+
+  .fit-panel h4, .commercial-panel h4 {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 0 0 12px; color: var(--ink-soft);
+  }
+  .fit-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .fit-row:last-child { margin-bottom: 0; }
+  .fit-row .fit-label { font-size: 13px; color: var(--ink-soft); width: 132px; flex-shrink: 0; }
+  .fit-row .fit-score { font-size: 13px; font-weight: 700; width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+  .dotmeter { display: inline-flex; gap: 3px; }
+  .dotmeter span { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
+  .dotmeter span.on { background: var(--nedbank-green); }
+
+  .commercial-panel p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+  .test-box {
+    background: var(--inspirational-green);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 22px;
+  }
+  .test-box h4 {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 0 0 8px; color: var(--heritage-green);
+  }
+  .test-box h4::before { content: "→"; font-size: 14px; }
+  .test-box p { margin: 0; font-size: 14px; color: var(--ink); }
+
+  /* ---------- Council findings ---------- */
+  .council-head {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 12px;
+  }
+  .council-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 640px) { .council-grid { grid-template-columns: 1fr; } }
+  .council-tile {
+    background: var(--surface-sunk);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .council-tile-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .council-tile .role {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .council-tile .score {
+    font-family: var(--font-display); font-weight: 800; font-size: 16px;
+    font-variant-numeric: tabular-nums; color: var(--ink);
+  }
+  .council-tile .meter { height: 4px; border-radius: 2px; background: var(--line-strong); overflow: hidden; margin-bottom: 10px; }
+  .council-tile .meter i { display: block; height: 100%; background: var(--nedbank-green); border-radius: 2px; }
+  .council-tile p { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+  .council-tile p.no-rationale { color: var(--ink-mute); font-style: italic; }
+
+  /* ---------- Concept brief (Rounds 2/3) ---------- */
+  .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px) { .concept-grid { grid-template-columns: 1fr; } }
+  .concept-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .concept-item h4 {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 0 0 8px; color: var(--nedbank-green);
+  }
+  .concept-item p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+  /* ---------- Single-CVP verdict block (Rounds 2/3) ---------- */
+  .verdict-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--nedbank-green);
+    border-radius: 14px;
+    padding: 26px 28px 30px;
+    margin-bottom: 8px;
+  }
+  .verdict-top-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+  .verdict-word { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 4vw, 34px); color: var(--nedbank-green); letter-spacing: -0.01em; }
+  .verdict-conf-pill {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--heritage-green); background: var(--inspirational-green);
+    border: 1px solid var(--line-strong); border-radius: 100px; padding: 5px 12px;
+  }
+  .verdict-callline { font-size: 16.5px; color: var(--ink); max-width: 78ch; margin: 0 0 18px; text-wrap: balance; }
+  .verdict-why { margin: 0 0 22px; }
+  .verdict-why h4, .verdict-money h4 {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 0 0 8px; color: var(--ink-soft);
+  }
+  .verdict-why p { margin: 0; font-size: 14.5px; color: var(--ink-soft); max-width: 80ch; }
+  .verdict-fix {
+    background: var(--surface-sunk);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 8px;
+  }
+  .verdict-fix h4 {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 0 0 8px; color: var(--heritage-green);
+  }
+  .verdict-fix p { margin: 0; font-size: 14px; color: var(--ink); }
+
+  /* ---------- Score strip (single-CVP rounds) ---------- */
+  .score-strip { display: flex; gap: 10px; flex-wrap: wrap; }
+  .score-chip {
+    flex: 1 1 108px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .score-chip .role { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+  .score-chip .num { display: block; font-family: var(--font-display); font-weight: 800; font-size: 20px; font-variant-numeric: tabular-nums; }
+  .score-chip .num .of10 { font-size: 11px; font-weight: 500; color: var(--ink-mute); }
+  .score-chip .bar { height: 4px; border-radius: 2px; background: var(--line-strong); margin-top: 9px; overflow: hidden; }
+  .score-chip .bar i { display: block; height: 100%; }
+  .score-chip.delta { border-style: dashed; }
+  .score-chip .delta-note { display: block; font-size: 10.5px; color: var(--ink-mute); margin-top: 4px; }
+
+  /* ---------- Persona accordion body (Rounds 2/3, reuses .idea-accordion shell) ---------- */
+  .acc-body-inner h4.subhead {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 22px 0 10px; color: var(--ink-soft);
+  }
+  .acc-body-inner h4.subhead:first-child { margin-top: 0; }
+  .acc-body-inner ol.points { margin: 0; padding-left: 20px; }
+  .acc-body-inner ol.points li { margin-bottom: 12px; font-size: 14.5px; color: var(--ink-soft); }
+  .acc-body-inner ol.points li:last-child { margin-bottom: 0; }
+  .acc-body-inner ol.points li strong { color: var(--ink); }
+  .acc-body-inner p.closing { margin: 16px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+  .callout {
+    background: var(--inspirational-green);
+    border-left: 3px solid var(--nedbank-green);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .callout strong { color: var(--heritage-green); }
+  .correction-flag { display: block; margin-top: 8px; font-size: 12.5px; font-style: italic; color: var(--heritage-green); }
+
+  /* ---------- Addendum (Round 3) ---------- */
+  .addendum-block {
+    margin-top: 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--heritage-green);
+    border-radius: 14px;
+    padding: 26px 28px 30px;
+  }
+  .addendum-block .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--heritage-green); margin-bottom: 8px; display: block; }
+  .addendum-block p { max-width: 78ch; color: var(--ink-soft); font-size: 14.5px; }
+  .addendum-block p.lead { color: var(--ink); font-size: 15.5px; }
+  .score-move { display: flex; align-items: baseline; gap: 8px; font-family: var(--font-display); font-weight: 800; }
+  .score-move .from { color: var(--ink-mute); font-size: 15px; text-decoration: line-through; }
+  .score-move .to { font-size: 20px; }
+  .score-move .to.up { color: var(--good-green); }
+  .score-move .to.down { color: var(--speck-red); }
+
+  /* ---------- Methodology footer ---------- */
+  .method { margin-top: 60px; }
+  .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+  @media (max-width: 760px) { .method-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .method-grid { grid-template-columns: 1fr; } }
+  .method-tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .method-tile .role { font-weight: 800; font-size: 13.5px; color: var(--nedbank-green); display: block; margin-bottom: 4px; }
+  .method-tile p { margin: 0; font-size: 13px; color: var(--ink-soft); }
+
+  .doc-footer {
+    margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--ink-mute); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--go-green); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="brandline"><strong>Nedbank</strong><span>see money differently</span></div>
+    <h1 class="doc-title">Women's CVP Ideas: Executive Summary</h1>
+    <p class="doc-sub">A working record of the ideas evaluated for the Women-Centred Financial Agency &amp; Protection CVP, and the rationale behind how each has evolved through structured pressure-testing.</p>
+    <div class="meta-row">
+      <span><b>Prepared for</b> · Executive Head of Design</span>
+      <span><b>Date</b> · 8 July 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="round-switcher-shell">
+  <div class="wrap" style="padding-bottom:0;">
+    <div class="round-switcher" id="round-switcher" role="tablist" aria-label="Rounds of ideation and feedback"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="round-1" class="round-panel">
+
+    <div class="intro">
+      <p class="lead">Five early-stage concepts were drafted for this initiative. Each was pressure-tested by a structured six-reviewer council: a Contrarian, an Expansionist, a Logician, a Researcher, a Buyer, and a Fit Finder each assess the same brief independently, and a Judge resolves the tension between them into one decisive call.</p>
+      <p>All five returned the same verdict: <strong>Reshape, high confidence.</strong> None were dismissed outright, and none are yet review-ready as drafted.</p>
+
+      <div class="throughline">
+        <span class="kicker">The throughline across all five</span>
+        <p>A bank cannot simultaneously be the safety mechanism for a woman experiencing financial abuse and the entity whose visibility into, or relationship with, the controlling partner is part of the risk. Joint accounts, visible transactions, in-app notifications, even a well-meaning referral email, are all discovery risk to someone being monitored.</p>
+        <p>Idea 5 first tried solving this by outsourcing sensitive judgment calls to external partners (POWA, Lyra) rather than Nedbank making the call itself: a genuine fix if governance rights are contractually real, a wider leak surface if not. This tension carried forward into the reshaped versions in later rounds.</p>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>At a glance</h2>
+      <span class="section-note">Council scores out of 10 · click a row to open its detail</span>
+    </div>
+
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <caption>Score bands: 0 to 2 lightest tint, 9 to 10 darkest. Nedbank Green sequential ramp, one hue throughout.</caption>
+        <thead>
+          <tr>
+            <th>Idea</th>
+            <th>Verdict</th>
+            <th class="num">Contrarian</th>
+            <th class="num">Expansionist</th>
+            <th class="num">Logician</th>
+            <th class="num">Researcher</th>
+            <th class="num">Buyer</th>
+            <th class="num">Fit Finder</th>
+          </tr>
+        </thead>
+        <tbody id="matrix-body"></tbody>
+      </table>
+    </div>
+
+    <div class="section-head">
+      <h2>Full detail</h2>
+      <div class="section-actions">
+        <button class="text-btn" id="expand-all">Expand all</button>
+        <button class="text-btn" id="collapse-all">Collapse all</button>
+      </div>
+    </div>
+
+    <div class="idea-list" id="cards"></div>
+
+    <div class="method">
+      <div class="section-head" style="margin-top:0;">
+        <h2>Methodology</h2>
+      </div>
+      <p style="max-width:76ch;color:var(--ink-soft);margin:0;font-size:14.5px;">Each idea is distilled into a brief (problem, audience, monetisation, our edge, constraints), then assessed in parallel by six reviewers with fixed, independent mandates. A Judge synthesises the tension between them into one call: Kill, Reshape, or Go, with the biggest risk, the strongest reason to proceed, and the cheapest test to de-risk it next.</p>
+      <div class="method-grid">
+        <div class="method-tile"><span class="role">Contrarian</span><p>Red-teams the idea; assumes it fails and finds the fastest way it dies.</p></div>
+        <div class="method-tile"><span class="role">Expansionist</span><p>Builds the strongest case for it; finds the real upside and adjacent opportunities.</p></div>
+        <div class="method-tile"><span class="role">Logician</span><p>First-principles check, no outside research; tests if the mechanism and math hold together.</p></div>
+        <div class="method-tile"><span class="role">Researcher</span><p>Live-research evidence: competitors, pricing precedent, regulatory precedent.</p></div>
+        <div class="method-tile"><span class="role">Buyer</span><p>Role-plays the actual target customer to surface real objections and willingness to engage.</p></div>
+        <div class="method-tile"><span class="role">Fit Finder</span><p>Diagnostic check across Problem-Solution / Product-Market / Business Model Fit, naming the weakest layer.</p></div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>Generated via the find-fit council · Round 1 of the Nedbank women's CVP initiative.</span>
+      <span>See Round 2 (reshaped CVP) and Round 3 (V3 + physical-custody recheck) above.</span>
+    </div>
+
+  </div>
+
+  <div id="round-2" class="round-panel">
+
+    <div class="intro">
+      <p class="lead">The five original ideas converged into one reshaped concept: <strong>Women-Centred Financial Agency &amp; Protection</strong>, a &ldquo;discreet by design&rdquo; capability embedded in the existing Nedbank relationship rather than a new product or app. The same six-reviewer council pressure-tested it as a single CVP.</p>
+      <p>Verdict: <strong>Reshape, high confidence.</strong> Real progress over Round 1, the insurance dead end and the partner-conflation flaw are both gone, but a new problem surfaced: the plan to stay totally invisible doesn't survive contact with the most common abuse profile, a shared device or joint account.</p>
+    </div>
+
+    <div class="section-head">
+      <h2>The concept</h2>
+      <span class="section-note">What the council evaluated</span>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-item">
+        <h4>What it is</h4>
+        <p>A women-centred financial agency and protection proposition built as a banking capability rather than a labelled product, embedded into Nedbank&rsquo;s existing five-layer client journey (Recognise, Protect, Respond, Rebuild, Grow). It runs on a &ldquo;two-system GTM doctrine&rdquo;: a public narrative layer that only ever talks about financial control and independence in general terms, and a discreet access layer of ordinary-looking banking journeys that quietly do the protective work.</p>
+      </div>
+      <div class="concept-item">
+        <h4>What it does</h4>
+        <p>Privately recognises patterns of restricted financial control without forcing the client to self-label as an abuse victim; provides ordinary-looking tools, card and PIN protection, budgeting, credit score visibility, savings, contact-preference changes, that increase her autonomy without announcing themselves; routes her to trained human support at the exact point of need (contact centre, branch, card team, fraud and disputes desk, or an NGO, legal or shelter referral) when self-service isn&rsquo;t safe or isn&rsquo;t enough; and after she is out or partly out, supports credit repair, debt-in-her-name resolution, document rebuilding, and a transition into ordinary women-centred banking, advisory and growth products.</p>
+      </div>
+      <div class="concept-item">
+        <h4>Who it&rsquo;s for</h4>
+        <p>Women whose financial control, choice or safety is restricted or monitored by a partner or household member, discovered not through a labelled &ldquo;abuse&rdquo; product but at the natural moments those needs surface: a self-assessment, a card or PIN issue, credit or debt distress, a savings request, a branch or contact-centre disclosure, a fraud dispute, a partner referral, or post-exit recovery. Spans the full state-of-readiness spectrum, from not-yet-aware, to actively restricted, to already out and rebuilding.</p>
+      </div>
+      <div class="concept-item">
+        <h4>How it creates value</h4>
+        <p>No direct fee, this is a retention and relationship-deepening play, not a new revenue line. Value is captured through avoided attrition, preserved product relationships, deeper cross-sell once she has stabilised and trust is earned (credit, savings, investment, advisory), reduced operational and reputational risk, and brand-permission or CSR value from being seen to lead the category, funded as a trust investment rather than priced like a product.</p>
+      </div>
+      <div class="concept-item">
+        <h4>Nedbank&rsquo;s edge</h4>
+        <p>Near-zero new build: the entire architecture reuses tools Nedbank already has (card/PIN management, budgeting, credit score, savings, contact preferences) rather than requiring a new app or licensed product. Nedbank already runs an adjacent programme (Money Warnings, the POWA partnership, the &ldquo;How Free Are You?&rdquo; survey and its SEA-12 archetype data) that can ground both the public narrative and the internal segmentation. And because the model rides on the existing banking relationship rather than a new acquisition funnel, distribution is free, every branch, contact-centre call and card issue is already a potential point of need.</p>
+      </div>
+      <div class="concept-item">
+        <h4>Constraints</h4>
+        <p>The design rule is absolute: if a perpetrator seeing an interaction creates risk, that interaction cannot be publicly marketed or visibly labelled, specific protective mechanics, hidden risk-scoring logic and safe-routing triggers have to stay invisible even while the capability itself is talked about publicly. Partners are included only where the point of need genuinely requires their trust, capability or access, never as a default channel. Frontline execution discipline, not the digital design, is the single biggest point of failure. And as of this round, none of the six value pools behind the business case have been quantified.</p>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>The verdict</h2>
+      <span class="section-note">Judge&rsquo;s synthesis of all six reviewers</span>
+    </div>
+
+    <div class="verdict-card">
+      <div class="verdict-top-row">
+        <span class="verdict-word">Reshape</span>
+        <span class="verdict-conf-pill">Confidence: High</span>
+      </div>
+      <p class="verdict-callline">Real progress over the five prior ideas: the insurance dead end is gone, the partner-conflation flaw is fixed, and the &ldquo;reuse-what-we-have, no new app&rdquo; instinct is right. But the specific mechanism (total public silence, hidden risk-scoring, assume the channel is private) doesn&rsquo;t resolve the Council&rsquo;s original finding; it relocates it into two new, worse forms: it fails for the modal shared-device/joint-account abuse case, and it makes the bank&rsquo;s own monetization logic self-cancelling.</p>
+
+      <div class="verdict-why">
+        <h4>Why</h4>
+        <p>Four of six personas (Contrarian, Logician, Researcher, and Buyer) independently converged on the same catch from different angles: the &ldquo;discreet by design&rdquo; doctrine assumes a private channel or device the abuser can&rsquo;t see, but the highest-risk, most common abuse profile in the brief itself (&ldquo;my partner handles everything,&rdquo; shared logins, mirrored notifications) is exactly the case where that assumption fails. The Researcher adds the sharpest evidence: no real bank precedent (CommBank, NatWest, Starling, Ask for ANI) ever went fully silent; every validated analog loudly announces the capability exists and keeps only the in-the-moment interaction private. That same silence also breaks the plan&rsquo;s own funding logic: CSR and brand-trust value requires public attribution, which the design rule forbids. The Expansionist is right that the underlying instinct (zero-new-build, kill the actuarial mess, reuse existing infra) is the correct direction, but as specified, the architecture needs one more turn of the crank.</p>
+      </div>
+
+      <div class="split-2">
+        <div class="panel risk">
+          <h4>Biggest risk</h4>
+          <p>A single incident where either (a) the &ldquo;invisible&rdquo; layer leaks to a monitoring partner via a shared device, joint account, or push notification, causing real physical harm to exactly the segment it exists to protect; or (b) the internal archetype/risk-scoring logic surfaces via a POPIA subject-access request, a subpoena, or a joint-account dispute, a bigger scandal precisely because it was designed to be hidden.</p>
+        </div>
+        <div class="panel upside">
+          <h4>Biggest upside</h4>
+          <p>The cheapest, most reusable, most defensible version of the idea the initiative has produced: near-zero marginal build cost, real lifetime value in turning a rescued client into a 20-year main-banked or wealth relationship, and a reusable doctrine (state-of-readiness routing, partner-fit gating, point-of-need interception) that extends to elder abuse, disability financial exploitation, and other vulnerable-population use cases.</p>
+        </div>
+      </div>
+
+      <div class="fit-commercial">
+        <div class="fit-panel">
+          <h4>Fit read</h4>
+          <div class="fit-row"><span class="fit-label">Problem-Solution</span><span class="dotmeter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></span><span class="fit-score">6/10</span></div>
+          <div class="fit-row"><span class="fit-label">Product-Market</span><span class="dotmeter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></span><span class="fit-score">5/10</span></div>
+          <div class="fit-row"><span class="fit-label">Business Model</span><span class="dotmeter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></span><span class="fit-score">4/10</span></div>
+          <p style="margin:10px 0 0;font-size:12.5px;color:var(--ink-mute);">Business Model breaks first on paper for having zero quantification anywhere in the brief, but the deeper structural gap is that Product-Market Fit&rsquo;s core claim, &ldquo;discreet by design,&rdquo; is unproven for the population it&rsquo;s meant to protect.</p>
+        </div>
+        <div class="commercial-panel">
+          <h4>Money read</h4>
+          <p>No direct fee, so classic time-to-first-dollar doesn&rsquo;t apply: this is a retention and deepening play, not new revenue, and as designed the CSR and brand-trust funding mechanism can&rsquo;t sustain itself because it needs public credit that the &ldquo;no public marketing&rdquo; rule forbids. Realistic timeline to a fundable business case: 12 to 24 months, gated on real baseline numbers first.</p>
+        </div>
+      </div>
+
+      <div class="test-box">
+        <h4>The cheapest 48-hour test</h4>
+        <p>Two internal, no-build queries in parallel: (1) pull Nedbank&rsquo;s own existing account-attrition and product-shrinkage data to find the baseline rate of women reducing engagement or closing accounts around known life-disruption events (the exact missing Business Model evidence); (2) message-test 2 to 3 neutral entry-point phrasings (&ldquo;review who has access to your money&rdquo; vs. a generic control) on a small existing digital cohort for a differential engagement signal.</p>
+      </div>
+
+      <div class="verdict-fix">
+        <h4>If reshape</h4>
+        <p>Two specific fixes, not a redesign. <strong>(1)</strong> Split the doctrine to match every real precedent: a publicly known capability (loudly announced, the way Ask for ANI, CommBank, and Starling did it) layered over privately discreet in-the-moment mechanics (quiet routing, hidden scoring); this fixes both the &ldquo;nobody can find it&rdquo; problem and the self-cancelling monetization problem in one move. <strong>(2)</strong> Explicitly stratify for &ldquo;does this woman have a channel or device the abuser cannot see&rdquo;: for the shared-device/joint-account population, route through non-digital, human-mediated channels instead of assuming digital privacy exists, and treat internal risk-scoring and state classification as subject to POPIA Section 71 consent and disclosure obligations rather than something that can stay silently hidden.</p>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>Council scores</h2>
+      <span class="section-note">Out of 10</span>
+    </div>
+    <div class="score-strip">
+      <div class="score-chip"><span class="role">Contrarian</span><span class="num">3<span class="of10">/10</span></span><div class="bar"><i style="width:30%;background:var(--heritage-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Expansionist</span><span class="num">8<span class="of10">/10</span></span><div class="bar"><i style="width:80%;background:var(--good-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Logician</span><span class="num">4<span class="of10">/10</span></span><div class="bar"><i style="width:40%;background:var(--heritage-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Researcher</span><span class="num">4<span class="of10">/10</span></span><div class="bar"><i style="width:40%;background:var(--heritage-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Buyer</span><span class="num">6<span class="of10">/10</span></span><div class="bar"><i style="width:60%;background:var(--nedbank-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Fit Finder</span><span class="num">5<span class="of10">/10</span></span><div class="bar"><i style="width:50%;background:var(--nedbank-green);"></i></div></div>
+    </div>
+
+    <div class="section-head">
+      <h2>Full council findings</h2>
+      <div class="section-actions">
+        <button class="text-btn round2-expand">Expand all</button>
+        <button class="text-btn round2-collapse">Collapse all</button>
+      </div>
+    </div>
+
+    <div class="idea-list round2-personas">
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">1</span>
+            <div class="acc-text">
+              <h3>The Contrarian</h3>
+              <p class="acc-essence">Red team &middot; assumes it fails, finds the fastest way it dies</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">3</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">This doesn&rsquo;t resolve the Council&rsquo;s core finding; it hides it better, which makes the eventual failure louder and more legally expensive when it surfaces.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>The dual-relationship problem is relocated, not resolved.</strong> The original finding was that Nedbank can&rsquo;t be both the safety mechanism and the entity with a relationship to the controlling partner. This reshape doesn&rsquo;t sever that relationship; it just makes the bank&rsquo;s actions invisible to the perpetrator. But on a joint account, the perpetrator is <em>also the customer</em>, with legal rights to notification of freezes, card reissues, and access changes. The moment &ldquo;Respond&rdquo; (freeze or reissue) fires on a joint account, the bank collides with its own mandate and compliance obligations to that account holder. The risk hasn&rsquo;t gone away: it&rsquo;s been moved from &ldquo;reputational visibility&rdquo; to &ldquo;regulatory and contractual breach,&rdquo; which is worse because it&rsquo;s undocumented and ad hoc.</li>
+            <li><strong>The secrecy itself is the liability, not the safeguard.</strong> Internal risk-scoring, archetype tagging, and undisclosed routing logic that trigger real financial actions (freezes, redirected comms, differential treatment) without the account holder&rsquo;s knowledge is exactly the kind of opaque profiling that blows up in a divorce or custody proceeding, or a POPIA or Equality Act complaint. One subpoena that surfaces &ldquo;the bank secretly scored and acted on this customer&rsquo;s relationship status&rdquo; is a bigger scandal than anything the visible version would have produced. You&rsquo;ve traded a known, boundable risk (public perception) for an unknown, unbounded one (litigation discovery).</li>
+            <li><strong>The insurance product was dropped for the right reasons, but the exposure just changed costume.</strong> No actuarial pricing, no reserves, no documented consent trail, no product terms, but the same underlying act (bank makes consequential financial decisions based on inferred abuse-risk) now happens inside &ldquo;ordinary&rdquo; retail ops via emergency loans, freezes, and safe-account onboarding. That&rsquo;s the insurance idea&rsquo;s risk profile with none of the insurance idea&rsquo;s rigor. You didn&rsquo;t remove the exposure, you removed the paperwork.</li>
+            <li><strong>Push notifications are the leak the design rule pretends doesn&rsquo;t exist.</strong> &ldquo;If a perpetrator seeing it creates risk, it cannot be publicly marketed,&rdquo; but personalized push notifications land on a device, and coercive control very commonly includes phone monitoring. &ldquo;Review who has access to your money&rdquo; appearing at the wrong moment on a monitored phone is not a marketing failure, it&rsquo;s a safety incident. This is a known failure mode in domestic-violence tech and the brief doesn&rsquo;t address the delivery channel itself as the exposure point.</li>
+            <li><strong>Monetization is a funnel fantasy.</strong> Converting &ldquo;protected&rdquo; or &ldquo;rescued&rdquo; clients into long-term wealth-management relationships assumes the population most acutely served by Respond and Rebuild (often asset-depleted, in debt, mid-separation) is a near-term profitable segment. It isn&rsquo;t. This makes the whole program permanently dependent on CSR budget and soft, unvalidated metrics that can&rsquo;t defend it in the next cost-cutting cycle.</li>
+          </ol>
+          <div class="callout"><strong>The one thing the user must hear:</strong> You have not answered the Council&rsquo;s original objection: you&rsquo;ve buried it. The bank is still simultaneously the protector and a party to the perpetrator&rsquo;s relationship; you&rsquo;ve just made that fact invisible until a court case, a joint-account dispute, or a data-protection complaint forces it into the open, at which point the &ldquo;we did this secretly&rdquo; framing will look worse than &ldquo;we did this visibly and made a mistake.&rdquo;</div>
+          <p class="closing">Correct to kill the insurance product, correct instinct to embed rather than build a standalone app, but the central structural conflict is unsolved and the execution risk (frontline staff consistency, joint-account compliance collision, notification leakage) is large enough that this fails in the field long before it fails on a whiteboard.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">2</span>
+            <div class="acc-text">
+              <h3>The Expansionist</h3>
+              <p class="acc-essence">Bull case &middot; builds the strongest case for it, finds the real upside</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">8</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">This is the one version of the idea worth building: it turns the bank&rsquo;s biggest liability (visibility) into camouflage, and does it almost for free using infrastructure Nedbank already owns.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>It doesn&rsquo;t dodge the paradox, it inverts it.</strong> The prior Council finding was that a bank can&rsquo;t be both the safety mechanism and the entity whose visibility is part of the risk. This reshape&rsquo;s answer is: stop trying to be visibly safe, and instead make every interaction indistinguishable from ordinary banking. A perpetrator monitoring statements or notifications sees &ldquo;card protection,&rdquo; &ldquo;credit check,&rdquo; &ldquo;savings buffer&rdquo;: the same noise every customer generates. That&rsquo;s not a workaround, it&rsquo;s the only architecture that can actually work in a coercive-control context, because the moment safety becomes a labeled feature, it becomes a surveillance target.</li>
+            <li><strong>Near-zero marginal build cost against a massive, undermonetized market.</strong> No new app, no new licensed product, no actuarial or insurance mess (correctly killed). This is workflow, routing logic, staff training, and CVP sequencing layered on KYC, analytics, digital channels, POWA, and survey data Nedbank already has. The payback clock starts almost immediately and the downside of failure is a comms or training write-off, not a stranded product.</li>
+            <li><strong>The real money is lifetime-value capture at the exit and rebuild moment.</strong> Women who successfully exit financial abuse and rebuild are one of the most durable &ldquo;sticky customer&rdquo; segments in banking: they need a trusted anchor institution precisely when they&rsquo;re making every major financial decision of the next decade. If Nedbank is the institution that helped without judgment and without ever naming the abuse, that&rsquo;s a main-banked relationship for 20 or more years plus wealth-management cross-sell, at zero customer-acquisition cost because the person is already a customer.</li>
+            <li><strong>The doctrine generalizes far beyond financial abuse.</strong> The discreet-interception model (state-of-readiness segmentation, point-of-need routing, partner-fit gating, &ldquo;hidden until needed&rdquo; mechanics) is a reusable pattern for elder financial abuse, coercive control in family businesses, disability financial exploitation, and trafficking-survivor rehabilitation. Once built, this isn&rsquo;t a CVP feature, it&rsquo;s an internal capability or IP that could be extended across the group or licensed to other emerging-market banks facing the same GBV exposure South Africa has.</li>
+            <li><strong>ESG and regulatory tailwinds are real and timed well.</strong> South Africa&rsquo;s GBV crisis puts real pressure on FSPs for visible, credible action. A working, scaled, non-gimmicky model (versus the dropped, legally shaky insurance product) positions Nedbank as the reference implementation: first-mover advantage in shaping what &ldquo;good&rdquo; looks like industry-wide.</li>
+          </ol>
+          <div class="callout"><strong>The single most important thing to hear:</strong> the reshape is structurally sound, but its entire value depends on frontline execution discipline that can&rsquo;t be product-managed away: a branch teller or contact-centre agent mishandling a single disclosure, or one internal escalation path leaking, collapses the invisibility model in one incident. Don&rsquo;t launch the five-layer architecture at scale; pilot the narrowest possible interception slice (one or two Protect or Respond entry points, tightly scoped, heavily trained staff) until the operational discipline is proven, then expand into Rebuild and Grow and the adjacent verticals where the real long-run leverage sits.</div>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">3</span>
+            <div class="acc-text">
+              <h3>The Logician</h3>
+              <p class="acc-essence">First principles &middot; no outside research, tests if the mechanism holds together</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">4</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">A genuine improvement over the five prior reshapes (it kills the crudest conflicts of interest), but it doesn&rsquo;t resolve the core finding: it pushes it one layer deeper, into places the brief never examines.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>The &ldquo;discreet layer&rdquo; assumes the perpetrator never sees the channel, but financial abuse often means the perpetrator <em>has</em> the channel.</strong> The design rule only defends against a stranger glancing at an ad. It says nothing about a co-signatory or a partner who reads the woman&rsquo;s texts, checks the app, or monitors notifications, precisely the highest-risk, most common abuse profile the CVP itself names (&ldquo;my partner handles everything&rdquo;). This is the load-bearing assumption of the whole model, and it&rsquo;s untested.</li>
+            <li><strong>KYC and analytics pattern-detection is a rename, not a resolution, of the account-signal-detection conflict.</strong> Moving risk logic from a labeled product into an invisible backend model changes who can see the label, not who can see the effect. The underlying data substrate (shared or linked account activity) and delivery surface (an app or notification stream a partner may co-monitor) are unchanged. The prior conflict of interest was structural (shared visibility infrastructure between victim and abuser), and that structure survives the reshape intact.</li>
+            <li><strong>The state-of-readiness model necessarily recreates internal abuse-status scoring; it just renames the field.</strong> To route differently by state, the bank must compute and store a per-customer classification somewhere. Calling it &ldquo;readiness state&rdquo; instead of &ldquo;abuse-risk score&rdquo; doesn&rsquo;t change its legal nature: it&rsquo;s still discoverable via a joint-account holder&rsquo;s legitimate data-access rights (POPIA subject access requests), subpoena, or insider access. A euphemism doesn&rsquo;t survive a court order. Worse: the better the system works, the more it manufactures a documented paper trail of foreseeability, the classic aggravating factor if a safeguarding incident later goes to litigation.</li>
+            <li><strong>The freeze and reissue mechanics dodge the paradox; the money mechanics don&rsquo;t.</strong> Self-service card freeze and reissue is genuinely low-risk. But emergency loans, waived KYC, and expedited safe-account onboarding require underwriting exceptions, which reintroduce the same self-report and verification tension that killed the reinsurance product, just delegated to an undertrained contact-centre agent instead of a formal underwriter. That&rsquo;s arguably worse: less consistent, less audited, more exposed to individual error and to gaming the &ldquo;safe account&rdquo; keyword to bypass normal checks.</li>
+            <li><strong>The monetization logic contains a self-cancelling dial.</strong> Value capture depends on CSR and brand-trust converting into long-term banked or wealth relationships. But brand-trust ROI requires attribution: someone has to know Nedbank did this for it to justify budget internally. &ldquo;Invisible by design&rdquo; and &ldquo;visible enough to harvest brand trust&rdquo; pull in opposite directions, and the brief never states where the dial sits. Perfect execution of the safety goal (true invisibility) minimizes the very asset (attributable brand trust) meant to fund it long-term.</li>
+          </ol>
+          <div class="callout"><strong>Single most important thing to hear:</strong> The plan solves for a perpetrator who is a stranger reading marketing and does not solve for a perpetrator who is a joint account-holder with app access, which is the modal case in financial abuse, not the edge case. Until the architecture explicitly stratifies &ldquo;does this woman have a channel or device the abuser cannot see&rdquo; and routes differently for the (likely large) population where the answer is no, the &ldquo;discreet by design&rdquo; claim is unproven for the population it exists to protect, and the core Council finding still stands.</div>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">4</span>
+            <div class="acc-text">
+              <h3>The Researcher</h3>
+              <p class="acc-essence">Evidence &middot; live web research on precedent, pricing, regulation</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">4</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">The instinct behind this reshape (mechanics must be discreet in the moment) is well-supported by precedent, but the specific architecture (a discreet layer that &ldquo;cannot be publicly marketed&rdquo; at all) has no real-world analog and structurally undercuts the plan&rsquo;s own monetization model; this needs one more hard reshape, not a green light.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>No bank anywhere runs a true &ldquo;two-system doctrine.&rdquo;</strong> Every real analog is a named, PR&rsquo;d, publicly announced feature: NatWest &times; SafeLives, CommBank&rsquo;s Next Chapter, Starling&rsquo;s Hide References (built publicly with Surviving Economic Abuse), NAB and Westpac&rsquo;s AI abuse-message detection, TSB&rsquo;s Flee Fund, and Beyond Bank&rsquo;s &ldquo;cover story&rdquo; callback. CommBank didn&rsquo;t just build its transaction-abuse AI quietly; it published the methodology publicly and hosted a Financial Abuse Leadership Summit specifically to be seen doing it. Nedbank&rsquo;s own existing asset, Money Warnings and &ldquo;How Free Are You?&rdquo; with POWA, is itself a loudly public, branded awareness campaign, not a hidden one. The closest thing to a &ldquo;discreet-in-the-moment&rdquo; model, the UK&rsquo;s &ldquo;Ask for ANI,&rdquo; works precisely because the scheme itself was announced nationally via GOV.UK and press: only the codeword is discreet, not the program&rsquo;s existence. The brief&rsquo;s rule (&ldquo;if a perpetrator seeing it creates risk, it cannot be publicly marketed&rdquo;) throws out the one thing every validated precedent relies on.</li>
+            <li><strong>This creates a direct contradiction with the plan&rsquo;s own monetization mechanism.</strong> The CVP&rsquo;s only value-capture path is CSR and brand-trust investment converting into lifetime value, but brand trust requires the market to know Nedbank did something. A mechanism that by design generates zero attributable public narrative cannot produce the brand asset it&rsquo;s meant to be monetized through. The CommBank precedent cited as proof only proves the opposite: CommBank&rsquo;s brand equity came from visibility, awards, and press, not concealment.</li>
+            <li><strong>Discoverability paradox for the actual user.</strong> If the discreet layer is never publicly signposted, how does a problem-unaware or questioning woman (who by definition doesn&rsquo;t yet know to look) ever learn a &ldquo;review who has access to your money&rdquo; flow is anything more than a generic banking prompt? Every functioning real-world model solves this by publicly announcing the existence of a safe channel while keeping only the in-the-moment interaction private. A layer that is invisible even at the level of &ldquo;this bank has this capability&rdquo; risks reaching nobody who isn&rsquo;t already flagged by the bank&rsquo;s own internal triggers.</li>
+            <li><strong>Hidden mechanisms in this exact domain have failed via discovery, with real harm.</strong> The Aspire News App (Dr. Phil-backed, disguised as a news reader to hide from abusers) had its victim-uploaded distress recordings exposed on an unsecured server: a direct precedent for &ldquo;discreet by design&rdquo; failing catastrophically the moment its hidden architecture is breached or reverse-engineered. A bank hiding archetype and risk-scoring logic, safe-routing triggers, and internal escalation paths inside standard digital channels has an analogous exposure surface: a subpoena, a joint-account abuser&rsquo;s app access, a data breach, or an internal leak could reveal the hidden logic and put flagged customers at retaliatory risk, with the added liability that it&rsquo;s a systemically important bank, not a niche nonprofit app.</li>
+            <li><strong>POPIA tension is real, not hypothetical.</strong> Section 71 restricts solely-automated decisions based on profiling (conduct, reliability, preferences) that have legal or substantial effect on a data subject, absent consent or disclosed contractual necessity: precisely the archetype and risk-scoring logic and safe-routing triggers the brief says must stay hidden. This isn&rsquo;t fatal (consent-gating Rebuild-layer handoffs helps) but Recognise, Protect, and Respond running fully opaque risk logic is a compliance exposure the current design doesn&rsquo;t resolve.</li>
+          </ol>
+          <div class="callout"><strong>Single most important thing to hear:</strong> every rand of value this plan claims to capture depends on the bank being publicly credited for doing this, but the design doctrine forbids exactly the visibility that credit requires. Fix that contradiction (for example, publicize the existence of the discreet-support capability loudly, the way Ask for ANI and Starling did, while keeping only the moment-of-use interaction invisible) before this goes further, or the CVP has no mechanism to pay for itself.</div>
+          <p class="closing">The underlying feature-level insight (mechanics must be discreet in-app) is validated by strong precedent; the architecture-level &ldquo;cannot be publicly marketed at all&rdquo; doctrine is unvalidated, self-undermining for monetization, and carries real POPIA and breach-exposure risk that has already materialized once in an almost-identical product (Aspire News App).</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">5</span>
+            <div class="acc-text">
+              <h3>The Buyer</h3>
+              <p class="acc-essence">Voice of customer &middot; role-plays the target segments</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">6</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">I might use this without ever knowing it&rsquo;s &ldquo;for&rdquo; me (which is exactly the point), but the whole thing lives or dies on one question nobody in this brief has answered: does he see it before I do?</p>
+          <h4 class="subhead">Persona 1 &middot; Problem-unaware: &ldquo;he just handles the money, that&rsquo;s normal&rdquo;</h4>
+          <p>&ldquo;Financial freedom includes access, choice and independence&rdquo;: okay, sure, that&rsquo;s a nice ad. Doesn&rsquo;t apply to me. My husband manages our finances because he&rsquo;s better with numbers than I am, and honestly I&rsquo;d feel a bit judged if my bank kept nudging me toward &ldquo;review who has access to your money&rdquo; like something&rsquo;s wrong. I didn&rsquo;t click it. I&rsquo;m not going to click it. If anything, it makes me a little suspicious of Nedbank: why are they implying my marriage is a problem? I&rsquo;m not the customer for this yet, and no amount of clever architecture changes that. You can&rsquo;t CVP your way into a self-perception I don&rsquo;t have.&rdquo;</p>
+          <h4 class="subhead">Persona 2 &middot; Actively restricted or abused: &ldquo;he checks my phone&rdquo;</h4>
+          <p>&ldquo;This is where I actually get scared, not reassured. He has my banking app password. He gets my notifications mirrored to his phone because we set it up that way &lsquo;for trust&rsquo; three years ago. So when you tell me there&rsquo;s a discreet &lsquo;protect your card&rsquo; journey, protect it from him seeing the push notification? Because if a &lsquo;Nedbank Fraud &amp; Security&rsquo; SMS lands on a shared phone, or if a call-centre agent phones our landline and he picks up, you haven&rsquo;t protected me, you&rsquo;ve just handed him a reason to escalate tonight. Your design rule says &lsquo;if a perpetrator seeing it creates risk, it cannot be publicly marketed&rsquo;; fine, but you&rsquo;ve said nothing about the far more dangerous leak points: joint account visibility, shared devices, forwarded SMS and OTPs, a branch teller who says the wrong thing out loud while he&rsquo;s standing next to me at the counter. I don&rsquo;t trust a script. I trust a person who&rsquo;s been drilled on what not to say. Show me that training exists, don&rsquo;t just tell me the routing exists.&rdquo;</p>
+          <h4 class="subhead">Persona 3 &middot; Post-exit and rebuilding: &ldquo;I&rsquo;m out, now what&rdquo;</h4>
+          <p>&ldquo;Okay, now I&rsquo;m listening. I need my credit fixed, I need to know my debt situation isn&rsquo;t going to follow me forever, and I need actual help, not a link farm. But &lsquo;free&rsquo; makes me suspicious, not grateful: every &lsquo;free&rsquo; bank program I&rsquo;ve seen in this country is a funnel to sell me a credit card or an investment product once I&rsquo;m back on my feet. So tell me straight: is this real casework with a real person who stays with me for months, or is it a chatbot flow that dead-ends the moment I need something outside the script? And the partner handoff to POWA or Lyra: does any of that touch my credit file, my KYC record, my risk flags inside Nedbank&rsquo;s own systems in a way that could bite me later? I don&rsquo;t want &lsquo;abuse survivor&rsquo; quietly tagged on my profile forever. If it&rsquo;s genuinely consent-gated and it disappears once I say I&rsquo;m done, I&rsquo;m in. If it&rsquo;s a database entry I can never see or delete, I&rsquo;m out.&rdquo;</p>
+          <h4 class="subhead">Overall read</h4>
+          <ol class="points">
+            <li><strong>The whole architecture assumes an unmonitored channel that often doesn&rsquo;t exist.</strong> Actively-abused women frequently don&rsquo;t have private banking access at all: shared logins, mirrored notifications, joint accounts. The brief&rsquo;s &ldquo;discreet by design&rdquo; promise breaks at the exact moment it matters most, and nothing here addresses device or notification-level leakage.</li>
+            <li><strong>Human failure points are the real risk, not the digital design.</strong> A perfect app journey is worthless if a branch teller or call-centre agent says the wrong thing out loud, or a &ldquo;Fraud &amp; Security&rdquo; SMS itself becomes the tell. Training and script discipline aren&rsquo;t mentioned with anywhere near the rigor the UX architecture gets.</li>
+            <li><strong>&ldquo;Free&rdquo; reads as suspicious, not generous, to this audience.</strong> South African bank &ldquo;free&rdquo; programs have a reputation for being upsell funnels. Unless it&rsquo;s obviously staffed with real, sustained human casework, it&rsquo;ll be read as Nedbank fishing for a future wealth client and dismissed.</li>
+            <li><strong>Data permanence is the post-exit dealbreaker.</strong> Any hint that &ldquo;abuse history&rdquo; gets tagged in KYC or risk systems and can resurface will make survivors refuse to engage even after they&rsquo;re safe.</li>
+            <li><strong>Not needing a new account or bank is a genuine, underrated strength.</strong> Switching banks or opening a new account is itself a visible, dangerous act for someone being monitored. Embedding in the existing relationship is the single smartest thing about this brief, and it&rsquo;s the one thing that would make her choose Nedbank over doing nothing.</li>
+          </ol>
+          <div class="callout"><strong>The single most important thing Nedbank must hear:</strong> solve for the shared-device, shared-notification, shared-login reality before you solve for anything else: that&rsquo;s where women actually get hurt by a good idea done carelessly, not from lack of a five-layer journey map.</div>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">6</span>
+            <div class="acc-text">
+              <h3>The Fit Finder</h3>
+              <p class="acc-essence">Diagnostic &middot; Problem-Solution / Product-Market / Business Model Fit</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">5</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">An improvement on the prior round (architecturally tighter, with a genuine dead end removed), but still Reshape-tier: the problem is real and the proposition is coherent, yet none of the three layers has behavioral or financial proof.</p>
+          <h4 class="subhead">Layer 1 &middot; Problem-Solution Fit: 6/10</h4>
+          <p>Financial abuse as a category is real and well-documented; this isn&rsquo;t a founder-invented problem (the POWA partnership and the N=621 &ldquo;How Free Are You?&rdquo; survey are genuine primary-research assets). Frequency is plausible at population scale. But none of that evidence is about this specific mechanism. The brief gives no data on whether women in the target segments actually notice, trust, or act on a neutral entry point like &ldquo;review who has access to your money&rdquo; versus scrolling past it as routine banking copy. Because the whole design principle is that demand must stay silent, the classic PSF signals (stated frustration, urgency, willingness to invest time) are structurally suppressed for this audience, which makes them harder to prove, not exempt from proving.</p>
+          <p><strong>Missing evidence:</strong> any behavioral signal that a specific neutral phrase actually gets clicked or engaged by segment-matched women at a materially different rate than the general customer base.</p>
+          <h4 class="subhead">Layer 2 &middot; Product-Market Fit: 5/10</h4>
+          <p>The five-layer architecture is a genuine promise, not a features list, and the reshape directly and credibly answers the prior Council&rsquo;s specific PMF failure (partner-role conflation, previously scored 3/10) by typing partner roles against a five-question gating test: real architectural progress. But there is zero traction signal, no pilot, no A/B test, no advisory-panel validation of the messaging. &ldquo;Market pulling it&rdquo; is currently a design hypothesis, not a finding.</p>
+          <p><strong>Missing evidence:</strong> a completion or engagement rate from even one soft-launched neutral entry point, benchmarked against a control message.</p>
+          <h4 class="subhead">Layer 3 &middot; Business Model Fit: 4/10 (reframed)</h4>
+          <p>Classical BMF (lifetime value greater than acquisition cost, repeatable paid acquisition) doesn&rsquo;t apply here and forcing it would be a category error: there is no acquisition motion; this is explicitly a retention and deepening play on an existing base. Reframed correctly, it&rsquo;s an ROI-on-retention-and-cross-sell model: cost of building and running the discreet infrastructure versus value recaptured through avoided attrition, upsell into wealth or credit products, and CSR and brand-trust value. This reframed model is directionally sound and the dropped insurance or subscription mechanism was the right call. But nothing in the brief is quantified: no cost-to-serve estimate, no baseline rate of abuse-attributable churn, no comparable conversion benchmark. The proposed success measures are activity metrics, not economic ones.</p>
+          <p><strong>Missing evidence:</strong> a baseline estimate of abuse-attributable account attrition and product shrinkage in the existing base, paired with a rough cost-to-serve figure for the Respond and Rebuild operations.</p>
+          <h4 class="subhead">Where it breaks first</h4>
+          <p>Business Model Fit. PSF and PMF both have real, if incomplete, evidence bases. BMF, even correctly reframed, has no unit economics anywhere in the brief: not a cost estimate, not a baseline churn rate, not a benchmarked conversion figure. Even if PMF is validated, there is currently no basis to believe the economics of running frontline training, escalation, safeguarding governance and partner coordination will ever be recovered by retention and cross-sell value.</p>
+          <div class="callout"><strong>Overall Fit: 5/10.</strong> The cheapest next test is not a full pilot: it&rsquo;s (1) a message-test on one or two neutral entry points to get a PMF engagement signal, and (2) pulling Nedbank&rsquo;s own data on abuse-attributable account attrition to get the BMF baseline. Both are cheap, internal, and would move this from &ldquo;plausible architecture&rdquo; to &ldquo;evidenced bet.&rdquo;</div>
+        </div></div>
+      </details>
+
+    </div>
+
+    <div class="doc-footer">
+      <span>Generated via the find-fit council &middot; Round 2 of the Nedbank women&rsquo;s CVP initiative.</span>
+      <span>Prior round: five ideas evaluated, all Reshape. Next: Round 3 (V3 architecture and the physical-custody recheck).</span>
+    </div>
+
+  </div>
+
+  <div id="round-3" class="round-panel">
+
+    <div class="intro">
+      <p class="lead">V3 rebuilds the CVP around two fixes the Round 2 verdict demanded: a public commitment layer separated from private mechanics, and a new &ldquo;Layer 0&rdquo; Channel Safety Triage that checks whether a client&rsquo;s device and channel are safe before any digital prompt.</p>
+      <p>Verdict: <strong>Reshape, high confidence.</strong> V3 fixed both flaws the last round demanded, but in solving them it built a genuinely novel mechanism, a proactive, pre-emptive safety gate, that no real-world bank has ever attempted, and the money case has now sat at zero for three straight rounds of design. A mid-session stakeholder correction then triggered a targeted recheck, see the addendum at the end of this round.</p>
+    </div>
+
+    <div class="section-head">
+      <h2>The concept</h2>
+      <span class="section-note">What changed from Round 2, and what the council evaluated</span>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-item">
+        <h4>What it is</h4>
+        <p>The next iteration of the same women-centred financial agency capability, rebuilt around one strategic correction: don&rsquo;t hide the existence of help, hide the client&rsquo;s use of it. V3 splits the doctrine into a public commitment layer (Nedbank can openly say safe financial access and support are available) and a private execution layer (routing logic, risk interpretation and protective actions stay invisible, consent-led and channel-safe), and adds a new foundational &ldquo;Layer 0&rdquo; Channel Safety Triage step that checks whether a client&rsquo;s current channel, device, notifications and account type are safe before any digital prompt, callback, case note or referral happens.</p>
+      </div>
+      <div class="concept-item">
+        <h4>What it does</h4>
+        <p>Before anything else, Layer 0 answers one question, is this client&rsquo;s current channel safe enough for this interaction, and routes to non-digital or client-initiated paths whenever the answer is no or unknown. From there, the same five-layer journey runs, but the actual build is narrowed to three MVP slices that reuse existing banking primitives: a <strong>Financial Independence Check</strong> (account access, card/PIN, contact preferences, credit profile, emergency savings, framed as ordinary financial-wellbeing self-service); a <strong>Safe Banking Support Protocol</strong> (trained branch and contact-centre scripts, safe-contact capture, escalation and minimal documentation for when self-service isn&rsquo;t safe); and a <strong>Rebuild Support Navigator</strong> (credit and debt rebuilding, new account setup, and consent-led referral into legal, counselling or shelter partners) for after she is out or partly out.</p>
+      </div>
+      <div class="concept-item">
+        <h4>Who it&rsquo;s for</h4>
+        <p>The same population as Round 2, women whose financial access, relationships or life circumstances have become unsafe, but V3 explicitly designs for the sub-population Round 2 couldn&rsquo;t safely serve: women on a shared device, with mirrored notifications, or without a private channel at all. Channel Safety Triage exists specifically to sort clients into &ldquo;safe enough for a digital nudge&rdquo; versus &ldquo;route through a human, non-digital path instead&rdquo; before any support action is attempted.</p>
+      </div>
+      <div class="concept-item">
+        <h4>How it creates value</h4>
+        <p>Still no direct fee, framed as avoided relationship loss, product preservation, operational risk reduction and relationship deepening after stabilisation, not a simplistic acquisition funnel or a speculative wealth-conversion story. The measurement model adds brand permission (public credibility from visible category leadership, without revealing the private mechanics) and social impact (support requests completed, safe referrals made, recovery outcomes) as explicit, trackable value pools alongside the financial ones.</p>
+      </div>
+      <div class="concept-item">
+        <h4>Nedbank&rsquo;s edge</h4>
+        <p>Everything from Round 2 still applies, near-zero new build, existing tools repurposed, the POWA and survey relationship, the banking relationship itself as distribution, plus a new, harder-to-copy layer: publicly visible category leadership (the first bank in South Africa to make this commitment) paired with an operational moat, trained frontline scripts, a consent-led data architecture, and a seven-gate partner-fit discipline, that a competitor can announce in a press release but cannot quickly replicate.</p>
+      </div>
+      <div class="concept-item">
+        <h4>Constraints</h4>
+        <p>Consent, privacy and safeguarding rules tighten considerably: no specialist support, partner referral or case-state documentation without explicit informed consent; only the minimum needed to provide the service gets recorded, never a permanent &ldquo;abuse survivor&rdquo; label; no hidden profiling can trigger a substantial financial action without transparency, consent and governance; and no callback, SMS, email or push notification unless the client has confirmed that channel is safe. The evidence plan (four tests: baseline economics, a neutral entry-point message test, a channel-safety usability test, and a frontline simulation) is designed to run before any further scaling, not after.<span class="correction-flag">The original V3 document also listed a joint-account legal/compliance pathway as a constraint here. See the addendum below: Nedbank has no joint transactional accounts, so this specific control doesn&rsquo;t apply as written, though the underlying need for a pre-action safety check survives in the physical-custody form the recheck identifies.</span></p>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>The verdict</h2>
+      <span class="section-note">Judge&rsquo;s synthesis of all six reviewers</span>
+    </div>
+
+    <div class="verdict-card">
+      <div class="verdict-top-row">
+        <span class="verdict-word">Reshape</span>
+        <span class="verdict-conf-pill">Confidence: High</span>
+      </div>
+      <p class="verdict-callline">V3 fixed both flaws the last round demanded, but in solving them it built a genuinely novel mechanism, a proactive, pre-emptive safety gate, that no real-world bank has ever attempted, and the money case has now sat at zero for three straight rounds of design.</p>
+
+      <div class="verdict-why">
+        <h4>Why</h4>
+        <p>The Expansionist is right that the category opportunity is real and the window matters, but four independent personas (Contrarian, Logician, Researcher, Buyer) converged on the same structural problem from different angles: Layer 0&rsquo;s &ldquo;check the channel is safe before any prompt&rdquo; logic is a chicken-and-egg construct that has no precedent anywhere in banking. The Researcher found that every real program (NatWest/Hestia, Monzo&rsquo;s Share With Us, Co-op/Refuge, CommBank/Next Chapter) is reactive and client-initiated: the customer discloses first, then the bank finds a safe channel. None of them run a systemic pre-check gate before an ordinary, undisclosed-customer nudge. V3 spent this round engineering a harder version of the problem than the industry actually solves.</p>
+      </div>
+
+      <div class="split-2">
+        <div class="panel risk">
+          <h4>Biggest risk</h4>
+          <p>The proactive Layer 0 trigger is untested and possibly unbuildable as specified. The Buyer&rsquo;s plainest question, does a protective action on a joint account notify the co-holder, is still unanswered, and until it is, every layer built on top of it is decorative. <em>(See the ground-truth correction in the addendum below: this specific joint-account framing was later found to describe a product Nedbank doesn&rsquo;t offer, though the underlying custody question survives in a different form.)</em></p>
+        </div>
+        <div class="panel upside">
+          <h4>Biggest upside</h4>
+          <p>First-mover category ownership in a market (South Africa) with no existing bank equivalent, plus Layer 0 as reusable infrastructure for elder abuse, vulnerable-client, and scam-intervention flows beyond this one use case.</p>
+        </div>
+      </div>
+
+      <div class="fit-commercial">
+        <div class="fit-panel">
+          <h4>Fit read</h4>
+          <div class="fit-row"><span class="fit-label">Problem-Solution</span><span class="dotmeter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></span><span class="fit-score">5/10</span></div>
+          <div class="fit-row"><span class="fit-label">Product-Market</span><span class="dotmeter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></span><span class="fit-score">5/10</span></div>
+          <div class="fit-row"><span class="fit-label">Business Model</span><span class="dotmeter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><span class="fit-score">3/10</span></div>
+          <p style="margin:10px 0 0;font-size:12.5px;color:var(--ink-mute);">Business Model is the real gap: three architecture passes in, there is still no dollar figure, baseline, or even a desk-pulled directional signal for the &ldquo;avoided attrition&rdquo; thesis the entire ROI case rests on.</p>
+        </div>
+        <div class="commercial-panel">
+          <h4>Money read</h4>
+          <p>This is a bank-internal CVP (cost-avoidance, retention, brand model, not a priced product), so the funding gate is an internal ROI case, not a customer price point. Right now that case is unquantified. A funding committee will want a size-of-prize before greenlighting even the four-test evidence plan, and nothing in V3 produces one.</p>
+        </div>
+      </div>
+
+      <div class="test-box">
+        <h4>The cheapest 48-hour test</h4>
+        <p>A desk-based pull of Nedbank&rsquo;s own existing data: account closures, dormancy, joint-to-single conversions, safe-contact-flag requests, correlated with life-disruption indicators over the past 12 to 24 months. No pilot, no client contact, no build required. It answers the one question that has stalled the business case for three consecutive rounds.</p>
+      </div>
+
+      <div class="verdict-fix">
+        <h4>If reshape</h4>
+        <p>Three moves, in parallel, before any further architecture design: <strong>(1)</strong> narrow MVP Slice 1 to pure opt-in and client-initiated, kill the proactive Layer 0 nudge for v1, matching every real precedent and dissolving the Logician&rsquo;s bootstrap paradox; <strong>(2)</strong> get a definitive yes or no from engineering and compliance on whether a protective action on a joint account triggers a co-holder notification, this is a fact to retrieve, not a design decision; <strong>(3)</strong> run the Test A desk pull now, since it is free and already overdue.</p>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>Council scores</h2>
+      <span class="section-note">Out of 10 &middot; Logician and Buyer rechecked below</span>
+    </div>
+    <div class="score-strip">
+      <div class="score-chip"><span class="role">Contrarian</span><span class="num">3<span class="of10">/10</span></span><div class="bar"><i style="width:30%;background:var(--heritage-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Expansionist</span><span class="num">8<span class="of10">/10</span></span><div class="bar"><i style="width:80%;background:var(--good-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Logician</span><span class="num">6<span class="of10">/10</span></span><div class="bar"><i style="width:60%;background:var(--nedbank-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Researcher</span><span class="num">6<span class="of10">/10</span></span><div class="bar"><i style="width:60%;background:var(--nedbank-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Buyer</span><span class="num">5<span class="of10">/10</span></span><div class="bar"><i style="width:50%;background:var(--nedbank-green);"></i></div></div>
+      <div class="score-chip"><span class="role">Fit Finder</span><span class="num">4<span class="of10">/10</span></span><div class="bar"><i style="width:40%;background:var(--heritage-green);"></i></div></div>
+    </div>
+
+    <div class="section-head">
+      <h2>Full council findings</h2>
+      <div class="section-actions">
+        <button class="text-btn round3-expand">Expand all</button>
+        <button class="text-btn round3-collapse">Collapse all</button>
+      </div>
+    </div>
+
+    <div class="idea-list round3-personas">
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">1</span>
+            <div class="acc-text">
+              <h3>The Contrarian</h3>
+              <p class="acc-essence">Red team &middot; assumes it fails, finds the fastest way it dies</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">3</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">This is a beautifully drafted architecture solving a problem it has not yet proven exists, built on a trade-off it has not resolved, three rounds in, with zero real-world data points.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>The core physics problem from V2 was renamed, not solved.</strong> &ldquo;Publicly trusted, privately executed&rdquo; still requires the same channel to be simultaneously ordinary enough that an abuser sees nothing unusual, and differentiated enough to reliably surface and serve the actual target client. Layer 0 protects the digital and contact surface, but it does nothing about the meta-signal: a client who uses &ldquo;Financial Independence Check&rdquo; at elevated frequency, or who triggers Channel Safety Triage at all, generates a usage pattern that is itself a de facto risk flag, the exact thing the design must avoid. The document asserts this away with &ldquo;no hidden abuse-status labels&rdquo; while simultaneously requiring tracking of who had a &ldquo;support need&rdquo; to measure relationship deepening after that need is resolved. That is a label with a different name.</li>
+            <li><strong>Channel Safety Triage has a chicken-and-egg failure mode the document does not address.</strong> You cannot safely ask &ldquo;is your device or channel safe?&rdquo; through a channel you have not yet established is safe. The highest-risk clients, those under active surveillance, are the ones least able to answer that question honestly without danger. The stated fallback, default to &ldquo;unknown&rdquo; and route to non-digital or branch, means the highest-need population gets pushed off the low-friction digital rails the entire CVP is built to reuse, straight back onto branch and contact-centre capacity, exactly the expensive, error-prone, high-leakage channel the architecture was designed to avoid depending on.</li>
+            <li><strong>Joint accounts, the most common real-world case for this population, are deferred rather than solved.</strong> The document punts joint-account handling to &ldquo;specific legal and compliance pathways&rdquo; built later. But financial coercion overwhelmingly happens on joint or linked accounts, that is structurally how control is exercised. If the three MVP slices cannot act safely on joint accounts today, the MVP will end up serving the segment that least needs it (women who already have independent accounts) while the actual target segment gets routed to &ldquo;compliance protocol before consequential action,&rdquo; in other words, stalled.<span class="correction-flag">Correction (see addendum below): Nedbank does not offer joint transactional accounts. This point&rsquo;s framing was retired after a stakeholder ground-truth correction, though the underlying custody question resurfaces in a different, more fundamental form.</span></li>
+            <li><strong>The business case is still entirely hypothetical and may not survive its own gating test.</strong> Test A asks whether attrition tied to financial-abuse-adjacent life disruption is even measurable and material. It probably is not, cleanly: it is confounded with divorce, relocation, bereavement, job loss. If Test A comes back weak or unattributable, the entire &ldquo;avoided attrition, product preservation&rdquo; business case collapses and this reverts to a CSR or brand initiative competing for budget on soft grounds, without the commercial defensibility the architecture is implicitly selling to get funded.</li>
+            <li><strong>Three consecutive &ldquo;reshape&rdquo; verdicts with fifteen sections of new architecture and zero customer or frontline contact is a process smell, not just a content smell.</strong> Every round has produced more design, more layers, more gates, more protected fields, and no test. The cheapest, most falsifying test (Test B: neutral entry-point message test) could have been run before this document existed. Instead it is listed as one of four parallel evidence streams to be resourced after &ldquo;architecture finalisation.&rdquo; That ordering protects the architecture from disconfirmation rather than exposing it to it.</li>
+          </ol>
+          <div class="callout"><strong>The one thing the user must hear:</strong> Stop redesigning and run Test B first, alone, before committing to Layer 0, the three MVP slices, or any of the partner or legal workstreams. If a neutral, non-stigmatising prompt does not produce differentiated engagement or support-request signal, the entire mechanism this architecture depends on, &ldquo;ordinary enough to be safe, differentiated enough to work,&rdquo; does not exist, and no amount of additional layering, triage logic, or governance will fix that. Everything else in this document is expensive scaffolding built on top of an unverified assumption.</div>
+          <p class="closing">Worth one cheap, narrow test to falsify the core assumption; not worth the program of work currently proposed around it.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">2</span>
+            <div class="acc-text">
+              <h3>The Expansionist</h3>
+              <p class="acc-essence">Bull case &middot; builds the strongest case for it, finds the real upside</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">8</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">V3 is not just a fixed CVP, it is a first-mover claim on an entirely uncontested category in South African banking, and the council should stop stress-testing the doctrine and start worrying about someone else shipping it first.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>Category ownership, not feature parity.</strong> NatWest, Starling and CommBank did this in the UK and Australia. Nobody has done it in South Africa, a market with some of the highest intimate-partner-violence and femicide rates in the world. &ldquo;First bank in SA to publicly commit to safe financial access&rdquo; is not a CVP line item, it is a national earned-media and category-definition event. Category creators set the terms competitors get judged against for years.</li>
+            <li><strong>The real money is downstream, not in the defense.</strong> The measurement model undersells itself by framing this as &ldquo;avoided attrition.&rdquo; The actual prize is Layers 4 and 5: converting women from secondary accountholders into primary relationship holders, then into credit, savings, investment and advisory clients once trust is earned. Trust-based wedge products into an under-monetized primary-relationship segment are how banks win multi-decade share of wallet. This CVP is a relationship-deepening funnel wearing a protection costume.</li>
+            <li><strong>Layer 0 is platform infrastructure, not a feature.</strong> Channel Safety Triage (private device access, notification safety, account-type gating, safe-contact confirmation, consent states) is generically reusable: elder financial abuse, exploitation of vulnerable or disabled clients, scam and mule-account intervention, even staff-side safety flows. Build it once for this MVP and it becomes a safety layer the whole bank can license internally. That is option value the current business case does not even count.</li>
+            <li><strong>The moat is operational, not conceptual, so it is slow to copy.</strong> A competitor can announce a similar public commitment in a press release next quarter. They cannot quickly replicate trained frontline scripts, a consent-led data architecture, escalation-compliance legal pathways and a partner-referral ecosystem passed through seven fit gates. That is a 12 to 24 month lead that compounds, especially paired with POPIA-aligned governance that regulators will eventually expect from everyone else anyway.</li>
+            <li><strong>This is a cheap, asymmetric bet.</strong> No new app, reused banking infrastructure, and a four-test evidence plan that de-risks the spend before scaling. Each test has standalone value even if the program stalls: the baseline-economics analysis is a reusable data asset, the frontline simulation improves general vulnerable-client handling regardless of this specific use case. Low cost to test, large and compounding upside if it lands.</li>
+          </ol>
+          <div class="callout"><strong>The one thing the founder must hear:</strong> This has already graduated from &ldquo;should we build this&rdquo; to &ldquo;can we build it well,&rdquo; two council passes killed the real objections (silence, shared-device risk). The danger now is not a bad idea, it is a third round of caution turning into a fourth, fifth, sixth reshape that never ships, while the actual risk in the market is a competitor (or NatWest or Starling&rsquo;s SA equivalent) claiming this territory first. Ship the three MVP slices and run the four tests in parallel, not sequentially, and treat the 6 to 12 week window as the real deadline, not the next council pass.</div>
+          <p class="closing">Strong enough to be a near no-brainer; held back from 9 or 10 only because frontline execution discipline (the one variable Nedbank does not fully control) is the one place this can still go wrong in the real world, not on paper.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">3</span>
+            <div class="acc-text">
+              <h3>The Logician</h3>
+              <p class="acc-essence">First principles &middot; no outside research, tests if the mechanism holds together <em>(rechecked below, physical-custody correction)</em></p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">6</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">The public/private split is a real logical fix for discoverability-without-exposure, but it works only by forcing the entire system into a client-initiated posture, which quietly guts the &ldquo;recognize and reach at-risk clients&rdquo; ambition the architecture still claims to keep, and two structural problems (Layer 0&rsquo;s own bootstrap paradox, joint-account transparency) are deferred rather than solved.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>The genericity mechanism is sound, but it has a hidden cost the document does not name.</strong> Camouflage-by-ubiquity (showing &ldquo;review who has access to your money&rdquo; to every customer, not just suspected victims) is the only way to make an interaction safe from a watching perpetrator, that logic holds. But it only works if the prompt is identical for everyone, which means it cannot be targeted, personalized, or triggered by inferred risk. That directly contradicts Layer 1 &ldquo;Recognise,&rdquo; which is framed as the bank noticing something is wrong. V3 keeps Layer 1 in the architecture diagram while its own Layer 0 logic has effectively made bank-initiated recognition impossible for any client on a channel of unknown safety. The document never states this trade-off out loud, it just narrows the MVP and moves on.</li>
+            <li><strong>Layer 0 has a bootstrapping paradox.</strong> To know whether a channel is safe, you have to ask the client something, through some channel, before you know that channel is safe. Any UI element that appears to pose the triage question is itself a &ldquo;digital prompt&rdquo; of the exact kind Layer 0 exists to gate. The only logically consistent resolution is that the triage questions must be answerable only through actions so generic and pre-existing that they carry zero informational signal (for example a universally-present settings menu everyone already sees), but that is a much weaker, much slower capability than what the architecture implies it is building.</li>
+            <li><strong>The joint-account problem is named, not solved.</strong> The design says &ldquo;route through joint-account and compliance protocol before consequential action,&rdquo; but joint accounts are often structurally transparent by design, both holders may have a legal right to see statements, changes, and activity. No triage layer or consent state changes that underlying account architecture. This was flagged as unresolved in V2; V3 relabels it as a to-be-designed &ldquo;protocol&rdquo; rather than showing a mechanism that actually closes the gap. That is a deferral dressed as a fix.<span class="correction-flag">Correction (see addendum below): Nedbank does not offer joint transactional accounts, so this specific framing was retired. The recheck below finds the underlying custody problem is real but structurally different, physical card possession, not account co-ownership.</span></li>
+            <li><strong>The evidence plan cannot prove the business case even if every test passes.</strong> Test A (baseline attrition) shows correlation, not that this program causes retention. Test B measures engagement, not economic outcome. Test C is a usability test. Test D is a compliance and QA test. None of the four establishes counterfactual causality, would she have left anyway, which is the actual underlying claim. This is not a flaw introduced by V3, it is inherent to prevention-style business cases, but the document presents the four-test gate as if it de-risks the ROI question when structurally it cannot.</li>
+            <li><strong>Incentive alignment is fine on the bank&rsquo;s side but untested on the staff side.</strong> Removing hidden risk scoring is the right privacy move, but it shifts the entire detection burden onto frontline human judgment under a &ldquo;what-not-to-say&rdquo; script, with no systemic signal to support them. Test D is the right instrument for this, but until it runs, the model is trusting judgment-under-pressure to do what an algorithm previously did, with no evidence yet that this substitution holds up in live, high-stakes conversation.</li>
+          </ol>
+          <div class="callout"><strong>The single most important thing to hear:</strong> By solving the exposure problem, V3 has implicitly converted this from a &ldquo;the bank proactively recognizes and reaches at-risk women&rdquo; proposition into a &ldquo;the bank makes safety available and waits for the client to find it&rdquo; proposition, and it never says so. That is not a fatal flaw, but it is a different, smaller product than the one being sold in the executive summary, and the council should force that admission explicitly before this scales, or the pilot will be judged against an ambition the architecture no longer actually delivers.</div>
+          <p class="closing">Directionally correct and each round has closed a real gap (insurance dead end, partner conflation, now the total-silence problem), but this pass introduces a quiet scope-narrowing it does not own, leaves the joint-account issue exactly where V2 left it, and proposes an evidence plan that tests execution and usability while leaving the core economic causal claim untestable by design. Reshape once more: make the client-initiated posture explicit and size the addressable population under that constraint before greenlighting the pilot.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">4</span>
+            <div class="acc-text">
+              <h3>The Researcher</h3>
+              <p class="acc-essence">Evidence &middot; live web research on precedent, pricing, regulation</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">6</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">Real world says yes, but you&rsquo;ve reinvented half of it and the untested half is the riskiest half.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>The shared-device and joint-account risk V3 targets is real and well-documented, this is not a hypothetical.</strong> Refuge&rsquo;s &ldquo;Know Economic Abuse&rdquo; research (with The Co-operative Bank) found 24% of economic-abuse survivors said online banking made them more vulnerable to their abuser, 12% reported a partner monitoring their account via online banking, and in complex tech and economic abuse cases, 24% of survivors were locked out of their own online accounts entirely (Refuge/Co-op Bank, &ldquo;Know Economic Abuse,&rdquo; 2022). V3&rsquo;s V2-fix is aimed at a genuine, measured failure mode.<span class="correction-flag">Note: the underlying statistics are about shared digital access generally, not joint accounts specifically. See the addendum below for the corrected Nedbank account-structure facts.</span></li>
+            <li><strong>&ldquo;Publicly trusted, privately executed&rdquo; has real precedent, just not from banking.</strong> It is the standard Employee Assistance Program doctrine: publicly promoted, individually confidential, codified since US Public Law 93-282, and mirrored in UK and global EAP norms. Within banking, the same split already exists informally: Ask for ANI and Hestia Safe Spaces are publicly marketed (&ldquo;6,000+ banks and pharmacies&rdquo;) while the interaction itself is private. This is the strongest, best-evidenced part of the document.</li>
+            <li><strong>The consent-led, no-hidden-scoring, codeword-based mechanics V3 proposes are not new, Monzo already ships almost exactly this.</strong> Monzo&rsquo;s live &ldquo;Share With Us&rdquo; feature lets customers disclose &ldquo;without leaving a trace,&rdquo; agree codewords with the bank (&ldquo;problem with the chip on my card&rdquo; means &ldquo;call the police&rdquo;), and attaches a note visible only to staff, never in-app. Feasibility is proven. Differentiation is not, V3&rsquo;s MVP is catching up to a live competitor feature, not innovating past it.</li>
+            <li><strong>Layer 0 as a universal pre-prompt gate has zero precedent anywhere in banking.</strong> Every real implementation found, NatWest&rsquo;s Hestia Safe Spaces, Co-op Bank/Refuge&rsquo;s online contact tool, Monzo&rsquo;s Share With Us, UK Finance&rsquo;s Financial Abuse Code, is reactive and client-initiated: the customer discloses or requests contact first, and only then does the bank negotiate a safe channel and time. No institution runs a systemic triage gate before an ordinary proactive nudge to an undisclosed customer. V3&rsquo;s &ldquo;neutral entry-point message test&rdquo; (Test B) is genuinely uncharted territory, not a refinement of existing practice.</li>
+            <li><strong>Mature peers do not build this alone, they partner with specialist charities for delivery, not just campaigns.</strong> CommBank&rsquo;s Next Chapter delivers casework through Good Shepherd; NatWest partners with Hestia; Co-op partners with Refuge; UK Finance&rsquo;s Code took a year-long cross-sector Online Banking Commission to design one feature. Nedbank&rsquo;s document lists POWA only as an awareness-campaign partner (&ldquo;How Free Are You?&rdquo;), not an operational delivery partner for case handling, a gap relative to precedent.</li>
+          </ol>
+          <div class="callout"><strong>The single most important thing to hear:</strong> Every successful real-world program avoids the exact problem V3 is trying to solve architecturally: they never let the bank decide when to raise the subject with an undisclosed customer. They wait for the client to speak first (codeword, chat message, in-branch disclosure), and only manage channel safety after that. V3&rsquo;s Layer 0 tries to make proactive prompting safe through a pre-check gate, but the honest reading of the evidence is that the industry&rsquo;s actual answer to &ldquo;how do we prompt safely on a possibly-monitored device&rdquo; is: do not prompt, make disclosure trivially easy and wait. The four-test plan should replace Test B with a much narrower question before anything else: &ldquo;Is there any safe way to initiate contact at all, or should Slice 1 be entirely opt-in and client-triggered like every precedent, with no proactive nudge logic in v1?&rdquo;</div>
+          <p class="closing">Real progress from V2, the public/private split and consent architecture are well-precedented and de-risked. But the one genuinely novel piece of V3, the proactive Layer 0 trigger, has no precedent, no comparable failure data, and is not directly tested by the proposed evidence plan. Reshape once more: narrow Slice 1 to pure opt-in and client-initiated before testing any proactive messaging.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">5</span>
+            <div class="acc-text">
+              <h3>The Buyer</h3>
+              <p class="acc-essence">Voice of customer &middot; role-plays the target segments <em>(rechecked below, physical-custody correction)</em></p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">5</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">As her: I&rsquo;ll read your poster in the queue, but I&rsquo;m not touching this until someone tells me he won&rsquo;t see it, and right now nobody can promise that.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>&ldquo;Privately executed&rdquo; does not mean invisible, it means the trace moves somewhere else.</strong> A call to your support line is still a call on my itemised bill. A branch visit is still forty-five minutes he&rsquo;ll ask about. A &ldquo;minimal documentation&rdquo; note is still a document. You&rsquo;ve hidden the content of what happened, not the fact that something happened. If he&rsquo;s controlling, the fact is often enough.</li>
+            <li><strong>You&rsquo;ve decided digital is the dangerous channel and branch or phone is the safe default when you don&rsquo;t know. For me it might be backwards.</strong> He doesn&rsquo;t watch every tap on my banking app, he watches my time, my car, my calls. A branch trip needs an excuse he&rsquo;ll ask for. A quiet in-app screen doesn&rsquo;t. Don&rsquo;t triage this for me from a flowchart; ask me, and ask in a way that isn&rsquo;t itself the dangerous moment.</li>
+            <li><strong>The joint account is the whole problem and you still haven&rsquo;t told me what the system actually does.</strong> If I change my contact number or freeze a card on an account he&rsquo;s a co-holder on, does Nedbank&rsquo;s backend notify him automatically, the way it&rsquo;s built to for &ldquo;transparency&rdquo;? Because if yes, your &ldquo;joint-account escalation protocol&rdquo; is a script sitting on top of a system that outs me anyway. That&rsquo;s not a training issue, that&rsquo;s a systems issue, and V3 talks around it instead of answering it.<span class="correction-flag">Correction (see addendum below): Nedbank has no joint transactional accounts, so this exact question doesn&rsquo;t apply. But the recheck finds the real version of her question, does the bank system out me to him some other way, survives in a new form: physical card custody, not account co-ownership.</span></li>
+            <li><strong>Consent-led is the right idea, but consent gets captured by a human at a counter, and humans mess up.</strong> What happens when the teller says &ldquo;is everything okay at home?&rdquo; while he&rsquo;s standing right next to me returning a card? You can train scripts; you can&rsquo;t guarantee every branch, every day, gets it right. Tell me who&rsquo;s accountable when the frontline breaks the protocol, and how I&rsquo;d ever find out it&rsquo;s safe to trust this branch, this person.</li>
+            <li><strong>Any record can resurface later.</strong> If this ever lands in a custody fight or he gets into my email or account statements another way, &ldquo;she contacted the bank about financial abuse&rdquo; becomes something used against me, not for me, proof I was &ldquo;plotting,&rdquo; &ldquo;unstable,&rdquo; whatever his lawyer wants to call it. I need to know that record is genuinely mine and can&rsquo;t be subpoenaed or leaked back to him.</li>
+          </ol>
+          <div class="callout"><strong>The one thing they must hear:</strong> Answer the joint-account backend question with a yes or no, does a protective action trigger a notification to the co-holder, because until that&rsquo;s answered, every other layer of this architecture is a nice diagram sitting on top of a landmine.</div>
+          <h4 class="subhead">What would get me to say yes today</h4>
+          <p>A way to explore this from a device that isn&rsquo;t mine (a friend&rsquo;s phone, a library computer, no login required) with zero trace back to my account, plus a named, specific person I deal with every time, not &ldquo;trained staff,&rdquo; one person, and written confirmation, before I do anything, of exactly what does and doesn&rsquo;t touch the account or generate a notification he can see.</p>
+          <p class="closing">Real progress on V2&rsquo;s fatal flaw, you finally admit shared-device cases need a different path instead of pretending silence covers everyone. But you&rsquo;re asking me to trust a protocol whose hardest technical question is still unanswered, and whose weakest link (inconsistent frontline execution) is still just &ldquo;we&rsquo;ll train them.&rdquo; Better architecture, unproven plumbing. I&rsquo;m listening, not moving yet.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">6</span>
+            <div class="acc-text">
+              <h3>The Fit Finder</h3>
+              <p class="acc-essence">Diagnostic &middot; Problem-Solution / Product-Market / Business Model Fit</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="acc-score"><span class="num">4</span><span class="lbl">/10</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <h4 class="subhead">Layer 1 &middot; Problem-Solution Fit: 5/10</h4>
+          <p>The underlying problem (economic abuse, restricted financial agency, unsafe shared-device exposure) is well-evidenced externally, NatWest, Starling and CommBank precedent, plus general domestic-abuse literature, confirm this is a real, high-frequency, high-value problem in the category. That&rsquo;s a legitimate substitute for primary research and it&rsquo;s stronger than a founder-invented problem. But zero of that evidence is Nedbank-specific. There is still no data point showing Nedbank&rsquo;s own clients are problem-aware, searching for this, or would use it, no frontline anecdotes, no complaints data, no attrition correlation pulled from Nedbank&rsquo;s own systems. Three versions in, the problem&rsquo;s existence is well-argued; its incidence inside Nedbank&rsquo;s book is still assumed.</p>
+          <p><strong>Missing evidence:</strong> talk to, or mine data on, actual Nedbank clients, not just cite competitor precedent.</p>
+          <h4 class="subhead">Layer 2 &middot; Product-Market Fit: 5/10</h4>
+          <p>Real progress here. V2&rsquo;s &ldquo;discreet by design&rdquo; doctrine had no publicly sayable value proposition at all, the total-silence flaw. V3&rsquo;s split (public commitment layer, private mechanics layer) genuinely resolves that: it gives Nedbank something ordinary and marketable to say publicly (&ldquo;safe financial access and support are available&rdquo;) while keeping routing and case detail private. That&rsquo;s a value proposition, not just a feature list. The catch: none of it is market-tested. The neutral entry-point message test hasn&rsquo;t run. Zero traction signals exist, no pilot, no beta cohort, no frontline trial. This is a well-constructed hypothesis, not yet a demonstrated pull.</p>
+          <p><strong>Missing evidence:</strong> a completion or engagement rate from even one soft-launched neutral entry point, benchmarked against a control message.</p>
+          <h4 class="subhead">Layer 3 &middot; Business Model Fit: 3/10</h4>
+          <p>This is the layer that hasn&rsquo;t moved across three versions. The measurement model lists six value pools (avoided attrition, product preservation, relationship deepening, operational risk reduction, brand permission, social impact) and states outright that no dollar figures or baseline data have been generated yet. Test A is still not yet run. Two compounding risks: first, several of these value pools (brand permission, social impact) are inherently diffuse and hard to put in a P&amp;L, the classic red-flag pattern of justifying a business case across too many benefit categories instead of proving one, sized, measurable pool. Second, and more structurally: a bank-internal CVP needs a credible ROI range to clear an internal funding gate before a pilot is greenlit, not after. Right now the document proposes to test economics as part of scaling evidence, but a bank funding committee will typically want a directional size-of-prize before it funds even the four-test evidence plan.</p>
+          <p><strong>Missing evidence:</strong> a directional size-of-prize pulled from data Nedbank already holds, for example account closure or downgrade rates, or product attrition correlated with address or marital-status changes or safe-contact flag requests over the past 12 to 24 months. This doesn&rsquo;t require the pilot or the four-test plan to exist; it&rsquo;s a desk-based data pull that could establish whether the avoided-attrition thesis clears even a rough ROI threshold before more design cycles are spent on a proposition whose economics have never been sized.</p>
+          <h4 class="subhead">Where it breaks first</h4>
+          <p>Business Model Fit. The doctrine and the operating mechanics (Layer 0 triage, public/private split) have genuinely improved with each version, this is the strongest V3 has ever looked at the problem and product layers. But the money case has been static and unquantified across all three passes. Even if Tests B, C and D all pass cleanly, this stalls at the same wall: no one internally has ever put a number, even a rough one, on avoided attrition. A pilot proposal with six value pools and zero baseline figures is a hard sell past pilot funding, regardless of how well-designed the client experience is.</p>
+          <div class="callout"><strong>Overall Fit: 4/10.</strong> Weighted toward Business Model Fit as the weakest and most gating layer. V3 is a real design improvement over V2, it closes both structural gaps the last verdict flagged (public silence, shared-device risk), but the pattern across all three versions is the same: the doctrine gets more sophisticated each round while the money case stays at zero. Recommend the next move is not a V4 architecture pass but the Test A data pull, cheap, internal, no pilot required, before any further design iteration.</div>
+        </div></div>
+      </details>
+
+    </div>
+
+    <div class="section-head">
+      <h2>Addendum: Round 3 refinement</h2>
+      <span class="section-note">Physical card-custody scenario &middot; added after a stakeholder correction, 7 July 2026</span>
+    </div>
+
+    <div class="addendum-block">
+      <span class="kicker">Ground-truth correction</span>
+      <p class="lead">Nedbank does not offer joint transactional accounts. The only product with genuine dual access is a home loan. The only &ldquo;linked account&rdquo; case is a minor&rsquo;s account, where a parent has sight of transactions. The nearest edge case is a secondary card issued to a spouse, but even there only the primary accountholder has authority: receives notifications, can change contact details, can act on the account. The secondary cardholder has no independent standing.</p>
+      <p>This means the &ldquo;joint account&rdquo; risk category that ran through V3&rsquo;s Layer 0, the joint-account escalation protocol, and the Contrarian, Logician, Researcher and Buyer findings above, describes a product Nedbank does not offer. That framing needs to be retired from any future version.</p>
+      <p><strong>The realistic scenario, confirmed by the stakeholder:</strong> the abuser seeks to control access to funds regardless of who is the account holder. In practice this most often looks like the abuser physically holding the bank card(s), even when the survivor is the sole or primary accountholder with full digital authority on paper, and giving her a cash allowance, sometimes nothing at all. She may have no physical instrument in her own possession to transact independently, and he may use her card as if it were his own.</p>
+      <p style="margin-bottom:0;">Two council personas, the Logician and the Buyer, were re-run against this corrected scenario. Full findings below.</p>
+    </div>
+
+    <div class="idea-list" style="margin-top:16px;">
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">R1</span>
+            <div class="acc-text">
+              <h3>Logician recheck</h3>
+              <p class="acc-essence">Against the corrected physical card-custody scenario</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="score-move"><span class="from">6</span><span class="to down">5</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">The corrected facts do not rescue V3, they reveal a worse problem. V3 was built to answer a legal or structural access question, who is on the account, when the real-world threat operates on a physical and custodial axis, who is holding the card, that none of the three MVP slices or the five Layer-0 questions currently ask about, detect, or remedy.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>V3&rsquo;s existing levers do not touch the actual mechanism.</strong> Financial Independence Check audits account structure and ownership, she will pass it, because she is sole owner with full authority. That is a false negative by design: the check certifies &ldquo;safe&rdquo; exactly in the case where she is still controlled. Safe Banking Support Protocol&rsquo;s tools (PIN reset, card block and reissue) are on/off switches, not a parallel-access fix, blocking the card he is holding is instant and undeniable, which converts a quiet risk into an immediate confrontation trigger the moment he tries to use it. Rebuild Support Navigator is post-exit, irrelevant to active custodial control.</li>
+            <li><strong>Virtual card or tokenized wallet is the logically correct fix in kind, not just degree.</strong> It is the only proposed mechanism that restores independent transacting capability without requiring repossession of the physical instrument, which is the actual bottleneck. That is sound reasoning: match the fix to the control mechanism, not to the account&rsquo;s legal structure.</li>
+            <li><strong>But it introduces its own failure modes that must be gated, not assumed away.</strong> Discovery risk: provisioning generates a push notification, wallet entry, possibly an email or SMS confirmation, each visible to anyone with her passcode or shared notification access, which coercive control commonly includes. Activation dependency: if Nedbank&rsquo;s tokenization flow requires keying in the physical card&rsquo;s PAN and CVV to provision the virtual card, the fix fails at step one, she does not have the card. Shared-balance leakage: both instruments draw the same account, so if he notices declines or missing funds on the physical card, the confrontation just moves downstream instead of disappearing.</li>
+            <li><strong>The one useful thing the corrected facts confirm:</strong> because she is the primary accountholder, notifications already route to her, not him, meaning his physical-card use is not currently invisible to her. That is existing infrastructure the CVP could lean on, but it only stays an advantage if her device itself is safe, which is precisely why possession of the instrument has to become its own gating question, not be inferred from digital or account-type answers.</li>
+            <li><strong>The Layer 0 gap is real and clean.</strong> Five questions cover digital, device, notification, and account-type safety; zero cover physical possession of the payment instrument. This is not a missing edge case, it is a missing axis. Triage will route a physically-controlled woman with a clean digital profile straight past the one place a fix could be inserted.</li>
+          </ol>
+          <div class="callout"><strong>The single most important thing to hear:</strong> This is not a &ldquo;your fix was too complex for a rare case&rdquo; problem anymore, that was round 2&rsquo;s finding, it is a &ldquo;your intake cannot even see the dominant real case&rdquo; problem, which is more fundamental, but also cheaper to close than it sounds: add one Layer 0 question, do you have the card or instrument in your possession right now and is that under your own control, and one conditional slice, virtual-card provisioning, gated behind a confirmed-safe device and notification answer, and only shippable once Nedbank confirms virtual-first issuance is technically possible without the physical card.</div>
+          <p class="closing"><strong>Updated score: 5/10 (down from 6/10).</strong> The prior score was partly propped up by a threat that does not exist (joint-account escalation), so removing it should help, but what it exposes instead is a validity gap, not a scoping gap, the MVP as built has no mechanism at all for the scenario the stakeholder actually cares about. That is a more serious finding than &ldquo;over-engineered for an edge case,&rdquo; which is why the score does not move up despite the simplification. It would move to 7/10 quickly with two concrete additions: a physical-instrument-possession question in Layer 0, and a virtual-card provisioning slice explicitly gated on digital-safety status and validated against Nedbank&rsquo;s actual tokenization and issuance flow.</p>
+        </div></div>
+      </details>
+
+      <details class="idea-accordion">
+        <summary>
+          <div class="acc-left">
+            <span class="acc-num">R2</span>
+            <div class="acc-text">
+              <h3>Buyer recheck</h3>
+              <p class="acc-essence">Against the corrected physical card-custody scenario</p>
+            </div>
+          </div>
+          <div class="acc-right"><div class="score-move"><span class="from">5</span><span class="to up">7</span></div><svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p class="idea-desc">As her: This is the first version of this CVP that is actually talking about my real life, not a hypothetical, and the virtual card idea is smart, but it only works if the bank gets three quiet details right, and none of those three have been mentioned yet.</p>
+          <h4 class="subhead">Sharpest points</h4>
+          <ol class="points">
+            <li><strong>You finally found the real problem.</strong> It was never about who else can see my account, it is that I can be the sole owner of every rand in that account and still not have a card in my hand to spend it. Nobody at the bank asks does she physically have her card, they ask is she on the account. I am. It did not matter.</li>
+            <li><strong>Do not touch his card.</strong> If issuing me a virtual card means the physical card in his wallet gets cancelled or even flagged, that is not help, that is a trigger. He tries to pay for petrol, it declines, and now he knows something changed before I have even left the house. Whatever you build has to sit alongside the existing card, not replace it. This is the new landmine, same shape as the joint-account one, just moved.</li>
+            <li><strong>Where does the &ldquo;new card added&rdquo; notice go?</strong> SMS, push notification, email, paper statement mailed home, all of these are places he looks. If setting up a digital wallet pings a banner on a phone he checks, or a letter arrives at the house he opens, you have not given me a secret card, you have given him a receipt. I need to be able to choose a silent channel, in-app only, no SMS to a number he has access to, and I need to know that before I trust this.</li>
+            <li><strong>He may not need to &ldquo;see&rdquo; my phone to control it, he may just take it.</strong> If he demands the phone, or checks it nightly, a hidden feature inside my own banking app does not help me, because he is not looking for a feature, he is looking at everything. This only works for a woman who has some sliver of a device or a moment of privacy. For a lot of us, that sliver does not exist.</li>
+            <li><strong>Even if the card works perfectly, can I get to a shop alone?</strong> Tap and pay still needs me standing somewhere with the goods, unsupervised, for long enough to complete a transaction and leave. If he controls where I go and how long I am gone, a fully-loaded virtual card in my phone is money I can see and cannot spend. That is not a banking problem anymore, that is the whole problem, and no product feature closes that gap alone. What it does do is put money where he cannot drain it or see it, which is real and matters, but do not oversell it as agency when it is really just stored value waiting for an opening.</li>
+          </ol>
+          <div class="callout"><strong>The single most important thing they must hear:</strong> Build this as an addition, not a replacement, silent by default, with the notification channel chosen by me and confirmed with me before it goes live, or do not build it at all, because a half-built version of this is more dangerous to me than no version.</div>
+          <p class="closing"><strong>Updated score: 7/10 (up from 5/10).</strong> The reframe from account architecture to physical card custody is the right diagnosis, and the virtual-card mechanism is a genuinely good, low-cost answer to a real gap, that is real movement. It is not higher because the three conditions above, non-destructive to his card, silent notification path, no shared-notification leak, are not yet designed, only implied, and until they are specified this is still a promising sketch, not a safe product. It is also not a 10 because even a perfect version of this only solves the money-visibility half of her problem, not the movement-and-permission half, and the CVP should not claim more than that.</p>
+        </div></div>
+      </details>
+
+    </div>
+
+    <div class="verdict-fix" style="margin-top:20px;">
+      <h4>Net effect on the verdict &middot; the fix for V4</h4>
+      <p>The overall call stays <strong>Reshape</strong>, but the reason shifts. Round 2&rsquo;s fix (public/private split) and this round&rsquo;s correction both hold up: removing the fictional joint-account threat is not a loss. What it exposes is that V3&rsquo;s three MVP slices have no mechanism at all for the dominant real-world control pattern, physical card custody, because the intake layer was never built to ask about it.</p>
+      <p style="margin-top:10px;"><strong>The fix is narrow and concrete for V4:</strong> add one Layer 0 question on physical possession of the payment instrument, and gate a virtual-card provisioning slice behind it, non-destructive to the existing card, silent notification path chosen by the client, contingent on confirming Nedbank&rsquo;s tokenization flow does not require the physical card to provision. Even a well-built version of this only solves money-visibility, not the movement-and-permission constraints some clients will still face; V4 should not oversell it as full agency.</p>
+    </div>
+
+    <div class="doc-footer">
+      <span>Generated via the find-fit council &middot; Round 3 of the Nedbank women&rsquo;s CVP initiative.</span>
+      <span>Prior rounds: five ideas (Round 1) and one reshaped CVP (Round 2), both Reshape. No V4 has been drafted yet.</span>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const CHEVRON = '<svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  const rounds = [
+    { id: "round-1", label: "Round 1", desc: "Five original ideas", tag: null },
+    { id: "round-2", label: "Round 2", desc: "Reshaped CVP", tag: null },
+    { id: "round-3", label: "Round 3", desc: "V3 + recheck", tag: null }
+  ];
+
+  const switcher = document.getElementById("round-switcher");
+  rounds.forEach((r, i) => {
+    const btn = document.createElement("button");
+    btn.className = "round-btn";
+    btn.type = "button";
+    btn.setAttribute("role", "tab");
+    btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    btn.setAttribute("aria-controls", r.id);
+    btn.dataset.target = r.id;
+    btn.innerHTML = `
+      <span class="r-num">${i + 1}</span>
+      <span class="r-text">
+        <span class="r-label">${r.label}${r.tag ? `<span class="r-tag">${r.tag}</span>` : ""}</span>
+        <span class="r-desc">${r.desc}</span>
+      </span>`;
+    btn.addEventListener("click", () => activateRound(r.id, true));
+    switcher.appendChild(btn);
+  });
+
+  function activateRound(id, updateHash) {
+    document.querySelectorAll(".round-panel").forEach(p => p.classList.toggle("active", p.id === id));
+    document.querySelectorAll(".round-btn").forEach(b => b.setAttribute("aria-selected", b.dataset.target === id ? "true" : "false"));
+    if (updateHash) history.replaceState(null, "", "#" + id);
+  }
+
+  const ideas = [
+    {
+      id: "idea-1",
+      num: 1,
+      name: "Digital Pathways to Financial Ownership",
+      essence: "Solid nudge mechanic, but the pilot needs a holdout group before the results mean anything.",
+      verdict: "RESHAPE",
+      desc: "An onboarding feature that nudges young women (18 to 24) toward relevant Nedbank products and tools at key life-stage moments, such as a first payslip or first credit card, built on the existing “Youth X” brand. Monetised indirectly, through main-banked behaviour and product uptake rather than a direct fee.",
+      risk: "Success metrics (onboarding lift, product uptake) are unfalsifiable without a control or holdout group: there is no way to distinguish “we changed behaviour” from “we found people who were already loyal.”",
+      upside: "Discovery’s Vitality Money proves nudge-based financial-behaviour mechanisms work and monetise in the South African market. Youth X already carries roughly five years of brand equity, so this is an integration-debt problem, not a novel build.",
+      fitMode: "overall",
+      fitOverall: 5,
+      commercial: "Monetisation is indirect, via main-banked behaviour and product uptake rather than a fee line. The South African market already has a validated precedent (Vitality Money) for this exact mechanism converting into revenue.",
+      testLabel: "Reshape direction",
+      test: "Run a manual single-nudge pilot (for example, overdraft-fee avoidance) with a randomised holdout group, measuring downstream behaviour rather than click-through.",
+      scores: { contrarian: 3, expansionist: 9, logician: 6, researcher: 7, buyer: 6, fitfinder: 5 },
+      rationale: {
+        contrarian: "Success metrics (onboarding lift, product uptake) are unfalsifiable without a control or holdout group: there is no way to distinguish “we changed behaviour” from “we found people who were already loyal.”",
+        researcher: "Discovery’s Vitality Money proves nudge-based financial-behaviour mechanisms work and monetise in the South African market. Youth X already carries roughly five years of brand equity, making this an integration-debt problem, not a novel build."
+      }
+    },
+    {
+      id: "idea-2",
+      num: 2,
+      name: "GAAS (Guidance-as-a-Service) / Community Connection",
+      essence: "Right support model, wrong payer: subscription fees don't work for a user with no independent funds.",
+      verdict: "RESHAPE",
+      desc: "A structured, milestone-based app combining financial education, coaching, and psychological support for women experiencing financial abuse or exclusion. As scoped, monetised via user subscriptions, partner (professional) subscriptions, and investment revenue.",
+      risk: "The target user is defined by having no personal savings or financial control, so a subscription-fee model is structurally incompatible with, and creates a visible, traceable payment risk for, the exact person it is meant to serve. Five of six council members converged on this independently.",
+      upside: "The underlying support model, education, coaching, and psychological support bundled together, matches every validated real-world analog (Surviving Economic Abuse UK, US employer relief funds, DOJ/OVW grants) once the payer is flipped away from the survivor herself.",
+      fitMode: "overall",
+      fitOverall: 3,
+      commercial: "As scoped, subscription revenue is structurally incompatible with the target user’s economic reality. The reshape direction flips the payer to partner fees plus bank CSR/acquisition budget, with eventual wealth-AUM conversion once she is financially independent.",
+      testLabel: "Reshape direction",
+      test: "Flip the payer: a free or subsidised tier for the target user, with revenue instead drawn from partner fees, CSR/acquisition budget, and eventual wealth-AUM conversion.",
+      scores: { contrarian: 2, expansionist: 8, logician: 3, researcher: 4, buyer: 2, fitfinder: 3 },
+      rationale: {
+        contrarian: "The target user is defined by having no personal savings or financial control, so a subscription-fee model is structurally incompatible with, and creates a visible, traceable payment risk for, the exact person it is meant to serve. Five of six council members converged on this independently.",
+        researcher: "Zero global precedent for “victim pays” in economic-abuse support; every real analog (Surviving Economic Abuse UK, US employer relief funds, DOJ/OVW grants) is externally funded, never subscriber-funded by the survivor."
+      }
+    },
+    {
+      id: "idea-3",
+      num: 3,
+      name: "Pre-nup Information Pack",
+      essence: "Paywalling abuse-escape guidance fails at the exact moment it's needed most.",
+      verdict: "RESHAPE",
+      desc: "A bank toolkit for pre-nup education, bundled with discreet financial-abuse detection and safe-separation guidance. As scoped, monetised as an “insurance”-style add-on with gamified, payment-gated content-unlock tiers.",
+      risk: "Gating the abuse-escape guidance behind a paid tier fails exactly when it matters most: a crisis moment, with the least ability to pay safely. “Insurance” is also a category-label mismatch (no risk pool or insurable event), itself a compliance exposure.",
+      upside: "Splitting into two products preserves a genuinely monetisable education and legal-referral offer, while giving away the abuse-detection and safe-separation guidance for free, matching how every bank precedent (NatWest, CommBank, NAB, BankSA) already treats this content as duty-of-care.",
+      fitMode: "overall",
+      fitOverall: 3,
+      commercial: "Product A (paid, gamified: pre-nup and estate-planning education plus legal referral) carries the monetisable potential. Product B (free, CSR-funded: abuse detection and safe-separation guidance) is a trust investment, not a revenue line.",
+      testLabel: "Reshape direction",
+      test: "Split into two products: Product A, paid and gamified; Product B, free, ungated, invisibly billed, and CSR-funded.",
+      scores: { contrarian: 2, expansionist: 8, logician: 2, researcher: 4, buyer: 3, fitfinder: 3 },
+      rationale: {
+        contrarian: "Gating the abuse-escape guidance behind a paid tier fails exactly when it matters most: a crisis moment, with the least ability to pay safely. “Insurance” is also a category-label mismatch, since there is no risk pool or insurable event, itself a compliance exposure.",
+        researcher: "Zero precedent anywhere for paywalling abuse-escape content; every bank precedent (NatWest, CommBank, NAB, BankSA) gives it away free as duty-of-care. DV safety apps that do charge for safety features draw explicit user criticism."
+      }
+    },
+    {
+      id: "idea-4",
+      num: 4,
+      name: "Financial Abuse Awareness Community",
+      essence: "Nedbank already has the pieces (Money Warnings, POWA); extend them rather than building new.",
+      verdict: "RESHAPE",
+      desc: "A bank-backed peer community, paired with legal expertise, helping women recognise subtle or unnamed financial abuse early. No direct monetisation is proposed; the value case is indirect, through trust, retention, and cross-sell.",
+      risk: "A bank that serves both partners on a joint account has a structural conflict of interest in flagging one partner’s account or behaviour as harmful, and anything visible inside the bank’s app is a discovery risk for a monitored user. This is also the first idea where Problem-Solution Fit broke first: the target segment is defined by not yet knowing it has the problem.",
+      upside: "Nedbank already runs an adjacent programme: “Money Warnings” with a POWA partnership, plus a “How Free Are You?” self-diagnostic. Global precedent (NatWest × SafeLives, Commonwealth Bank’s Next Chapter) validates the category, though the trust payoff realistically takes 12 to 36 months.",
+      fitMode: "overall",
+      fitOverall: 3,
+      commercial: "No direct monetisation is proposed. Value capture is indirect, via trust, retention, and cross-sell, consistent with how every real-world precedent in this category is funded (CSR/brand trust, not a fee).",
+      testLabel: "Reshape direction",
+      test: "Extend Money Warnings/POWA with a professionally-moderated peer layer rather than building a new community from scratch; explicitly reject account-signal-detection; require an upfront privacy-firewall statement before any engagement.",
+      scores: { contrarian: 3, expansionist: 8, logician: 3, researcher: 6, buyer: 4, fitfinder: 3 },
+      rationale: {
+        contrarian: "A bank that serves both partners on a joint account has a structural conflict of interest in flagging one partner’s account or behaviour as harmful, and anything visible inside the bank’s app is a discovery risk for a monitored user. This is also the first idea where Problem-Solution Fit broke first, since the target segment is defined by not yet knowing it has the problem.",
+        researcher: "Nedbank already runs an adjacent programme, “Money Warnings” with a POWA partnership, plus a “How Free Are You?” self-diagnostic. Global precedent (NatWest × SafeLives, Commonwealth Bank’s Next Chapter) validates the category, though ROI and trust payoff take 12 to 36 months, not the one year requested."
+      }
+    },
+    {
+      id: "idea-5",
+      num: 5,
+      name: "Partner with Institutions to Empower Women",
+      essence: "The partner ecosystem is proven (Access Bank's W Initiative); the reinsurance-priced account bolted onto it is not.",
+      verdict: "RESHAPE",
+      desc: "Co-create non-financial solutions with organisations focused on women’s development and economic empowerment, to complement a women’s-focused bank account. For women who need to secure or grow financial resources, or to upskill for a sustainable livelihood. Monetised primarily through NII (non-interest revenue from account fees) plus partnership revenue-share. Edge: existing partners (IFC, Grameen Foundation, POWA, Lyra Wellbeing, Yugrow) willing to negotiate exclusivity, plus Nedbank’s core banking rails.",
+      risk: "The reinsurance-style, self-report unsecured-loan mechanic carries a regulatory or PR crisis risk, or a PPI-style mis-selling scandal: bundled protection, a vague self-report claims trigger, cross-subsidised pricing, sold to a financially distressed population.",
+      upside: "A direct South African competitor, Access Bank’s “W Initiative,” already runs the un-reinsured version of this: partner-delivered loans, training, a 5 to 6-million-woman community, and $20M+ in financing plus $47M in lending growth booked from it. Nedbank has the credibility (existing POWA partnership, Money Warnings) and the internal data (SEA-12 survey) to build the same thing, funded as CSR/trust investment.",
+      fitMode: "breakdown",
+      fitBreakdown: { "Problem-Solution": 5, "Product-Market": 3, "Business Model": 4 },
+      fitOverall: 3,
+      commercial: "As specified, primarily NII plus partnership revenue-share, but time-to-first-dollar is unrealistic inside 3 to 6 months; it needs an actuarial and legal feasibility workstream that doesn’t yet exist. Decoupled and reframed as a CSR-funded partner pilot on an ordinary account, Nedbank could ship a scoped one- or two-partner version fast.",
+      testLabel: "Cheapest 48-hour test",
+      test: "Get a one-page written gut-check from an actuary or reinsurer on whether “financial abuse risk” is priceable at all with current data, before a single partner contract is negotiated.",
+      scores: { contrarian: 2, expansionist: 8, logician: 2, researcher: 5, buyer: 3, fitfinder: 3 },
+      rationale: {
+        contrarian: "Doesn’t escape the core structural flaw, it launders it through five extra partner logos, multiplying leak surface: POWA calls, Lyra intake emails, and Yugrow app installs are all discovery risk on a monitored device. The reinsurance-style pricing is its own actuarial and PR risk, and the exclusivity moat is unlikely to survive contract negotiation with mission-funded partners.",
+        expansionist: "The first idea that doesn’t ask Nedbank itself to be the trust-sensitive actor: POWA and Lyra hold the judgment calls while Nedbank supplies rails, triggers, and routing. Real money is in stacked unlocks (B2B2C distribution via Lyra’s EAP book, blended-finance capital via IFC, and the SEA-12 survey data as proprietary underwriting IP), provided governance rights are contractually real, not just advisory.",
+        logician: "The reinsurance and actuarial mechanism doesn’t hold on its own terms: marketing directly at flagged high-risk women concentrates risk rather than pooling it, and the insured “event” is controlled by an adversarial third party with no contract with the bank. Structurally this resembles the ingredients of a PPI-style mis-selling scandal.",
+        researcher: "Every comparable bank feature bundles this free, funded as trust or CSR, never priced as NII, directly contradicting the monetisation thesis. The partner-ecosystem half is well-precedented (Access Bank’s W Initiative is already live in South Africa), but the reinsurance-priced account has zero precedent anywhere.",
+        buyer: "Role-played across three of the bank’s own risk archetypes: the confident segment doesn’t want the crisis framing at all, the early-signs segment is only interested if invisibly branded, and the most controlled segment likely never reaches the point of being able to safely say yes. One SKU is trying to solve three different problems at once.",
+        fitfinder: "Problem-Solution 5/10, Product-Market 3/10 (the weakest layer), Business Model 4/10. The pitch conflates customer-facing delivery partners with pure B2B or PR network channels into one “holistic proposition” that no target customer has actually reacted to yet."
+      }
+    }
+  ];
+
+  const roleLabels = {
+    contrarian: "Contrarian", expansionist: "Expansionist", logician: "Logician",
+    researcher: "Researcher", buyer: "Buyer", fitfinder: "Fit Finder"
+  };
+
+  function seqStep(score) {
+    if (score <= 2) return 1;
+    if (score <= 4) return 2;
+    if (score <= 6) return 3;
+    if (score <= 8) return 4;
+    return score === 9 ? 5 : 6;
+  }
+  function scoreCellStyle(score) {
+    const step = seqStep(score);
+    const bg = `var(--seq-${step})`;
+    const fg = step >= 5 ? "#fdfffe" : "var(--ink)";
+    return `background:${bg};color:${fg};`;
+  }
+  function dotMeter(score, max) {
+    max = max || 10;
+    let html = '<span class="dotmeter">';
+    for (let i = 1; i <= max; i++) {
+      html += `<span class="${i <= score ? 'on' : ''}"></span>`;
+    }
+    return html + '</span>';
+  }
+
+  function openIdea(id) {
+    activateRound("round-1", true);
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.open = true;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  const matrixBody = document.getElementById("matrix-body");
+  ideas.forEach(idea => {
+    const tr = document.createElement("tr");
+    tr.tabIndex = 0;
+    tr.setAttribute("role", "button");
+    let cells = `
+      <td class="idea-cell"><span class="idea-num">${idea.num}.</span>${idea.name}</td>
+      <td><span class="verdict-pill">${idea.verdict}</span></td>
+    `;
+    ["contrarian","expansionist","logician","researcher","buyer","fitfinder"].forEach(k => {
+      const s = idea.scores[k];
+      cells += `<td class="num"><span class="score-cell" style="${scoreCellStyle(s)}">${s}</span></td>`;
+    });
+    tr.innerHTML = cells;
+    tr.addEventListener("click", () => openIdea(idea.id));
+    tr.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openIdea(idea.id); } });
+    matrixBody.appendChild(tr);
+  });
+
+  const cardsRoot = document.getElementById("cards");
+  ideas.forEach(idea => {
+    const acc = document.createElement("details");
+    acc.className = "idea-accordion";
+    acc.id = idea.id;
+
+    let fitHtml = "";
+    if (idea.fitMode === "breakdown") {
+      Object.entries(idea.fitBreakdown).forEach(([label, score]) => {
+        fitHtml += `
+          <div class="fit-row">
+            <span class="fit-label">${label}</span>
+            ${dotMeter(score)}
+            <span class="fit-score">${score}/10</span>
+          </div>`;
+      });
+      fitHtml += `
+        <div class="fit-row" style="margin-top:6px;border-top:1px solid var(--line);padding-top:10px;">
+          <span class="fit-label" style="font-weight:700;color:var(--ink);">Overall Fit</span>
+          ${dotMeter(idea.fitOverall)}
+          <span class="fit-score">${idea.fitOverall}/10</span>
+        </div>`;
+    } else {
+      fitHtml = `
+        <div class="fit-row">
+          <span class="fit-label">Overall Fit</span>
+          ${dotMeter(idea.fitOverall)}
+          <span class="fit-score">${idea.fitOverall}/10</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:12.5px;color:var(--ink-mute);">Per-layer Problem-Solution / Product-Market / Business Model breakdown was not captured for this idea in Round 1.</p>`;
+    }
+
+    let councilHtml = "";
+    Object.entries(idea.scores).forEach(([role, score]) => {
+      const rationaleText = idea.rationale && idea.rationale[role];
+      councilHtml += `
+        <div class="council-tile">
+          <div class="council-tile-head">
+            <span class="role">${roleLabels[role]}</span>
+            <span class="score">${score}/10</span>
+          </div>
+          <div class="meter"><i style="width:${score * 10}%"></i></div>
+          ${rationaleText
+            ? `<p>${rationaleText}</p>`
+            : `<p class="no-rationale">No discrete rationale recorded for this idea in Round 1; only the score survives.</p>`}
+        </div>`;
+    });
+
+    acc.innerHTML = `
+      <summary>
+        <div class="acc-left">
+          <span class="acc-num">${idea.num}</span>
+          <div class="acc-text">
+            <h3>${idea.name}</h3>
+            <p class="acc-essence">${idea.essence}</p>
+          </div>
+        </div>
+        <div class="acc-right">
+          <span class="verdict-pill">${idea.verdict}</span>
+          <div class="acc-score"><span class="num">${idea.fitOverall}</span><span class="lbl">Fit /10</span></div>
+          ${CHEVRON}
+        </div>
+      </summary>
+      <div class="acc-body"><div class="acc-body-inner">
+        <p class="idea-desc">${idea.desc}</p>
+
+        <div class="split-2">
+          <div class="panel risk">
+            <h4>Biggest risk</h4>
+            <p>${idea.risk}</p>
+          </div>
+          <div class="panel upside">
+            <h4>Biggest upside</h4>
+            <p>${idea.upside}</p>
+          </div>
+        </div>
+
+        <div class="fit-commercial">
+          <div class="fit-panel">
+            <h4>Fit analysis</h4>
+            ${fitHtml}
+          </div>
+          <div class="commercial-panel">
+            <h4>Commercial potential</h4>
+            <p>${idea.commercial}</p>
+          </div>
+        </div>
+
+        <div class="test-box">
+          <h4>${idea.testLabel}</h4>
+          <p>${idea.test}</p>
+        </div>
+
+        <p class="council-head">Council findings</p>
+        <div class="council-grid">${councilHtml}</div>
+      </div></div>
+    `;
+    cardsRoot.appendChild(acc);
+  });
+
+  document.getElementById("expand-all").addEventListener("click", () => {
+    cardsRoot.querySelectorAll(".idea-accordion").forEach(d => d.open = true);
+  });
+  document.getElementById("collapse-all").addEventListener("click", () => {
+    cardsRoot.querySelectorAll(".idea-accordion").forEach(d => d.open = false);
+  });
+
+  document.querySelectorAll("#round-2 .section-actions, #round-3 .section-actions").forEach(actions => {
+    const scope = actions.closest(".round-panel");
+    const expandBtn = actions.querySelector("[class$='-expand']");
+    const collapseBtn = actions.querySelector("[class$='-collapse']");
+    if (expandBtn) expandBtn.addEventListener("click", () => {
+      scope.querySelectorAll(".idea-accordion").forEach(d => d.open = true);
+    });
+    if (collapseBtn) collapseBtn.addEventListener("click", () => {
+      scope.querySelectorAll(".idea-accordion").forEach(d => d.open = false);
+    });
+  });
+
+  const initial = rounds.find(r => r.id === location.hash.slice(1)) ? location.hash.slice(1) : "round-1";
+  activateRound(initial, false);
+  if (ideas.find(i => i.id === location.hash.slice(1))) {
+    openIdea(location.hash.slice(1));
+  }
+</script>
