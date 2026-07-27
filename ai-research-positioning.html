@@ -1,0 +1,764 @@
+<title>AI-Assisted Research in a Decentralised Org</title>
+<style>
+  :root {
+    --bg: #f5f8f6;
+    --surface: #ffffff;
+    --surface-sunk: #eef4f0;
+    --ink: #0d1f16;
+    --ink-soft: #48594f;
+    --ink-faint: #7c8b81;
+    --green: #006341;
+    --green-deep: #004d36;
+    --green-contrast: #003a29;
+    --accent: #00a862;
+    --accent-bright: #00e677;
+    --line: rgba(0, 77, 54, 0.14);
+    --line-on-dark: rgba(255, 255, 255, 0.14);
+    --red: #b8492f;
+    --purple: #8a3ba8;
+    --teal: #027a68;
+    --lime: #7a7a1a;
+    --stone: #8a7a63;
+    --on-dark-ink: #eef5f0;
+    --on-dark-soft: #a9bdb1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a140f;
+      --surface: #101f17;
+      --surface-sunk: #0c1a13;
+      --ink: #eef5f0;
+      --ink-soft: #a9bdb1;
+      --ink-faint: #71877b;
+      --green: #10a867;
+      --green-deep: #0c8354;
+      --green-contrast: #003a29;
+      --accent: #00e677;
+      --accent-bright: #4dffa6;
+      --line: rgba(238, 245, 240, 0.14);
+      --red: #e2836a;
+      --purple: #c98ee0;
+      --teal: #4fd6bd;
+      --lime: #cfd45a;
+      --stone: #c9b79c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a140f;
+    --surface: #101f17;
+    --surface-sunk: #0c1a13;
+    --ink: #eef5f0;
+    --ink-soft: #a9bdb1;
+    --ink-faint: #71877b;
+    --green: #10a867;
+    --green-deep: #0c8354;
+    --green-contrast: #003a29;
+    --accent: #00e677;
+    --accent-bright: #4dffa6;
+    --line: rgba(238, 245, 240, 0.14);
+    --red: #e2836a;
+    --purple: #c98ee0;
+    --teal: #4fd6bd;
+    --lime: #cfd45a;
+    --stone: #c9b79c;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  ::selection { background: var(--accent-bright); color: #06120c; }
+
+  .frame {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+  }
+
+  /* ---- index rail ---- */
+  nav.rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 0;
+    border-right: 1px solid var(--line);
+    background: var(--surface);
+  }
+  nav.rail ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1;
+    align-items: center;
+  }
+  nav.rail a {
+    display: block;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+    font-variant-numeric: tabular-nums;
+  }
+  nav.rail a:hover { border-color: var(--green); color: var(--green); }
+  nav.rail a.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--surface);
+  }
+  nav.rail .foot {
+    writing-mode: vertical-rl;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 20px;
+  }
+
+  main { min-width: 0; }
+
+  section {
+    padding: 100px 64px;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 8px;
+  }
+  section.on-green {
+    background: linear-gradient(155deg, var(--green) 0%, var(--green-deep) 100%);
+    color: #f2fbf6;
+    border-bottom-color: rgba(255,255,255,0.14);
+  }
+  section.on-green .ink-soft { color: rgba(242,251,246,0.72); }
+  section.on-sunk { background: var(--surface-sunk); }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  section.on-green .eyebrow { color: var(--accent-bright); }
+
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(40px, 5vw, 62px); line-height: 1.04; }
+  h2 { font-size: clamp(30px, 3.4vw, 42px); line-height: 1.08; }
+  h3 { font-size: 19px; line-height: 1.25; }
+
+  p { margin: 0; }
+  .lede {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  section.on-green .lede { color: rgba(242,251,246,0.86); }
+  .body-copy { font-size: 16px; line-height: 1.7; color: var(--ink-soft); max-width: 60ch; }
+  section.on-green .body-copy { color: rgba(242,251,246,0.86); }
+
+  .stack { display: flex; flex-direction: column; gap: 20px; }
+  .stack-lg { gap: 40px; }
+
+  /* ---- Cover ---- */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .cover-meta {
+    margin-top: 56px;
+    display: flex;
+    gap: 48px;
+    font-size: 13px;
+  }
+  .cover-meta dt {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    color: rgba(242,251,246,0.6);
+    margin-bottom: 6px;
+  }
+  .cover-meta dd { margin: 0; font-weight: 600; }
+  .cover-title { max-width: 22ch; }
+
+  /* ---- section head pattern ---- */
+  .head { max-width: 74ch; margin-bottom: 56px; }
+  .head h2 { margin-bottom: 18px; }
+
+  /* ---- source wall ---- */
+  .stack-head-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .stack-head-row .head { margin-bottom: 0; flex: 1 1 420px; }
+  .source-wall {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 26px;
+    row-gap: 10px;
+    padding: 20px 26px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+  .source-wall .label {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .source-wall .name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* ---- pillar cards ---- */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .pillar {
+    background: var(--surface);
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pillar .num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .pillar p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+  .pillar-field { display: flex; flex-direction: column; gap: 5px; }
+  .pillar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .pillar-field p { font-size: 14px; }
+
+  /* ---- division of labour ---- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .split > div {
+    background: var(--surface);
+    padding: 30px 32px;
+  }
+  .split h3 { margin-bottom: 14px; }
+  .split ul { margin: 14px 0 0; padding: 0 0 0 18px; }
+  .split li { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 6px; }
+  .split .tag-row { margin-bottom: 6px; }
+
+  .stamp-box { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 24px; }
+  .stamp-mark {
+    display: inline-block;
+    flex: 0 0 auto;
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--red);
+    border: 3px solid var(--red);
+    border-radius: 6px;
+    padding: 10px 18px;
+    transform: rotate(-3deg);
+  }
+  .stamp-box p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; max-width: none; flex: 1 1 auto; }
+
+  /* ---- match the method to the moment: effort/confidence chart ---- */
+  .effort-chart { margin-top: 8px; }
+  .effort-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: end;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--line);
+  }
+  .effort-col { display: flex; flex-direction: column; gap: 14px; }
+  .tier-chip { display: flex; align-items: flex-start; gap: 10px; }
+  .tier-num {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: #fff;
+  }
+  .tier-copy strong { display: block; font-size: 14.5px; }
+  .tier-copy .tier-quote { display: block; font-size: 12.5px; color: var(--ink-faint); font-style: italic; margin-top: 2px; }
+  .effort-step {
+    border-radius: 6px 6px 0 0;
+    background: var(--surface-sunk);
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  .effort-pill { font-size: 11px; font-weight: 800; color: #fff; padding: 4px 10px; border-radius: 20px; }
+  .effort-desc { margin: 0; padding: 0 0 0 16px; }
+  .effort-desc li { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin-bottom: 4px; }
+  .effort-methods { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .method-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    width: 100%;
+    margin-bottom: 2px;
+  }
+  .method-tag {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--surface-sunk);
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+  }
+  .effort-axis { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 10px; }
+  .effort-axis span { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+  .effort-axis span:nth-child(2) { text-align: center; }
+  .effort-axis span:last-child { text-align: right; }
+
+  .cite-row {
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 132ch;
+  }
+  .cite {
+    flex: 1 1 auto;
+    padding: 28px 32px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface-sunk);
+    border-radius: 0 6px 6px 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .cite .cite-body { margin: 0; }
+  .cite .src {
+    display: block;
+    margin-top: 10px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-faint);
+  }
+  .cite .src-link {
+    display: block;
+    margin-top: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cite .src-link:hover { text-decoration: underline; }
+  .standalone-quote {
+    flex: 0 0 460px;
+    margin: 0;
+    font-size: clamp(20px, 2.1vw, 27px);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  /* ---- upstream callout ---- */
+  .callout {
+    margin-top: 40px;
+    padding: 28px 30px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 8px;
+    font-size: 16.5px;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 54ch;
+  }
+
+  /* ---- appendix (collapsed, quiet) ---- */
+  .appendix-section {
+    padding: 40px 64px;
+  }
+  details.appendix summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  details.appendix summary::-webkit-details-marker { display: none; }
+  details.appendix summary::before {
+    content: "+";
+    display: inline-block;
+    width: 16px;
+    font-weight: 800;
+  }
+  details.appendix[open] summary::before { content: "\2212"; }
+  details.appendix summary:hover { color: var(--ink-soft); }
+  .appendix-body {
+    padding: 24px 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .brief-field p { font-size: 14px; color: var(--ink-faint); line-height: 1.65; max-width: 74ch; margin-top: 5px; }
+
+  footer {
+    padding: 56px 64px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  footer .sources { font-size: 12.5px; color: var(--ink-faint); max-width: 48ch; line-height: 1.6; }
+  footer .stamp { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); text-align: right; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 860px) {
+    .frame { grid-template-columns: 1fr; }
+    nav.rail { display: none; }
+    section { padding: 64px 24px; }
+    footer { padding: 40px 24px 64px; }
+    .pillars { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    .stack-head-row { flex-direction: column; align-items: stretch; }
+    .stamp-box { flex-direction: column; align-items: flex-start; }
+    .cite-row { flex-direction: column; gap: 20px; }
+    .standalone-quote { flex: 0 0 auto; }
+    .effort-track { grid-template-columns: 1fr; }
+    .effort-step { height: auto !important; }
+    .effort-axis { grid-template-columns: 1fr; gap: 4px; }
+    .effort-axis span:nth-child(2), .effort-axis span:last-child { text-align: left; }
+    .source-wall { grid-template-columns: repeat(2, 1fr); }
+    .cover-meta { flex-wrap: wrap; gap: 24px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    section { animation: rise 0.5s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<div class="frame">
+  <nav class="rail" aria-label="Sections">
+    <ol>
+      <li><a href="#position" data-idx="1">01</a></li>
+      <li><a href="#labour" data-idx="2">02</a></li>
+      <li><a href="#stack" data-idx="3">03</a></li>
+    </ol>
+    <div class="foot">POSITIONING PAPER</div>
+  </nav>
+
+  <main>
+
+    <section id="cover" class="on-green">
+      <div class="eyebrow">Positioning paper · AI-assisted research at Nedbank</div>
+      <h1 class="cover-title">AI-assisted research in a decentralised org</h1>
+      <p class="lede" style="margin-top:22px;">A point of view on AI-moderated interviews, synthetic personas, and AI-assisted synthesis.</p>
+      <dl class="cover-meta">
+        <div><dt>Prepared for</dt><dd>Design Manco</dd></div>
+        <div><dt>Status</dt><dd>Draft for discussion</dd></div>
+        <div><dt>Date</dt><dd>July 2026</dd></div>
+      </dl>
+    </section>
+
+    <section id="position">
+      <div class="head">
+        <div class="eyebrow">01 · Position</div>
+        <h2>There are things AI can help us do, that we simply couldn't do before. And there are things it tends to do that we should never do.</h2>
+        <p class="lede" style="margin-top:18px;">The question isn't whether or not to use AI in research. It's how to use it in ways that accelerate and broaden access to high quality insights.</p>
+      </div>
+
+      <div class="split">
+        <div>
+          <div class="eyebrow" style="margin-bottom:10px;">The breakthrough</div>
+          <h3>Scale and depth, together</h3>
+          <ul>
+            <li>Quantitatively significant samples (n=50+) engaged at a level of qualitative depth no human-run study could manage at that scale</li>
+            <li>Research can practically shift from a one-off event to always-on learning cycles</li>
+          </ul>
+        </div>
+        <div class="stamp-box">
+          <div class="stamp-mark">Don't quant the qual</div>
+          <p>A theme mentioned once can matter more than one mentioned a hundred times.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="labour" class="on-sunk">
+      <div class="head">
+        <div class="eyebrow">02 · Match the method to the moment</div>
+        <h2>The less defined the question, the more likely AI will harm rather than help</h2>
+      </div>
+
+      <div class="effort-chart">
+        <div class="effort-track">
+          <div class="effort-col">
+            <div class="tier-chip">
+              <span class="tier-num" style="background:var(--stone);">1</span>
+              <div class="tier-copy"><strong>Directional</strong><span class="tier-quote">"This might be worth pursuing."</span></div>
+            </div>
+            <div class="effort-step" style="height:60px;">
+              <span class="effort-pill" style="background:var(--stone);">Light effort</span>
+            </div>
+            <ul class="effort-desc">
+              <li>Already-framed question</li>
+              <li>Same-day setup</li>
+              <li>No fieldwork coordination</li>
+            </ul>
+            <div class="effort-methods">
+              <span class="method-label">Methods</span>
+              <span class="method-tag">Synthetic personas</span>
+              <span class="method-tag">Desk research</span>
+            </div>
+          </div>
+          <div class="effort-col">
+            <div class="tier-chip">
+              <span class="tier-num" style="background:var(--lime);">2</span>
+              <div class="tier-copy"><strong>Good indication</strong><span class="tier-quote">"This looks real."</span></div>
+            </div>
+            <div class="effort-step" style="height:120px;">
+              <span class="effort-pill" style="background:var(--lime);">Medium effort</span>
+            </div>
+            <ul class="effort-desc">
+              <li>Partially framed question</li>
+              <li>Some sample coordination</li>
+              <li>Spot-check a subset</li>
+            </ul>
+            <div class="effort-methods">
+              <span class="method-label">Methods</span>
+              <span class="method-tag">AI-moderated interviews</span>
+              <span class="method-tag">AI-assisted synthesis</span>
+            </div>
+          </div>
+          <div class="effort-col">
+            <div class="tier-chip">
+              <span class="tier-num" style="background:var(--teal);">3</span>
+              <div class="tier-copy"><strong>Strong &rarr; Decision-ready</strong><span class="tier-quote">"We're confident enough to act."</span></div>
+            </div>
+            <div class="effort-step" style="height:180px;">
+              <span class="effort-pill" style="background:var(--teal);">High effort</span>
+            </div>
+            <ul class="effort-desc">
+              <li>Messy, undefined problem space</li>
+              <li>Planning and recruiting</li>
+              <li>Real-time judgment on risk and pacing</li>
+            </ul>
+            <div class="effort-methods">
+              <span class="method-label">Methods</span>
+              <span class="method-tag">Human-moderated interviews</span>
+              <span class="method-tag">Exploratory discovery</span>
+            </div>
+          </div>
+        </div>
+        <div class="effort-axis"><span>Low effort</span><span>Medium effort</span><span>High effort</span></div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="stack-head-row">
+        <div class="head" style="margin-bottom:0;">
+          <div class="eyebrow">03 · The stack</div>
+          <h2>Where AI can meaningfully contribute</h2>
+          <p class="lede" style="margin-top:18px;">Across 38 data sources, including industry research, methodological guides, tools and platform providers, and case studies, the consensus view is that <b>AI is not a wholesale replacement for human expertise but an augmentative and accelerative capability.</b></p>
+        </div>
+        <div class="source-wall">
+          <div class="label">Drawn from 38 sources, including</div>
+          <div class="name">Nielsen Norman Group</div>
+          <div class="name">Research World</div>
+          <div class="name">Maze</div>
+          <div class="name">Listen Labs</div>
+          <div class="name">CleverX</div>
+          <div class="name">arXiv</div>
+          <div class="name">PubMed Central</div>
+          <div class="name">CBS Open Journals</div>
+          <div class="name">Prolific</div>
+          <div class="name">Aalto University</div>
+          <div class="name">Harvard SEAS</div>
+          <div class="name">Carl J. Pearson, PhD</div>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="num">Pillar 01</span>
+          <h3>AI-moderated interviews</h3>
+          <div class="pillar-field">
+            <div class="pillar-label">What is it?</div>
+            <p>LLM-run conversations with real respondents.</p>
+          </div>
+          <div class="pillar-field">
+            <div class="pillar-label">How AI enables it</div>
+            <p>Runs hundreds of sessions concurrently with dynamic probing.</p>
+          </div>
+          <div class="pillar-field">
+            <div class="pillar-label">Practical use cases</div>
+            <p>Concept validation, churn diagnostics, brand tracking.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="num">Pillar 02</span>
+          <h3>Synthetic personas</h3>
+          <div class="pillar-field">
+            <div class="pillar-label">What is it?</div>
+            <p>Digital twins trained on behavioral data.</p>
+          </div>
+          <div class="pillar-field">
+            <div class="pillar-label">How AI enables it</div>
+            <p>Simulates response patterns instantly and at near-zero marginal cost per run.</p>
+          </div>
+          <div class="pillar-field">
+            <div class="pillar-label">Practical use cases</div>
+            <p>Rapid-testing messaging and edge cases before committing resources to validation.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="num">Pillar 03</span>
+          <h3>AI-assisted synthesis</h3>
+          <div class="pillar-field">
+            <div class="pillar-label">What is it?</div>
+            <p>A spectrum from automated transcription to thematic clustering.</p>
+          </div>
+          <div class="pillar-field">
+            <div class="pillar-label">How AI enables it</div>
+            <p>Surfaces candidate themes across transcripts far faster than manual grouping/theming.</p>
+          </div>
+          <div class="pillar-field">
+            <div class="pillar-label">Practical use cases</div>
+            <p>Turning raw transcripts into thematic decks, each theme traced to a verbatim quote or timestamp.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cite-row">
+        <div class="cite">
+          <p class="cite-body">Nielsen Norman Group benchmarked a synthetic-user platform against three of their own studies. Synthetic responses tracked broad attitudinal direction but were one-dimensional next to real interviews. Their recommendation: use synthetic users to prepare for research, not replace it.</p>
+          <span class="src">Rosala &amp; Moran, "Synthetic Users: If, When, and How to Use AI-Generated Research," Nielsen Norman Group, June 2024</span>
+          <a class="src-link" href="https://www.nngroup.com/articles/synthetic-users/" target="_blank" rel="noopener">nngroup.com/articles/synthetic-users</a>
+        </div>
+        <blockquote class="standalone-quote">"A synthetic user can be useful if researchers treat the output as a hypothesis to guide future research."</blockquote>
+      </div>
+    </section>
+
+    <section id="appendix" class="appendix-section">
+      <details class="appendix">
+        <summary>Appendix &middot; GrowthOS (Accenture Song)</summary>
+        <div class="appendix-body">
+          <div class="brief-field">
+            <div class="pillar-label">What it actually is</div>
+            <p>A consulting engagement with a platform attached: a dedicated squad (Project Lead, Growth Strategy Lead, Value Architect, Researcher/Insights), a Leadership Team for oversight, and paid "Expert Hours" for prompt design, insight interpretation, and validation strategy. The deliverable is executive-ready artifacts, not raw output.</p>
+          </div>
+          <div class="brief-field">
+            <div class="pillar-label">Where it sits</div>
+            <p>It spans the full lifecycle: synthesis, synthetic sentiment (Proxies), evidence-led ideation, validation experiments, concept sharpening, and opportunity prioritization with TAM/TAP sizing. That last stretch sits entirely outside the three pillars above; neither Maze nor Outset compete there.</p>
+          </div>
+          <div class="brief-field">
+            <div class="pillar-label">Access model</div>
+            <p>Both deployment options, Accenture-hosted SSO or a custom-built client environment, are enterprise-wide commitments. Neither is a team-level pilot the way Maze or Outset are.</p>
+          </div>
+          <div class="brief-field">
+            <div class="pillar-label">Bank-specific delivery risk</div>
+            <p>Accenture's own sample timeline for a "banking client with complex SSO" shows five months to the first use-case session, with authentication setup flagged Medium, not High, delivery confidence.</p>
+          </div>
+          <div class="brief-field">
+            <div class="pillar-label">Cost model</div>
+            <p>Pricing is tiered by active users and bundles fixed expert hours, structurally different from Maze's and Outset's usage-based licensing.</p>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <footer>
+      <div class="sources">Sources: "The AI Research Stack" explainer (8 min, reviewed July 2026); independent platform research on GrowthOS, Maze, and Outset (July 2026), including Accenture Song's GrowthOS Implementation Options (March 2026) and Nedbank's Maze usage review (July 2026); Rosala &amp; Moran, "Synthetic Users: If, When, and How to Use AI-Generated Research," Nielsen Norman Group, June 2024; cross-source synthesis of AI-in-research best practice across the wider field, July 2026.</div>
+      <div class="stamp">Draft, prepared for discussion, not decision.</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a'));
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var idx = sections.indexOf(entry.target);
+          if (idx === -1) return;
+          if (entry.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove('active'); });
+            links[idx].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(function (s) { if (s) observer.observe(s); });
+    }
+  })();
+</script>
