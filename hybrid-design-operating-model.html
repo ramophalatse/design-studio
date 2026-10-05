@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>One brand. Many teams. | Design Studio</title>
+  <meta name="description" content="How a group design chapter can build coherent experiences with delivery teams in business units. Four corporate precedents and five working agreements.">
+  <link rel="canonical" href="https://ramophalatse.github.io/design-studio/hybrid-design-operating-model.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+  <script>
+    try { document.documentElement.dataset.theme = localStorage.getItem('ramo-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    catch { document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+  </script>
+  <style>
+    /* Ramo CORE: CL-2..5, TY-1..7, SP-1..6, MO-1/5. No domain hue semantics. */
+    :root { --bg-deep:#edebe5; --bg:#f7f6f1; --surface:#fdfcf9; --card:#fff; --elevated:#f1efeb; --text:#1f232a; --muted:#5f646b; --faint:#8b8f97; --accent:#059669; --accent-soft:#0596691a; --border:rgba(20,22,28,.10); --strong:rgba(20,22,28,.20); --glass:rgba(255,255,255,.62); --glass-item:rgba(255,255,255,.34); --shadow:0 1px 2px rgba(20,22,28,.05),0 12px 40px -16px rgba(20,22,28,.22); --display:'Sora',system-ui,sans-serif; --sans:'Hanken Grotesk',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; --spring:cubic-bezier(.34,1.56,.64,1); color-scheme:light; }
+    :root[data-theme="dark"] { --bg-deep:#05080c; --bg:#0a0f14; --surface:#11151b; --card:#151a20; --elevated:#20262c; --text:#f1f4f7; --muted:#a1a9b1; --faint:#697179; --accent:#10b981; --accent-soft:#10b98122; --border:rgba(255,255,255,.085); --strong:rgba(255,255,255,.17); --glass:rgba(255,255,255,.045); --glass-item:rgba(255,255,255,.025); --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 24px 60px -24px rgba(0,0,0,.7); color-scheme:dark; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:100px; }
+    body { margin:0; background:var(--bg); color:var(--text); font:15px/1.6 var(--sans); -webkit-font-smoothing:antialiased; }
+    ::selection { background:var(--accent-soft); }
+    a { color:inherit; text-decoration-thickness:1px; text-underline-offset:4px; }
+    a:hover { text-decoration-thickness:2px; }
+    button { font:inherit; color:inherit; cursor:pointer; }
+    a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid var(--text); outline-offset:5px; }
+    h1,h2,h3,h4 { font-family:var(--display); font-weight:800; letter-spacing:-.03em; line-height:1.2; text-wrap:balance; margin:0; }
+    h1 { font-size:clamp(44px,6.5vw,76px); letter-spacing:-.045em; line-height:1.06; }
+    h2 { font-size:clamp(27px,3.4vw,38px); }
+    h3 { font-size:23px; }
+    h4 { font-size:17px; }
+    p { margin:0 0 16px; max-width:70ch; }
+    p:last-child { margin-bottom:0; }
+    .wrap { max-width:1080px; padding:0 28px; margin:auto; }
+    .eyebrow,.number,.tag,.source-id { font:500 11px/1.5 var(--mono); letter-spacing:.22em; text-transform:uppercase; font-variant-numeric:tabular-nums; color:var(--muted); }
+    .eyebrow { margin-bottom:17px; }
+    .skip { position:fixed; top:-100px; left:20px; z-index:10; background:var(--card); padding:12px 20px; border-radius:999px; }
+    .skip:focus { top:12px; }
+    .topbar { border-bottom:1px solid var(--border); background:var(--bg); }
+    .topbar .wrap { display:flex; justify-content:space-between; align-items:center; gap:20px; min-height:80px; }
+    .identity { text-decoration:none; font-family:var(--display); font-weight:800; letter-spacing:-.03em; }
+    .identity span { display:block; font:400 11px/1.5 var(--mono); color:var(--muted); letter-spacing:.08em; }
+    .tools { display:flex; align-items:center; gap:12px; }
+    .print-btn { background:var(--glass); border:1px solid var(--border); border-radius:999px; padding:7px 14px; font-size:13px; }
+    /* CTL-1..4 supersedes IX-1's original circular switch. Sliding SOFT thumb. */
+    .theme-switch { position:relative; display:grid; grid-template-columns:repeat(2,1fr); gap:0; padding:2px; border:1px solid var(--border); border-radius:999px; background:color-mix(in srgb,var(--elevated) 50%,transparent); }
+    .theme-thumb { position:absolute; top:2px; bottom:2px; left:2px; width:calc((100% - 4px)/2); border-radius:999px; background:var(--accent-soft); transform:translateX(0); transition:transform .3s var(--spring); }
+    [data-theme="dark"] .theme-thumb { transform:translateX(100%); }
+    .theme-switch button { position:relative; z-index:1; border:0; background:transparent; border-radius:999px; width:38px; height:32px; display:grid; place-items:center; color:var(--muted); }
+    .theme-switch button[aria-pressed="true"] { color:var(--text); }
+    .theme-switch svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+    .hero { padding:72px 0 48px; }
+    .hero-grid { display:grid; grid-template-columns:1.3fr 1fr; align-items:center; gap:48px; }
+    .hero .accent { color:var(--accent); }
+    .hero .subtitle { font-size:23px; line-height:1.35; margin:24px 0 16px; color:var(--text); max-width:42ch; }
+    .lead { font-size:18px; color:var(--muted); max-width:65ch; }
+    .meta { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:28px; font:400 11px/1.5 var(--mono); color:var(--muted); }
+    .card,.section { position:relative; isolation:isolate; overflow:hidden; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:30px; box-shadow:var(--shadow); }
+    .card > :not(.ghost),.section > :not(.ghost) { position:relative; z-index:1; }
+    /* IX-2, corrected fixed size; IX-2b gradient fade. */
+    .ghost { position:absolute; top:4px; right:-12px; z-index:0; pointer-events:none; user-select:none; font:italic 800 56px/1.15 var(--display); letter-spacing:-.045em; white-space:nowrap; background-image:linear-gradient(135deg,var(--card) 0%,var(--muted) 100%); background-clip:text; -webkit-background-clip:text; color:transparent; opacity:.45; }
+    .section > .ghost { top:15px; background-image:linear-gradient(135deg,var(--bg) 0%,var(--muted) 100%); }
+    .stack-diagram { background:var(--glass); padding-top:38px; }
+    .stack-diagram .ghost { background-image:linear-gradient(135deg,transparent,var(--muted)); }
+    .diagram-label { text-align:center; font:500 11px/1.5 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+    .customer { text-align:center; font-family:var(--display); font-size:24px; font-weight:800; letter-spacing:-.03em; margin:10px 0 22px; }
+    .delivery-row { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .delivery-row span { text-align:center; background:var(--glass-item); border:1px solid var(--border); border-radius:12px; padding:17px 6px; font-weight:600; }
+    .connector { height:24px; width:1px; margin:auto; background:var(--strong); }
+    .chapter-bar { text-align:center; border:1px solid var(--strong); border-radius:12px; padding:14px; background:var(--accent-soft); font-weight:700; }
+    .diagram-caption { color:var(--muted); font-size:13px; text-align:center; margin-top:14px; }
+    .thesis { margin-top:42px; padding:30px 36px; background:#0a0f14; color:#f1f4f7; }
+    .thesis .ghost { background-image:linear-gradient(135deg,#0a0f14,#a1a9b1); }
+    .thesis .eyebrow { color:#a1a9b1; margin-bottom:12px; }
+    .thesis p:not(.eyebrow) { font-size:22px; line-height:1.5; max-width:64ch; }
+    .contents { position:sticky; top:0; z-index:5; background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .contents .wrap { display:flex; gap:8px; overflow-x:auto; padding-top:12px; padding-bottom:12px; }
+    .contents a { white-space:nowrap; text-decoration:none; font-size:13px; padding:7px 15px; border:1px solid var(--border); border-radius:999px; background:var(--glass); }
+    .contents a:hover { background:var(--accent-soft); border-color:var(--strong); }
+    .section { padding:58px 0; border-bottom:1px solid var(--border); scroll-margin-top:76px; }
+    .section-head { max-width:72ch; margin-bottom:30px; }
+    .section-head h2 { margin-bottom:16px; }
+    .section-head .eyebrow { margin-bottom:12px; }
+    .section-head p { color:var(--muted); }
+    .cases { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .case .eyebrow { margin-bottom:22px; }
+    .case h3 { margin-bottom:7px; }
+    .case .strap { font-weight:700; margin-bottom:20px; color:var(--muted); }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin:20px 0; }
+    .tag { letter-spacing:.06em; padding:4px 9px; border:1px solid var(--border); border-radius:999px; font-size:10px; }
+    .lesson { padding-top:18px; border-top:1px solid var(--border); }
+    .lesson strong { display:block; margin-bottom:5px; }
+    details { margin-top:18px; color:var(--muted); font-size:13px; }
+    summary { cursor:pointer; font-weight:600; padding:5px 0; }
+    details p { margin:10px 0 0; }
+    .refs { font-size:12px; font-family:var(--mono); margin-top:18px; }
+    .refs a { display:inline-block; margin-right:14px; }
+    .agreements { display:grid; gap:14px; }
+    .agreement { display:grid; grid-template-columns:44px 1fr; gap:18px; padding:26px 30px; }
+    .number { font-size:18px; letter-spacing:0; padding-top:3px; color:var(--text); }
+    .agreement h3 { font-size:19px; margin-bottom:12px; }
+    .agreement p { max-width:66ch; }
+    .rights { margin-top:30px; }
+    .rights h3 { margin-bottom:22px; }
+    .table-scroll { overflow:auto; }
+    table { border-collapse:collapse; width:100%; font-size:14px; }
+    th,td { padding:14px 14px 14px 0; text-align:left; vertical-align:top; border-bottom:1px solid var(--border); }
+    th { font-weight:700; }
+    thead th { font:500 11px/1.5 var(--mono); text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+    td:first-child { width:31%; }
+    td:nth-child(2) { width:25%; font-weight:600; }
+    tbody tr:last-child td { border-bottom:0; }
+    .two-up { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .two-up h3 { margin:20px 0 16px; }
+    .pilot { background:var(--glass); }
+    .pilot h3 { margin:12px 0 18px; }
+    .pilot-steps { list-style:none; padding:0; margin:24px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .pilot-steps li { border-top:1px solid var(--strong); padding-top:16px; max-width:66ch; }
+    .pilot-steps strong { display:block; margin-bottom:8px; }
+    .pilot-steps p { color:var(--muted); font-size:14px; }
+    .sources { list-style:none; padding:0; margin:0; }
+    .sources li { display:grid; grid-template-columns:34px 1fr; gap:16px; padding:18px 0; border-top:1px solid var(--border); scroll-margin-top:90px; }
+    .source-id { letter-spacing:0; padding-top:3px; }
+    .sources a { font-weight:700; }
+    .sources p { color:var(--muted); font-size:13px; margin-top:6px; }
+    .closing { padding:38px 0; font-family:var(--display); font-size:23px; font-weight:800; line-height:1.4; letter-spacing:-.03em; max-width:54ch; }
+    footer { border-top:1px solid var(--border); padding:24px 0 36px; color:var(--muted); font-size:12px; }
+    footer .wrap { display:flex; justify-content:space-between; gap:20px; }
+    @keyframes pop-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    .hero-grid { animation:pop-in .55s var(--spring) both; }
+    @media(max-width:680px) { .wrap { padding:0 28px; } .topbar .wrap { min-height:72px; } .hero { padding-top:42px; } .hero-grid,.cases,.two-up { grid-template-columns:1fr; gap:24px; } .hero-grid { gap:32px; } .hero .subtitle { font-size:20px; } .card { padding:26px; } .thesis { padding:26px; margin-top:28px; } .thesis p:not(.eyebrow) { font-size:19px; } .section { padding:42px 0; } .agreement { grid-template-columns:28px 1fr; gap:12px; padding:24px; } .agreement h3 { font-size:18px; } .pilot-steps { grid-template-columns:1fr; gap:14px; } .print-btn { display:none; } th,td { padding-right:10px; font-size:12px; } footer .wrap { flex-direction:column; gap:6px; } .closing { font-size:20px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
+    @media print { :root,:root[data-theme="dark"] { --bg:#fff; --card:#fff; --text:#1f232a; --muted:#5f646b; --border:rgba(20,22,28,.15); --strong:rgba(20,22,28,.25); --glass:#fff; --accent:#059669; --accent-soft:#0596691a; --shadow:none; color-scheme:light; } body { font-size:11pt; } .tools,.contents,.ghost,.skip { display:none!important; } .hero { padding-top:30px; } .hero-grid { display:block; animation:none; } .stack-diagram { display:none; } h1 { font-size:40pt; } .thesis { color:var(--text); background:#fff; } .section { padding:28px 0; overflow:visible; } .cases,.two-up { display:block; } .card { break-inside:avoid; margin-bottom:16px; box-shadow:none; } details p { display:block!important; } a { overflow-wrap:anywhere; } .sources a::after { content:' (' attr(href) ')'; font:9pt var(--sans); } .wrap { max-width:none; padding:0; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar"><div class="wrap">
+    <a class="identity" href="https://github.com/ramophalatse/design-studio">Design Studio<span>Ramo Phalatsi</span></a>
+    <div class="tools">
+      <button class="print-btn" id="print-btn" type="button">Print / save PDF</button>
+      <div class="theme-switch" role="group" aria-label="Colour theme">
+        <span class="theme-thumb" aria-hidden="true"></span>
+        <button type="button" data-set-theme="light" aria-label="Light theme" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+        <button type="button" data-set-theme="dark" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 13.2A9 9 0 0 1 10.8 3.1a9 9 0 1 0 10 10.1Z"/></svg></button>
+      </div>
+    </div>
+  </div></header>
+  <main id="main">
+    <div class="wrap"><div class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Experience design / Operating model</p>
+          <h1>One brand.<br>Many <span class="accent">teams.</span></h1>
+          <p class="subtitle">Making hybrid design work across business units.</p>
+          <p class="lead">Delivery moves into the business. The design chapter stays at group level. The customer still expects one coherent experience.</p>
+          <div class="meta"><span>5 October 2026</span><span>4 precedents / 5 agreements / 1 pilot</span></div>
+        </div>
+        <figure class="card stack-diagram" style="margin:0" aria-label="Business-unit teams deliver a shared customer experience, supported by a group design chapter.">
+          <span class="ghost" aria-hidden="true">Coherence</span>
+          <div class="diagram-label">The customer sees</div><div class="customer">One experience</div>
+          <div class="delivery-row"><span>Business A</span><span>Business B</span><span>Business C</span></div>
+          <div class="connector" aria-hidden="true"></div>
+          <div class="chapter-bar">Group design chapter</div>
+          <figcaption class="diagram-caption">Shared foundations. Clear rights. Joint outcomes.</figcaption>
+        </figure>
+      </div>
+      <aside class="card thesis">
+        <span class="ghost" aria-hidden="true">Mandate</span><p class="eyebrow">The central challenge</p>
+        <p>The chapter needs useful capabilities, an agreed enterprise mandate, and business leaders who share accountability for experience outcomes.</p>
+      </aside>
+    </div></div>
+    <nav class="contents" aria-label="Page sections"><div class="wrap">
+      <a href="#evidence">Corporate precedents</a><a href="#agreements">Five agreements</a><a href="#experience">Experience mandate</a><a href="#pilot">Start with a pilot</a><a href="#sources">Sources</a>
+    </div></nav>
+    <div class="wrap">
+      <section class="section" id="evidence">
+        <span class="ghost" aria-hidden="true">Evidence</span>
+        <div class="section-head"><p class="eyebrow">01 / Corporate precedents</p><h2>There is evidence. Read its limits.</h2>
+          <p>Large organisations have made meaningful progress with distributed teams. They have built shared standards, governance and journey accountability. None of these cases proves that the exact reporting-line problem is permanently resolved.</p>
+        </div>
+        <div class="cases">
+          <article class="card case"><span class="ghost" aria-hidden="true">IBM</span>
+            <p class="eyebrow">Embedded design / Shared governance</p><h3>IBM</h3><p class="strap">Business units help govern the shared capability.</p>
+            <p>IBM distributes designers across teams and business units. Its shared design approach supports that work. Historical Carbon v10 documentation describes a practitioner steering committee and an executive advisory board.</p>
+            <p>The board's remit includes adoption, resource allocation and business needs. It also holds Carbon accountable for business impact.</p>
+            <div class="tags"><span class="tag">Operating mechanism verified</span><span class="tag">Historical governance</span></div>
+            <div class="lesson"><strong>The lesson</strong><p>Give business representatives a role in governing shared design capabilities.</p></div>
+            <details><summary>What the evidence establishes</summary><p>This is a close structural precedent. It does not establish a causal improvement in brand-wide experience. The Carbon committee model is historical documentation, not confirmed current governance.</p></details>
+            <div class="refs"><a href="#source-1">[01] IBM teams</a><a href="#source-2">[02] Carbon governance</a></div>
+          </article>
+          <article class="card case"><span class="ghost" aria-hidden="true">DBS</span>
+            <p class="eyebrow">Journey ownership / Performance</p><h3>DBS</h3><p class="strap">Customer outcomes count in performance and rewards.</p>
+            <p>DBS brings functions together through “Managing through Journeys”. Its 2023 annual report links journey objectives and outcomes to individual rewards and recognition.</p>
+            <p>It reports a <strong>five-fold reduction in account-opening turnaround time</strong> in Hong Kong within its institutional-banking journey work.</p>
+            <div class="tags"><span class="tag">Company-reported outcome</span><span class="tag">Banking precedent</span></div>
+            <div class="lesson"><strong>The lesson</strong><p>Make experience outcomes part of business performance management.</p></div>
+            <details><summary>What the evidence establishes</summary><p>The model is broader than a design chapter. The results are company-reported and do not isolate the model's causal effect. DBS also disclosed significant digital disruptions that year. Progress did not mean uniformly excellent experience.</p></details>
+            <div class="refs"><a href="#source-3">[03] Annual report, page 29</a></div>
+          </article>
+          <article class="card case"><span class="ghost" aria-hidden="true">ING</span>
+            <p class="eyebrow">Business planning / Dependencies</p><h3>ING</h3><p class="strap">Integration is built into the planning rhythm.</p>
+            <p>In 2017, ING executives described multidisciplinary squads with UX designers. Commercial specialists, marketing, data and engineering worked alongside them. Each squad had a common definition of success.</p>
+            <p>Explicit purposes and customer-impact measures held the teams together. Transparent quarterly business reviews exposed dependencies between tribes. Executives reported gains in time to market, engagement and productivity.</p>
+            <div class="tags"><span class="tag">Executive-reported progress</span><span class="tag">Banking precedent</span></div>
+            <div class="lesson"><strong>The lesson</strong><p>Put cross-team commitments into business planning and review.</p></div>
+            <details><summary>What the evidence establishes</summary><p>The interview directly addresses alignment without traditional reporting lines. It is a historical account of broader agile transformation. It does not prove the exact chapter arrangement described here.</p></details>
+            <div class="refs"><a href="#source-4">[04] ING executive interview</a></div>
+          </article>
+          <article class="card case"><span class="ghost" aria-hidden="true">Spotify</span>
+            <p class="eyebrow">Autonomy / Shared ownership</p><h3>Spotify</h3><p class="strap">Federation needed stronger shared ownership.</p>
+            <p>Spotify's account includes a correction. In 2023, its design-systems manager described flexibility going too far. A dedicated team and deliberate cross-platform component ownership followed.</p>
+            <p>In 2024, Spotify Engineering documented a separate support integration. A shared team and platform unified support across autonomous segments.</p>
+            <div class="tags"><span class="tag">Implementation documented</span><span class="tag">Qualitative benefits</span></div>
+            <div class="lesson"><strong>The lesson</strong><p>Set boundaries for autonomy. Give shared customer problems a dedicated owner.</p></div>
+            <details><summary>What the evidence establishes</summary><p>These are concrete implementation examples. They report qualitative benefits, not quantified customer outcomes. The ownership lesson is an inference from those accounts.</p></details>
+            <div class="refs"><a href="#source-5">[05] Encore</a><a href="#source-6">[06] Support integration</a></div>
+          </article>
+        </div>
+      </section>
+      <section class="section" id="agreements">
+        <span class="ghost" aria-hidden="true">Agreements</span>
+        <div class="section-head"><p class="eyebrow">02 / The working model</p><h2>Build five agreements.</h2><p>Training, culture and relationships help the model work. They cannot carry the full responsibility. The mandate needs decision rights, resources and business accountability.</p></div>
+        <div class="agreements">
+          <article class="card agreement"><span class="ghost" aria-hidden="true">Mandate</span><div class="number">01</div><div><h3>Make experience a business commitment.</h3><p>Group executives and BU leaders agree the shared experience standards. They select journeys for joint ownership. They name who resolves disagreements. If every BU can opt out, the chapter cannot ensure coherence.</p></div></article>
+          <article class="card agreement"><span class="ghost" aria-hidden="true">Rights</span><div class="number">02</div><div><h3>Make decision rights explicit.</h3><p>The chapter stewards shared foundations, principles, research standards and quality criteria. BUs own product priorities and delivery. Journey targets, dependencies and exceptions need joint decisions. Name the executive escalation route. A dotted line only helps when these rights are clear.</p></div></article>
+          <article class="card agreement"><span class="ghost" aria-hidden="true">Outcomes</span><div class="number">03</div><div><h3>Put journey outcomes on business scorecards.</h3><p>Measure completion, elapsed time, repeated information requests and avoidable contact. Relevant product owners and Design Heads share the outcomes. The chapter supplies common definitions. Targets and delivery commitments are agreed with the business. Integration then matters to those controlling priorities.</p></div></article>
+          <article class="card agreement"><span class="ghost" aria-hidden="true">Capacity</span><div class="number">04</div><div><h3>Fund the work across boundaries.</h3><p>A journey owner needs committed team capacity or shared funding. Without it, integration stays discretionary. Each BU can defer the work. Use an existing business forum with authority to allocate resources. It must also settle trade-offs. Design reviews alone cannot do that.</p></div></article>
+          <article class="card agreement"><span class="ghost" aria-hidden="true">Value</span><div class="number">05</div><div><h3>Make the shared approach useful.</h3><p>Offer tested patterns, reusable code, research access and practical support. Reduce delivery effort. Let BUs shape the chapter roadmap and contribute improvements. Reserve mandatory requirements for clear enterprise needs. Keep the exception process timely.</p></div></article>
+        </div>
+        <article class="card rights"><span class="ghost" aria-hidden="true">Ownership</span><p class="eyebrow">Proposed decision map</p><h3>Who decides what?</h3><div class="table-scroll"><table>
+          <thead><tr><th scope="col">Decision</th><th scope="col">Accountable owner</th><th scope="col">Working agreement</th></tr></thead>
+          <tbody>
+            <tr><td>Shared foundations and quality criteria</td><td>Design chapter</td><td>Business and engineering input; enterprise mandate agreed.</td></tr>
+            <tr><td>Local product priorities and delivery</td><td>Business unit</td><td>Work within agreed standards and journey commitments.</td></tr>
+            <tr><td>Cross-BU journey outcomes</td><td>Named business journey owner</td><td>Participating leaders agree targets, dependencies and capacity.</td></tr>
+            <tr><td>Exceptions and conflicting priorities</td><td>Agreed executive forum</td><td>Named decision-maker, response time and documented trade-off.</td></tr>
+          </tbody>
+        </table></div></article>
+      </section>
+      <section class="section" id="experience">
+        <span class="ghost" aria-hidden="true">Experience</span>
+        <div class="section-head"><p class="eyebrow">03 / The experience mandate</p><h2>Build coherence. Define the difference.</h2><p>A design system supports the mandate. Product policy, service operations and recovery also shape the experience. Those decisions need business ownership.</p></div>
+        <div class="two-up">
+          <article class="card"><span class="ghost" aria-hidden="true">Consistency</span><p class="eyebrow">Everyday reliability</p><h3>Consistency</h3><p>Dependable behaviour across everyday interactions.</p><p>Use clear terminology. Reuse information customers have already supplied. Make handovers work. Build accessibility into delivery. Recover well when something goes wrong.</p></article>
+          <article class="card"><span class="ghost" aria-hidden="true">Difference</span><p class="eyebrow">A distinct experience</p><h3>Differentiation</h3><p>An explicit proposition, made observable.</p><p>Define what customers should recognise in the experience. Translate it into behaviours that matter to them. Test those behaviours across channels and products. Share the foundations; preserve useful local variation.</p></article>
+        </div>
+      </section>
+      <section class="section" id="pilot">
+        <span class="ghost" aria-hidden="true">Pilot</span>
+        <div class="section-head"><p class="eyebrow">04 / The first move</p><h2>One journey. Two BUs. Roughly 90 days.</h2><p>Choose an important journey that crosses business boundaries. Application to activation is one example. Test the arrangement on a real delivery problem.</p></div>
+        <article class="card pilot"><span class="ghost" aria-hidden="true">Proof</span><p class="eyebrow">Recommended pilot</p><h3>Prove the model with a real trade-off.</h3><p>Secure a business sponsor and name the journey owner. Establish baseline measures. Protect capacity and agree the escalation route.</p><ol class="pilot-steps">
+          <li><strong>Set the baseline.</strong><p>Map the journey and its failure points. Agree the customer outcome and participating teams' commitments.</p></li>
+          <li><strong>Resolve the conflict.</strong><p>Use the agreed rights to settle a real roadmap conflict. Track whether capacity and decisions follow.</p></li>
+          <li><strong>Measure the change.</strong><p>Compare outcomes with the baseline. Capture what worked and what needs changing before expansion.</p></li>
+        </ol></article>
+      </section>
+      <section class="section" id="sources">
+        <span class="ghost" aria-hidden="true">Sources</span>
+        <div class="section-head"><p class="eyebrow">05 / Source register</p><h2>Follow the evidence.</h2><p>Sources reviewed on 5 October 2026. Publication dates describe historical evidence, not confirmed current structures. The proposed working model is a recommendation.</p></div>
+        <ol class="sources">
+          <li id="source-1"><span class="source-id">01</span><div><a href="https://www.ibm.com/design/teams/">IBM Design: teams</a><p>IBM's own description of designers embedded in teams and business units.</p></div></li>
+          <li id="source-2"><span class="source-id">02</span><div><a href="https://v10.carbondesignsystem.com/all-about-carbon/partners/">Carbon v10: partners and governance</a><p>Historical documentation of the steering committee and executive advisory board.</p></div></li>
+          <li id="source-3"><span class="source-id">03</span><div><a href="https://www.dbs.com/iwov-resources/images/investors/other-materials/2024/DBS%20Annual%20Report%202023.pdf">DBS annual report 2023</a><p>Printed page 29: journey outcomes, rewards and Hong Kong account opening. Pages 26–27 disclose digital disruptions and their performance implications.</p></div></li>
+          <li id="source-4"><span class="source-id">04</span><div><a href="https://www.mckinsey.com/industries/financial-services/our-insights/ings-agile-transformation">ING's agile transformation</a><p>10 January 2017. First-hand executive interview published by McKinsey, including alignment without traditional reporting lines.</p></div></li>
+          <li id="source-5"><span class="source-id">05</span><div><a href="https://www.figma.com/blog/creating-coherence-how-spotifys-design-system-goes-beyond-platforms/">Spotify: creating coherence across platforms</a><p>31 August 2023. First-hand account by Spotify design-systems manager Juli Sombat, published by Figma.</p></div></li>
+          <li id="source-6"><span class="source-id">06</span><div><a href="https://engineering.atspotify.com/2024/02/applying-the-facade-pattern-on-spotify-for-artists">Spotify Engineering: support integration</a><p>February 2024. Shared support ownership and components across autonomous segments.</p></div></li>
+        </ol>
+      </section>
+      <p class="closing">The chapter stewards coherence. Business leaders own the decisions and resources that deliver it.</p>
+    </div>
+  </main>
+  <footer><div class="wrap"><span>Ramo Phalatsi / Design Studio</span><span>Experience design / Research and recommendation / October 2026</span></div></footer>
+  <script>
+    const themeButtons = document.querySelectorAll('[data-set-theme]');
+    function syncTheme() { themeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.setTheme === document.documentElement.dataset.theme))); }
+    themeButtons.forEach(button => button.addEventListener('click', () => {
+      document.documentElement.dataset.theme = button.dataset.setTheme;
+      try { localStorage.setItem('ramo-theme', button.dataset.setTheme); } catch {}
+      syncTheme();
+    }));
+    syncTheme();
+    let closedForPrint = [];
+    window.addEventListener('beforeprint', () => {
+      closedForPrint = [...document.querySelectorAll('details:not([open])')];
+      closedForPrint.forEach(detail => detail.open = true);
+    });
+    window.addEventListener('afterprint', () => {
+      closedForPrint.forEach(detail => detail.open = false);
+      closedForPrint = [];
+    });
+    document.querySelector('#print-btn').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
