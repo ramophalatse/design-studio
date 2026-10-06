@@ -6,6 +6,7 @@ A project directory of research, decision briefs, concept reviews and interactiv
 
 | Page | What it is | Added |
 |---|---|---|
+| [Financial abuse: solution ideas by need](https://ramophalatse.github.io/design-studio/financial-abuse-solution-ideas.html) | A supplement to the November brief: 27 solution ideas from the brief and the Open Doors service map, grouped under six customer needs and tagged for use of existing capability and November feasibility, with filters. | 6 October 2026 |
 | [Worth choosing, again](https://ramophalatse.github.io/design-studio/main-bank-workshop.html) | An interactive retail-banking strategy workshop with five design briefs, seven researched cases, two creative tracks and a concept-to-experiment canvas. | 6 October 2026 |
 | [Economic abuse summit patterns](https://ramophalatse.github.io/design-studio/economic-abuse-summit-synthesis.html) | A synthesis of 18 Global Summit on Economic Abuse sessions: twelve cross-session patterns, what each means for the November financial abuse brief, and 18 practical takeaways. | 6 October 2026 |
 | [Financial abuse: the November response](https://ramophalatse.github.io/design-studio/financial-abuse-november-decision-brief.html) | A Nedbank-branded decision brief on existing banking assistance, debt consideration and specialist support, with example customer journeys, national GBV evidence, collective-action commitments and proposed November launch gates. | 6 October 2026 |
