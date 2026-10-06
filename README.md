@@ -6,7 +6,7 @@ A project directory of research, decision briefs, concept reviews and interactiv
 
 | Page | What it is | Added |
 |---|---|---|
-| [Financial abuse: the November response](https://ramophalatse.github.io/design-studio/financial-abuse-november-decision-brief.html) | A Nedbank-branded decision brief on existing banking assistance, debt consideration and specialist support, with example customer journeys and proposed November launch gates. | 6 October 2026 |
+| [Financial abuse: the November response](https://ramophalatse.github.io/design-studio/financial-abuse-november-decision-brief.html) | A Nedbank-branded decision brief on existing banking assistance, debt consideration and specialist support, with example customer journeys, national GBV evidence, collective-action commitments and proposed November launch gates. | 6 October 2026 |
 | [One brand. Many teams.](https://ramophalatse.github.io/design-studio/hybrid-design-operating-model.html) | An evidence-backed exploration of a hybrid design operating model, with corporate precedents, working agreements and a proposed pilot. | 5 October 2026 |
 | [The Hugging Face incident](https://ramophalatse.github.io/design-studio/hugging-face-incident-timeline.html) | A timeline of an AI evaluation incident, its permission chain and the safety lessons. | 9 September 2026 |
 
