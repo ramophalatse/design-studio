@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Twelve patterns across 18 Global Summit on Economic Abuse sessions, tied to the Nedbank November decision brief, with practical takeaways.">
+<title>Economic Abuse Summit Patterns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one wide reading column. A pattern matrix first, then theme cards, then a filterable action list. */
+:root{
+  --bg:#f4f7f5; --surface:#ffffff; --ink:#12231c; --muted:#4b5f56; --line:#d3ded8;
+  --accent:#006341; --accent-deep:#003a29; --tint:#e3f4ec; --on-accent:#ffffff;
+  --now:#006341; --test:#8a5a00; --later:#6b5b73; --flag:#a3321f;
+  --f-body:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1813; --surface:#13251d; --ink:#e7f2ed; --muted:#9db3a9; --line:#26423a;
+  --accent:#3fd89a; --accent-deep:#0a3b2a; --tint:#173428; --on-accent:#06150f;
+  --now:#3fd89a; --test:#e2b04a; --later:#c0abcb; --flag:#f08a76; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1813; --surface:#13251d; --ink:#e7f2ed; --muted:#9db3a9; --line:#26423a;
+  --accent:#3fd89a; --accent-deep:#0a3b2a; --tint:#173428; --on-accent:#06150f;
+  --now:#3fd89a; --test:#e2b04a; --later:#c0abcb; --flag:#f08a76; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1120px;margin-inline:auto}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;line-height:1.15;margin:0}
+p{margin:0}
+.mono{font-family:var(--f-mono)}
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.02em;margin-top:10px;max-width:20ch}
+.lede{margin-top:16px;max-width:68ch;color:var(--muted);font-size:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:24px;font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:500}
+nav.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-block:10px;display:flex;gap:6px 18px;flex-wrap:wrap;font-size:14px;margin-inline:-16px;padding-inline:16px}
+nav.jump a{color:var(--ink);text-decoration:none;font-weight:500;padding-block:2px;border-bottom:2px solid transparent}
+nav.jump a:hover{border-color:var(--accent)}
+section{padding-block:48px 8px}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.01em}
+.sub{margin-top:10px;color:var(--muted);max-width:72ch}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}
+.three>div{min-width:0}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+.finding h3{font-size:18px;margin-bottom:8px}
+.finding p{color:var(--muted);font-size:15px}
+.finding .brief{display:block;margin-top:12px;font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+/* matrix */
+.mx-scroll{overflow-x:auto;margin-top:24px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table.mx{border-collapse:collapse;width:100%;min-width:900px;font-size:14px}
+.mx th,.mx td{padding:0;text-align:center;border-bottom:1px solid var(--line)}
+.mx thead th{font-family:var(--f-mono);font-weight:500;font-size:12px;color:var(--muted);padding:10px 0;position:sticky;top:0;background:var(--surface)}
+.mx thead th.rowh{text-align:left;padding-left:14px}
+.mx tbody th{text-align:left;font-weight:500;padding:9px 12px 9px 14px;width:310px;max-width:310px}
+.mx tbody tr{cursor:pointer}
+.mx tbody tr:hover,.mx tbody tr.on{background:var(--tint)}
+.mx tbody tr:last-child th,.mx tbody tr:last-child td{border-bottom:0}
+.mx .cnt{font-family:var(--f-mono);font-size:12px;color:var(--muted);padding-right:14px;width:46px;text-align:right}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--accent);vertical-align:middle}
+.dot.off{background:transparent;border:1px solid var(--line)}
+.mx td.vcol{width:34px}
+.mx thead th.vcol{width:34px}
+.mx .grp{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:6px 14px;text-align:left}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px 20px;margin-top:20px;font-size:13px;color:var(--muted)}
+.legend div{min-width:0;display:flex;gap:10px}
+.legend .n{font-family:var(--f-mono);color:var(--accent);font-weight:500;min-width:2ch}
+/* themes */
+.theme{background:var(--surface);border:1px solid var(--line);border-radius:6px;margin-top:20px;scroll-margin-top:64px}
+.theme.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--tint)}
+.theme header{padding:22px 24px 4px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.theme h3{font-size:22px;font-weight:700;flex:1 1 320px;min-width:0}
+.theme .spread{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:3fr 2fr;gap:0}
+.cols>div{padding:12px 24px 22px;min-width:0}
+.cols .plan{background:var(--tint);border-left:1px solid var(--line)}
+.theme h4{font-family:var(--f-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:8px 0 10px}
+.theme ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.theme .plan p{font-size:15px}
+.theme .plan p+p{margin-top:10px}
+.caution{margin-top:12px;font-size:13px;color:var(--flag)}
+.chips{display:inline-flex;gap:3px;margin-left:4px;vertical-align:baseline}
+.v{display:inline-block;font-family:var(--f-mono);font-size:11px;line-height:1;padding:3px 5px;border-radius:3px;background:var(--tint);color:var(--accent);border:1px solid var(--line);font-weight:500}
+.plan .v{background:var(--surface)}
+.where{display:inline-block;font-family:var(--f-mono);font-size:12px;color:var(--accent);background:var(--surface);border:1px solid var(--line);padding:2px 7px;border-radius:3px;margin:2px 4px 2px 0}
+/* actions */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.filters button{font:inherit;font-size:14px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.acts{display:grid;gap:12px;margin-top:18px}
+.act{display:grid;grid-template-columns:150px 1fr;gap:4px 24px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px}
+.act>*{min-width:0}
+.tag{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.tag.now{color:var(--now)} .tag.test{color:var(--test)} .tag.later{color:var(--later)}
+.tag::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:currentColor;margin-right:7px}
+.act h3{font-size:17px;font-weight:600;line-height:1.3}
+.act p{font-size:15px;color:var(--muted);margin-top:6px}
+.act .meta{margin-top:10px;font-size:13px}
+.act .left{display:flex;flex-direction:column;gap:6px}
+.act .left .n{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+/* cautions */
+.limits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.limits div{border-left:3px solid var(--flag);padding:2px 0 2px 16px;font-size:15px;color:var(--muted)}
+.limits b{color:var(--ink);display:block;margin-bottom:4px}
+table.nums{width:100%;border-collapse:collapse;font-size:14px;margin-top:22px;min-width:640px}
+.nums th,.nums td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.nums th{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.nums td:first-child{font-family:var(--f-mono);white-space:nowrap}
+.tscroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;margin-top:22px}
+.tscroll table{margin-top:0}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);max-width:80ch}
+@media (max-width:760px){
+  .cols{grid-template-columns:1fr}
+  .cols .plan{border-left:0;border-top:1px solid var(--line)}
+  .act{grid-template-columns:1fr}
+  .theme header,.cols>div{padding-inline:16px}
+  .mx tbody th{width:230px;max-width:230px}
+}
+@media (prefers-reduced-motion:no-preference){.theme{transition:box-shadow .2s,border-color .2s}}
+html{color-scheme:light dark}
+body{margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">Global Summit on Economic Abuse · 18 sessions · for the Nedbank November response</p>
+  <h1>What 18 sessions agree on</h1>
+  <p class="lede">The summit playlist, read as one body of evidence. Twelve patterns recur across sessions. Each is tied to the section or commitment in the November decision brief it affects, with a plain call on whether it can use existing capability.</p>
+  <div class="facts">
+    <span><b>18</b> sessions</span><span><b>~14.7 hours</b> of panel and interview</span><span><b>12+</b> countries heard directly</span><span>Source: auto-captions at transcript level</span>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Page sections">
+  <a href="#headline">Headline</a><a href="#patterns">Pattern matrix</a><a href="#themes">Twelve themes</a><a href="#actions">Practical takeaways</a><a href="#limits">Limits</a>
+</nav>
+
+<section id="headline">
+  <h2>Three things to carry into the meeting</h2>
+  <p class="sub">These are the findings that most change or sharpen the working recommendation in the brief.</p>
+  <div class="three">
+    <div class="finding"><h3>The front line is the product</h3><p>Banks that report results (BNZ, HSBC, Lloyds, Commonwealth Bank) built a small trained team, a simple spot-and-refer habit for everyone else, and a handover where she never repeats her story. This supports assisted banking as the core.</p><span class="brief">Brief: Section 04, Section 05, Commitment 04</span></div>
+    <div class="finding"><h3>Authority decides what is possible</h3><p>The recurring blocker is rules that need the abuser's signature or presence. Every working scheme answers one question first: what can a bank act on without him, and who may approve an exception?</p><span class="brief">Brief: Section 06, Commitment 03 (authority column)</span></div>
+    <div class="finding"><h3>Three gaps stay open elsewhere too</h3><p>Money to leave, debt treatment, and funded partner capacity are weak almost everywhere. The brief already treats them as conditions. The summit suggests naming a single owner for each before any public promise.</p><span class="brief">Brief: Section 07, Section 08, Commitments 02 and 05</span></div>
+  </div>
+</section>
+
+<section id="patterns">
+  <h2>Where each pattern shows up</h2>
+  <p class="sub">A filled dot means the session made the point in substance, not in passing. Select a row to jump to its theme. Hover or focus a column number for the session title.</p>
+  <div class="mx-scroll" tabindex="0" role="region" aria-label="Pattern matrix across 18 sessions"><table class="mx" id="matrix"></table></div>
+  <div class="legend" id="legend"></div>
+</section>
+
+<section id="themes">
+  <h2>Twelve themes, with what each means for the plan</h2>
+  <p class="sub">Numbers in boxes are session numbers from the matrix. The right column says what to do with the pattern, and which part of the brief it touches.</p>
+  <div id="themeList"></div>
+</section>
+
+<section id="actions">
+  <h2>Practical takeaways</h2>
+  <p class="sub">Eighteen actions drawn from the themes. <b>Use now</b> needs only existing staff, process or governance and an owner. <b>Test first</b> depends on a product, policy or legal fact that Nedbank owners must confirm. <b>Later</b> needs a build, funding or law, so it stays out of the November promise.</p>
+  <div class="filters" role="group" aria-label="Filter takeaways" id="filters"></div>
+  <div class="acts" id="acts" aria-live="polite"></div>
+</section>
+
+<section id="limits">
+  <h2>What this evidence cannot tell you</h2>
+  <div class="limits">
+    <div><b>Practice is self-reported</b>Bank numbers come from the bank's own speaker. They show what was built, not independent proof that outcomes improved.</div>
+    <div><b>Other markets, other law</b>Safe-harbour rules, credit-bureau law and privacy exemptions differ by country. South African rules were not covered, so each borrowed action needs a Nedbank legal check.</div>
+    <div><b>Mostly very large banks</b>Westpac, Lloyds, HSBC and Commonwealth Bank run dedicated teams. Nepal, PNG and BNZ show smaller starting points, and BNZ is the closest model for a lean launch.</div>
+    <div><b>Prevalence is not comparable</b>Measures vary widely, from 11.3% to 100% among survivors in the global review. Do not mix these figures with the HSRC rates already in the brief, or use them to size demand.</div>
+  </div>
+  <h3 style="margin-top:36px;font-size:20px">Figures worth quoting, with their caveat</h3>
+  <div class="tscroll" tabindex="0" role="region" aria-label="Figures with caveats"><table class="nums">
+    <thead><tr><th>Figure</th><th>What it says</th><th>Session</th><th>Caveat</th></tr></thead>
+    <tbody>
+      <tr><td>51%</td><td>of 7,000+ bank employees in 7 banks and 8 countries know a customer experiencing financial abuse; 80% want their bank to do more, 84% want to learn how.</td><td>6</td><td>IFC Empower Finance survey, Asia-Pacific, reported by the programme lead.</td></tr>
+      <tr><td>+1,400%</td><td>rise in visits to HSBC UK's financial abuse page after its campaign; consideration rose 4%.</td><td>9</td><td>One bank, speaker-reported, tied to a national TV and outdoor campaign.</td></tr>
+      <tr><td>33%</td><td>of referrals to BNZ's support team involve intimate partner violence, about 10 customers a week.</td><td>4</td><td>Small bank, speaker-reported.</td></tr>
+      <tr><td>~3,000</td><td>women helped by Israel's Financial Availability Charter, 2016 to 2025.</td><td>4</td><td>Attributed to Bank of Israel by the speaker.</td></tr>
+      <tr><td>20,000+</td><td>yearly interactions with Commonwealth Bank's Next Chapter team, open to anyone regardless of bank.</td><td>10</td><td>Speaker-reported; programme is funded and staffed at scale.</td></tr>
+      <tr><td>70% to under 30%</td><td>share of UK protection policies written as joint life over about ten years.</td><td>17</td><td>Industry advocate's estimate.</td></tr>
+      <tr><td>11.3% to 100%</td><td>range of reported prevalence among domestic abuse survivors across 864 documents.</td><td>12</td><td>Shows measurement variation, not a single rate.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <p>Method: each session's captions were fetched and condensed, then read in full. Frames were checked for the first session only (speaker video, no slides), and the Spanish-language session was read from the English captions. Speaker claims are reported as made and not independently verified. This page proposes inputs to the brief. It does not change the brief, and nothing here is an approved commitment.</p>
+</footer>
+</div>
+
+<script>
+const V=[
+{n:1,t:"Unheard Riches",d:"1:04",g:"Survivors"},
+{n:2,t:"Leading the Charge",d:"1:10",g:"Field leaders"},
+{n:3,t:"Power, Policy, and Protection",d:"1:15",g:"Policy"},
+{n:4,t:"Strengthening Banking Responses",d:"1:03",g:"Banking"},
+{n:5,t:"Empoderando las Economías (Latin America)",d:"1:08",g:"Region"},
+{n:6,t:"Empower Finance (Asia-Pacific banks)",d:"0:56",g:"Banking"},
+{n:7,t:"Justice for All",d:"1:00",g:"Policy"},
+{n:8,t:"More Unheard Riches",d:"1:09",g:"Survivors"},
+{n:9,t:"In Focus: HSBC",d:"0:21",g:"Banking"},
+{n:10,t:"In Focus: Commonwealth Bank Next Chapter",d:"0:21",g:"Banking"},
+{n:11,t:"In Focus: What Is Economic Abuse?",d:"0:24",g:"Evidence"},
+{n:12,t:"Economic Abuse in Focus: A Global Study",d:"0:16",g:"Evidence"},
+{n:13,t:"In Focus: Fixing Child Maintenance",d:"0:20",g:"Region"},
+{n:14,t:"In Focus: Women with Disabilities",d:"0:23",g:"Region"},
+{n:15,t:"Credit Where It's Due",d:"0:59",g:"Banking"},
+{n:16,t:"Seeing the Signs: Workplaces",d:"0:59",g:"Banking"},
+{n:17,t:"Insuring Safety",d:"0:49",g:"Banking"},
+{n:18,t:"Ending Economic Abuse: Africa (includes Nedbank)",d:"1:03",g:"Region"}
+];
+const ONE={
+1:"Rosie Batty, David Challen and Dr Siwe Andaba on why earners and educated women miss the signs.",
+2:"Founders of the field trace how the issue went from unnamed to national policy in Canada, the UK, US and Australia.",
+3:"UN rapporteur and three commissioners on law, flexible payments and designing systems so they cannot be weaponised.",
+4:"Westpac, Lloyds, BNZ, Women's Spirit and Katherine Fitzpatrick on what banks do and why rules re-victimise.",
+5:"Mexico's financial regulator, a rural leader and a domestic workers' organiser on structural exclusion.",
+6:"World Bank/IFC with banks in Nepal and PNG: staff survey, e-learning and misuse monitoring.",
+7:"Coercive control law in England, Scotland and Australia, and the gap between criminal and family courts.",
+8:"Three US survivors on coerced credit, immigration status and what turned things around.",
+9:"HSBC UK's campaign, safe branches, discreet disclosure form and list of account actions.",
+10:"Commonwealth Bank's four pillars, abusive-message detection and free support for non-customers.",
+11:"Prof Adrienne Adams on how the standard measure was built and where it does not travel.",
+12:"Review of 864 documents on prevalence, legal gaps and intersectional experience.",
+13:"Child support as a weapon in Australia and South Africa, and why women abandon the system.",
+14:"Barriers for women with disabilities in Canada and Australia, and 'nothing about us without us'.",
+15:"Credit bureaus and advocates on coerced debt, suppression versus thin files, and evidence bars.",
+16:"Bank of America and TSB on confidential staff support, flee funds and spotting signs at work.",
+17:"Joint life policies, cancelled cover, claim exclusions and the 'conduct of others' clause.",
+18:"African advocates plus Nedbank on research, law, health impacts and unintended product risks."
+};
+const T=[
+{id:"t1",name:"A trained person and a warm handoff do most of the work",grp:"Front line",v:[4,6,8,9,10,12,16],
+ shows:["Survivors go to their bank before a lawyer or the police, so the front line is often the first service she meets {6}.","BNZ asks 95% of staff to know 5% and 5% of staff to know 95%. Everyone else spots and refers, never makes her start again, and hears back that they did the right thing {4}.","HSBC puts specialist-trained colleagues behind every channel, and 4,000 staff hold specialist training {9}. TSB and Bank of America route customers and staff to a small specialist team {16}.","Few survivors disclose outright. Most hint, and the hint is easy to miss {4}.","Where the bank offered nothing, a survivor with forged cheques was never asked a question {8}."],
+ plan:["Supports assisted banking as the core. Define two tiers of staff, a spot-and-refer habit for most and a small trained group for the conversation.","Make the handover rule explicit: she does not repeat her story, and the person who spotted her gets feedback."],
+ where:["Section 04","Section 05 steps 1 and 4","Commitment 04"],
+ caution:"Evidence is bank-reported practice. No session shows independently measured customer outcomes."},
+{id:"t2",name:"Awareness only works when there is somewhere to land",grp:"Front line",v:[2,6,9,10,16,18],
+ shows:["HSBC's national campaign lifted visits to its financial abuse page by 1,400%. It ran after branches, a discreet callback form and trained staff were ready {9}.","Rebecca Glenn was asked 'where do women go?' before launching awareness work, and built Money Clinics in response {2}.","Nedbank's panelist described the same order: awareness campaign first, then the survey, then a look at product risks {18}.","Nepal and PNG banks began with their own executives and staff before customers {6}.","Awareness has to cover customers, colleagues and the communities a bank serves {16}."],
+ plan:["Match the November promise to demonstrated delivery. A campaign that outruns capacity recreates the repeat-disclosure problem the concept test flagged.","The 16 Days campaign starts on 25 November. 26 November is also promoted as an international economic abuse awareness day {2}{18}, a free alignment point."],
+ where:["Section 08 launch gate","Commitment 02","Commitment 05"],
+ caution:"HSBC's figures are one bank's, tied to a large paid campaign."},
+{id:"t3",name:"Rules that need the abuser's signature re-victimise her",grp:"Authority",v:[4,8,9,15,17],
+ shows:["BNZ told a survivor whose partner was jailed that both of them had to attend the bank. The rule meant to protect her became part of the harm {4}.","Israel's charter moved a woman off a joint account within hours of a social worker's request, without her ex's cooperation {4}. Lloyds has separated joint accounts for more than 4,700 customers {4}. HSBC separates joint accounts and removes additional cardholders {9}.","Life insurers copy one clause that needs both parties to consent to split a policy, so abusers block it. UK joint writing fell from about 70% to under 30% {17}.","Westpac's 'should we' test lets a colleague act beyond the usual rule if two others agree. BNZ holds a weekly case panel of legal, compliance, credit and product {4}.","Advocates still want a lawful way to split joint credit accounts {15}."],
+ plan:["For every row in the capability inventory, add three facts: can one party act alone, what evidence is needed, and who may approve an exception.","Use a case panel to produce the before-and-after cases the policy section asks for. Per the brief's correction, do not assume a joint transactional account. Check secondary cardholders, credit facilities, delegated access and insurance instead."],
+ where:["Section 06","Commitment 03 (authority)","Commitment 04"],
+ caution:"Several of these actions rest on a regulator or legal safe harbour. Confirm Nedbank's own legal position."},
+{id:"t4",name:"Products get weaponised, so look for the misuse",grp:"Authority",v:[3,4,5,6,9,10,12,17,18],
+ shows:["Abusive messages sent as one-cent payments: 8,000 in three months at Commonwealth Bank {10}. Australian banks have since blocked over a million {4}. That bank's detection model is offered free to any institution {10}.","Katherine Fitzpatrick's 'design to disrupt' papers list how each product type is misused, then three fixes: safer design, customer choice, clear consequences {4}.","Respect and Protect: terms and conditions state that misuse has consequences. Over 60 Australian companies have adopted this {4}.","Other cases: power of attorney access {4}, cancelled insurance with the refund pocketed {17}, cards and PINs held by money lenders {6}, online banking controlled without her knowledge {6}.","A UK bank lets customers hide abusive payment references {12}. Australia is auditing government systems the same way {3}.","Nedbank's panelist named it directly: stop turning a blind eye to unintended risks in existing products {18}."],
+ plan:["Add a short misuse scan to the capability inventory. List cards and secondary cardholders, payment references, delegated access, credit in a partner's name and joint insurance. Owners mark where the risk is real.","This is a review, not a build. It also keeps the virtual-card correction honest."],
+ where:["Section 03","Section 05 scenarios","Commitment 03"],
+ caution:"Fixes that need build belong after November. Record them, do not promise them."},
+{id:"t5",name:"Money to leave decides whether she can leave",grp:"Money",v:[3,4,9,16,17],
+ shows:["TSB's flee fund, around 5,000 pounds, is open to customers and colleagues. It started when Women's Aid said women are dying because they lack the money to leave {16}{17}.","UK government flee funds and Australia's Escaping Violence Payment are flexible cash in expert hands {3}.","AXA France reuses its rehousing skill for people leaving abuse {17}.","HSBC offers a colleague support fund and discretionary special leave {9}. Israel's charter includes small fresh-start loans {4}."],
+ plan:["Existing products only. Ask whether any hardship, discretionary or emergency mechanism already exists and could apply.","If none does, park this as a later proposal with a named owner, and leave it out of the public promise."],
+ where:["Section 04","Section 08","Commitment 02"],
+ caution:"Each fund is a dedicated programme with its own governance. None is a quick reuse."},
+{id:"t6",name:"Debt is the long tail",grp:"Money",v:[1,4,7,8,13,15,18],
+ shows:["Survivors keep paying long after leaving: Dr Andaba still settles a car shortfall {1}{18}. Hannah was bankrupt at 20 and still keeps finances separate 23 years on {8}.","The credit session: write-off helps, but removing the debt and the negative record gives the fresh start. Suppression can flag her as a survivor. A thin file beats a heavy one {15}.","Without credit she cannot lease or buy a car. A prepaid card with automatic bills was the advice that worked {8}.","Israel's charter freezes loans or mortgages and divides debts fairly {4}. Scotland targets council debt collection and joint tenancy liability {7}.","Unpaid child support is itself a debt weapon. Over 60% of South African mothers do not receive it {13}."],
+ plan:["Build the policy section's before-and-after cases from three real shapes: a coerced debt, a joint debt and a damaged credit file. Ask owners which treatments exist for each.","Take up the lever Nedbank's panelist named: the definition of income that unlocks income protection and relief products {18}."],
+ where:["Section 06","Section 03 outcome 04","Commitment 03"],
+ caution:"Credit-bureau law differs by country. South African rules were not covered."},
+{id:"t7",name:"Believe her, and ask for less proof",grp:"Evidence",v:[4,7,8,11,12,15,16],
+ shows:["Australia now requires lenders to weigh whether asking for more evidence would retraumatise her, and whether they already hold enough {15}.","Police reports exclude many. About 80% of UK survivors never report {15}. Police never questioned Caroline's abuser despite the bank evidence she supplied {8}.","BNZ's collections culture moved from 'she can't pay' to 'why'. Staff were taught to believe people {4}.","Adrienne Adams: judge by means (agreed or imposed through force, fraud or sabotage) and outcomes (who gains, who is hurt). A tick-chart will not work, hear the story {11}.","Survivors felt economic abuse was not taken seriously through prosecution {12}. Courts built for single incidents miss patterns {7}."],
+ plan:["Set a minimal evidence standard for the first conversation. Keep it separate from the evidence a particular credit decision needs, as the brief already advises.","Let staff-held information count, so she is not asked to prove it twice."],
+ where:["Section 06","Section 05 step 2","Commitment 03"],
+ caution:"Keep the brief's distinction between a treatment request and a dispute about liability or fraud."},
+{id:"t8",name:"Partners need capacity, not a referral list",grp:"Partners",v:[2,3,4,6,9,10,12,16,18],
+ shows:["Commonwealth Bank supports anyone regardless of bank, funds Good Shepherd's recovery hub and has put over $1m into community innovation {10}.","Israel names a contact person at every institution and shelter, runs four or more trainings a year, and keeps an online guide for social workers {4}.","BNZ cannot negotiate with other creditors, so it works with a partner that can {4}. Lloyds embedded a charity worker inside the bank {4}.","With consent, one Australian service shares her details across telco and utilities so she tells her story once {10}.","IFC's lawyer wants banks to fund partner capacity and work inside the tent {6}. Nedbank's panelist advised small institutions to pick one measurable outcome and partner rather than build {18}."],
+ plan:["Commitment 04 gets concrete: a named contact per partner, funded hours, consent for minimum handover information, and a review date. The Israeli contact-person model is cheap and fast.","Record each collective contribution with owner, resource and date, as Section 07 already asks."],
+ where:["Section 07","Commitment 04","Commitment 05"],
+ caution:"Partner capacity in the brief is thin. Verify counts and availability with each partner."},
+{id:"t9",name:"She may not know it is abuse",grp:"Recognition",v:[1,2,5,8,11,12,16,18],
+ shows:["Dr Andaba and Rosie Batty were earners and professionals. Culture, church and duty hid it, and strangers online named it {1}{18}.","Meseret's group of 420 survivors found most did not know the term {2}. In Benin, low self-reported rates sat beside 90% saying it happens all the time {18}.","Gentle prompts worked: 'does that feel good to you?' {8}. Workplace signs include anxiety about payday, receipts for small spends and 'I need to check first' {16}.","Tools validated on US shelter users do not transfer cleanly to other places, and 'does he control the money' can mislabel whole cultures {11}{12}."],
+ plan:["Section 05 step 1 should use plain, indirect prompts and a means-and-outcomes frame rather than a checklist. Pilot the wording with counsellors in local languages.","Do not size demand from the HSRC rates. Use staff and counsellor observation instead."],
+ where:["Section 05 step 1","Section 03 outcome 01"],
+ caution:"Wording needs local testing. Borrowed phrases may not carry across South African languages."},
+{id:"t10",name:"Who a first design leaves out",grp:"Reach",v:[5,6,8,11,12,13,14,18],
+ shows:["Women with disabilities: 1 in 4 against 1 in 6 overall in Australia, with no dedicated frontline services in Canada, and many without a bank account {14}.","Informal and live-in workers have variable income and no payslips, and products ignore 12 to 24 hour work cycles. Women may own about 2% of land in some countries {5}.","Migrants face frozen visa journeys, eligibility rules and missing ID {8}{15}.","Older people and attorney abuse {4}{6}. Family-perpetrated abuse, remittances and dowry {6}{11}{12}. Same-sex partners and easy identity fraud {12}.","Single mothers and unpaid child support {13}."],
+ plan:["Commitment 01 should name who the launch deliberately reaches and does not. Add to rehearsals: no private smartphone, shared devices, no ID, income without payslips, disability access, language, and a trusted supporter.","Include family-perpetrated and elder cases in training examples."],
+ where:["Commitment 01","Section 08 rehearsals"],
+ caution:"Each group needs its own route. A single scenario will not cover all of them."},
+{id:"t11",name:"Staff are survivors too",grp:"People",v:[6,9,16],
+ shows:["HSBC gives managers guidance, a support fund, discretionary special leave and an extended assistance programme {9}.","Bank of America's confidential life-event team takes the case off the manager, who is never told the issue. It handled over 600,000 requests in ten years {16}.","PNG staff hesitated to help customers for fear of their own safety, and women staff were quitting for 'personal reasons' {6}.","Employers now ask what to do about perpetrators in the workforce {16}."],
+ plan:["Add a staff route, a debrief and a staff-safety protocol to the operating model. These are low cost and often the fastest to stand up."],
+ where:["Section 07","Commitment 04"],
+ caution:"HR and security owners need to be involved from the start."},
+{id:"t12",name:"Law helps, but banks moved first",grp:"Law",v:[2,3,4,6,7,12,13,15,17,18],
+ shows:["The UK's Domestic Abuse Act defined economic abuse and extended coercive control past separation {3}{7}. Australia changed family property law in June 2025 {7}. Scotland uses a perpetrator-focused test {7}.","Israel's charter works while its bill is still pending {4}. Ethiopia has no definition and cites South Africa and Kenya as examples {18}.","Only 113 of 190 countries with domestic abuse laws protect against economic abuse {12}. US credit law does not treat coerced debt as identity theft {15}.","BNZ's leader says law should force the right action rather than rely on banks that will take a risk {4}. PNG's banker: do not wait for big legislative change {6}."],
+ plan:["Do not put a legal change on the November critical path. Log every legal gap Nedbank hits and pass it to the collective plan and policy asks."],
+ where:["Section 07","Section 06"],
+ caution:"This theme informs advocacy, not the launch promise."}
+];
+const A=[
+{k:"now",h:"Adopt a spot-and-refer rule with a warm handoff",p:"Everyone spots and refers. A small trained group holds the conversation. Never make her repeat her story, and tell the referrer what happened next.",w:["Section 05","Commitment 04"],f:[4,9,16]},
+{k:"now",h:"Hold a weekly outcome-first case panel",p:"Legal, compliance, credit and product look at real cases together. Use a 'should we' test: what the rules allow, then whether it is right, with two colleagues agreeing. Capture each decision as a before-and-after case.",w:["Section 06","Commitment 03"],f:[4]},
+{k:"now",h:"Name a contact person in the bank and in every partner",p:"One named person per institution who owns the handover. Cheap, fast and proven in Israel's charter.",w:["Commitment 04"],f:[4,10]},
+{k:"now",h:"Write the handover with consent and minimum information",p:"Agree what the receiving service needs, take her consent once, and send only that. Consent-based sharing is how one Australian service avoids retelling.",w:["Section 05 step 4","Commitment 04"],f:[10,9]},
+{k:"now",h:"Ask gentle, indirect questions in the first conversation",p:"Use plain wording and the means-and-outcomes test instead of a checklist. Pilot with counsellors in local languages.",w:["Section 05 step 1","Section 03 outcome 01"],f:[8,11,18]},
+{k:"now",h:"Add a staff route and staff-safety protocol",p:"A confidential internal contact, manager guidance, discretionary leave and a debrief for those who take disclosures. Include what to do about staff who are survivors, and how staff stay safe.",w:["Section 07"],f:[9,16,6]},
+{k:"now",h:"Extend the capability inventory with a checklist of account actions",p:"HSBC's list is a good prompt for owners: separate joint accounts, remove additional cardholders, non-location branch details, lower ATM limits, auto-decline new credit, trusted representative with limits, reset PINs and contact details, report attorney abuse. For each, mark whether it exists at Nedbank, who authorises it and whether one party can act alone.",w:["Commitment 03"],f:[9,4]},
+{k:"now",h:"Add summit measures to the first-outcome list",p:"Borrow what banks actually track: referrals per week, share involving intimate partner violence, time to first response, interactions per year, and customers helped under a cross-institution scheme.",w:["Section 09 measures"],f:[4,10]},
+{k:"test",h:"Run a misuse scan on existing products",p:"Cards and secondary cardholders, payment references, delegated access, credit in a partner's name and joint insurance. It produces a list for owners, not a build.",w:["Section 03","Commitment 03"],f:[4,10,17,18]},
+{k:"test",h:"Test a safe-contact routine, not the standard callback",p:"A discreet form, callback at a time she picks, no repeat attempts after a missed call, and a way for her to return herself. The brief already notes the 48-hour callback needs review.",w:["Section 05","Section 08"],f:[9]},
+{k:"test",h:"Set a low evidence bar for the first conversation",p:"No police report. Let information the bank already holds count. Keep treatment requests separate from liability or fraud disputes.",w:["Section 06"],f:[15,7,4]},
+{k:"test",h:"Choose the debt treatments to examine",p:"Per case shape, ask which exist: restructure, write-off, flagging or suppression, and credit-record correction. Remember a write-off alone does not repair the record.",w:["Section 06","Section 03 outcome 04"],f:[15,1,8]},
+{k:"test",h:"Test the definition of income",p:"Nedbank's panelist flagged that income definitions constrain income protection and relief. Ask policy owners whether support income, benefits or informal income can count.",w:["Section 06"],f:[18]},
+{k:"test",h:"Use branches as safe spaces only after a safety review",p:"HSBC and TSB opened branches to anyone, customers or not. Review security, staff safety, privacy and local capacity before deciding on a footprint.",w:["Commitment 01","Section 08"],f:[9,16,6]},
+{k:"test",h:"Rehearse the journeys for people the first design may miss",p:"No private phone, no ID, income without payslips, disability access, migrant status and language. Include family-perpetrated and elder cases.",w:["Commitment 01","Section 08 rehearsals"],f:[14,5,8,12]},
+{k:"later",h:"Agree funded partner capacity and a possible partner fund",p:"Commonwealth Bank and others fund recovery partners. Partner capacity in the brief is thin, so any funding needs approval and a named owner.",w:["Commitment 04","Section 07"],f:[10,6]},
+{k:"later",h:"Park an emergency cash-to-leave option",p:"TSB's flee fund shows it works, but it is a governed programme. Check for an existing mechanism, otherwise log it as a later proposal.",w:["Section 04"],f:[16,17,3]},
+{k:"later",h:"Capture legal and product gaps as advocacy inputs",p:"Joint-account splitting, privacy exemptions, income definitions and insurance clauses need law or build. Record them for the collective plan, outside the November promise.",w:["Section 07"],f:[17,6,15,4]}
+];
+const TAGN={now:"Use now",test:"Test first",later:"Later"};
+const chips=a=>'<span class="chips">'+a.map(n=>'<span class="v" title="'+V[n-1].t+'">'+n+'</span>').join('')+'</span>';
+const ref=s=>s.replace(/((?:\{\d+\})+)/g,m=>chips(m.match(/\d+/g).map(Number)));
+// matrix
+const mx=document.getElementById('matrix');
+let h='<thead><tr><th class="rowh" scope="col">Theme</th>'+V.map(v=>'<th class="vcol" scope="col" tabindex="0" title="'+v.n+'. '+v.t+'" aria-label="'+v.n+'. '+v.t+'">'+v.n+'</th>').join('')+'<th class="cnt" scope="col">Sessions</th></tr></thead><tbody>';
+let lastGrp='';
+T.forEach((t,i)=>{
+  if(t.grp!==lastGrp){h+='<tr class="gr"><td class="grp" colspan="'+(V.length+2)+'">'+t.grp+'</td></tr>';lastGrp=t.grp}
+  h+='<tr data-t="'+t.id+'" tabindex="0"><th scope="row">'+(i+1)+'. '+t.name+'</th>'+V.map(v=>'<td class="vcol">'+(t.v.includes(v.n)?'<span class="dot" role="img" aria-label="yes"></span>':'<span class="dot off" aria-hidden="true"></span>')+'</td>').join('')+'<td class="cnt">'+t.v.length+'/18</td></tr>';
+});
+mx.innerHTML=h+'</tbody>';
+document.getElementById('legend').innerHTML=V.map(v=>'<div><span class="n">'+v.n+'</span><span><b style="color:var(--ink);font-weight:500">'+v.t+'</b> <span class="mono">'+v.d+'</span><br>'+ONE[v.n]+'</span></div>').join('');
+// themes
+document.getElementById('themeList').innerHTML=T.map((t,i)=>'<article class="theme" id="'+t.id+'"><header><h3>'+(i+1)+'. '+t.name+'</h3><span class="spread">seen in '+t.v.length+' of 18 sessions</span></header><div class="cols"><div><h4>What the sessions show</h4><ul>'+t.shows.map(s=>'<li>'+ref(s)+'</li>').join('')+'</ul></div><div class="plan"><h4>For the Nedbank plan</h4>'+t.plan.map(p=>'<p>'+p+'</p>').join('')+'<p style="margin-top:12px">'+t.where.map(w=>'<span class="where">'+w+'</span>').join('')+'</p><p class="caution">'+t.caution+'</p></div></div></article>').join('');
+mx.querySelectorAll('tr[data-t]').forEach(r=>{
+  const go=()=>{document.querySelectorAll('.theme.on').forEach(e=>e.classList.remove('on'));mx.querySelectorAll('tr.on').forEach(e=>e.classList.remove('on'));const el=document.getElementById(r.dataset.t);el.classList.add('on');r.classList.add('on');el.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})};
+  r.addEventListener('click',go);r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});
+});
+// actions
+let cur='all';
+const fl=document.getElementById('filters');
+const counts={all:A.length,now:A.filter(a=>a.k==='now').length,test:A.filter(a=>a.k==='test').length,later:A.filter(a=>a.k==='later').length};
+fl.innerHTML=['all','now','test','later'].map(k=>'<button type="button" id="f-'+k+'" data-k="'+k+'" aria-pressed="'+(k==='all')+'">'+(k==='all'?'All':TAGN[k])+' ('+counts[k]+')</button>').join('');
+function draw(){document.getElementById('acts').innerHTML=A.map((a,i)=>({a,i})).filter(x=>cur==='all'||x.a.k===cur).map(({a,i})=>'<article class="act"><div class="left"><span class="tag '+a.k+'">'+TAGN[a.k]+'</span><span class="n">Action '+(i+1)+'</span></div><div><h3>'+a.h+'</h3><p>'+a.p+'</p><p class="meta">'+a.w.map(w=>'<span class="where">'+w+'</span>').join('')+' from sessions '+chips(a.f)+'</p></div></article>').join('');
+  fl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===cur)))}
+fl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.k;draw()});
+draw();
+</script>
+</body>
+</html>
